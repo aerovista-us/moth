@@ -796,50 +796,7 @@
         }
     </script>
 
-    <section id="shop" class="mystical-section">
-      <h2>Shop</h2>
-      <p class="muted">Handmade capsules + select partner-made exclusives.</p>
-      <div id="shop-grid" class="grid-3"></div>
-      <p class="muted"><a class="link" href="how-it-works.html">How it works</a> • <a class="link" href="shipping-returns.html">Shipping & returns</a> • <a class="link" href="products/size-guide.html">Size guide</a></p>
-    </section>
     </main>
-
-    <section id="join-the-coven" class="card pad">
-  <h2>Join the Coven</h2>
-  <p class="muted">Get 10% off your first order, early access to drops, and care tips.</p>
-  <form id="coven-form" class="row" onsubmit="return false;">
-    <input type="email" id="coven-email" placeholder="you@example.com" required class="coven-email-input" />
-    <button type="button" class="btn" id="coven-join">Get 10% Off</button>
-  </form>
-  <p id="coven-thanks" class="hidden">Thank you! Check your inbox for your code: <strong>WELCOMEMOTH10</strong>. 🦋</p>
-</section>
-<script>
-(function(){
-  function submitForm(e){
-    e && e.preventDefault();
-    const input = document.getElementById('coven-email');
-    const thanks = document.getElementById('coven-thanks');
-    if(!input || !thanks) return;
-    const email = input.value.trim();
-    if(!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ input.focus(); return; }
-    try{
-      const key = 'coven_subscribers';
-      const list = JSON.parse(localStorage.getItem(key) || '[]');
-      if(!list.includes(email)) list.push(email);
-      localStorage.setItem(key, JSON.stringify(list));
-    }catch(e){}
-    input.value = '';
-    thanks.classList.remove('hidden');
-  }
-  const btn = document.getElementById('coven-join');
-  const form = document.getElementById('coven-form');
-  if(btn) btn.addEventListener('click', submitForm);
-  if(form) form.addEventListener('submit', submitForm);
-})();
-</script>
-
-    <script src="shop.js" defer></script>
-    <script src="shop-utm.js" defer></script>
     
     <!-- Advanced Business Planning Scripts -->
     <script src="data-manager.js"></script>
