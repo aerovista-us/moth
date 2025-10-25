@@ -48,6 +48,9 @@ function handleNavClick(e) {
     const tab = e.currentTarget;
     const page = tab.getAttribute('data-page');
     
+    // Skip if no page attribute
+    if (!page) return;
+    
     // Add loading state
     tab.style.opacity = '0.7';
     tab.style.transform = 'scale(0.95)';
@@ -102,7 +105,7 @@ function addTooltips(navTabs) {
         const page = tab.getAttribute('data-page');
         const shortcut = shortcuts[index] || '';
         
-        if (shortcut) {
+        if (shortcut && page) {
             tab.title = `Go to ${page.charAt(0).toUpperCase() + page.slice(1)} (Alt + ${shortcut})`;
         }
     });
