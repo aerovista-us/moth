@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Overview - Nailed IT Business Planning</title>
+    <link rel="stylesheet" href="mystical-styles.css">
+    <link rel="stylesheet" href="simple-animations.css">
+</head>
+<body>
+    <header class="mystical-header">
+        <div class="container">
+            <div class="logo mystical-logo">🦋 Nailed IT</div>
+            <div class="tagline mystical-tagline">Artistic Nails - Where Beauty Takes Flight with Moth Wing Power</div>
+            <nav class="nav-tabs mystical-nav">
+                <a href="overview.html" class="nav-tab active">Overview</a>
+                <a href="planning.html" class="nav-tab">Planning</a>
+                <a href="tracking.html" class="nav-tab">Tracking</a>
+                <a href="supply.html" class="nav-tab">Supply Chain</a>
+                <a href="launch.html" class="nav-tab">Launch</a>
+                <a href="analytics.html" class="nav-tab">Analytics</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mystical-container">
+        <section class="section nail-art-accent mystical-section">
+            <h2><span class="section-icon mystical-icon">1</span> <span class="section-title">Product Overview</span></h2>
+            
+            <div class="mystical-card">
+                <h3>Product Line Summary</h3>
+                <div class="form-group mystical-form-group">
+                    <label>Total SKUs Planned:</label>
+                    <input type="number" id="totalSkus" value="50" min="1" max="200" class="mystical-input" aria-label="Total SKUs planned">
+                </div>
+                
+                <div class="form-group mystical-form-group">
+                    <label>Product Categories:</label>
+                    <ul class="checklist mystical-checklist">
+                        <li><label><input type="checkbox" id="pressOn" class="mystical-checkbox"> Press-on Nails (30 SKUs)</label></li>
+                        <li><label><input type="checkbox" id="nailArt" class="mystical-checkbox"> Nail Art Kits (15 SKUs)</label></li>
+                        <li><label><input type="checkbox" id="accessories" class="mystical-checkbox"> Nail Accessories (5 SKUs)</label></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="simple-interactions.js"></script>
+</body>
+</html>

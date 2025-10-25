@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics & KPIs - Nailed IT</title>
+    <link rel="stylesheet" href="mystical-styles.css">
+    <link rel="stylesheet" href="simple-animations.css">
+</head>
+<body>
+    <header class="mystical-header">
+        <div class="container">
+            <div class="logo mystical-logo">🦋 Nailed IT</div>
+            <div class="tagline mystical-tagline">Artistic Nails - Where Beauty Takes Flight with Moth Wing Power</div>
+            <nav class="nav-tabs mystical-nav">
+                <a href="overview.html" class="nav-tab">Overview</a>
+                <a href="planning.html" class="nav-tab">Planning</a>
+                <a href="tracking.html" class="nav-tab">Tracking</a>
+                <a href="supply.html" class="nav-tab">Supply Chain</a>
+                <a href="launch.html" class="nav-tab">Launch</a>
+                <a href="analytics.html" class="nav-tab active">Analytics</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mystical-container">
+        <section class="section nail-art-accent mystical-section">
+            <h2><span class="section-icon mystical-icon">6</span> <span class="section-title">Analytics & KPIs</span></h2>
+            
+            <div class="mystical-card">
+                <h3>Key Performance Indicators</h3>
+                <div class="form-group mystical-form-group">
+                    <label>Monthly Revenue Target:</label>
+                    <input type="number" id="revenueTarget" value="5000" min="100" max="100000" class="mystical-input" aria-label="Monthly revenue target">
+                </div>
+                
+                <div class="form-group mystical-form-group">
+                    <label>Customer Acquisition Cost (CAC):</label>
+                    <input type="number" id="cac" value="25" step="0.01" class="mystical-input" aria-label="Customer acquisition cost">
+                </div>
+                
+                <div class="form-group mystical-form-group">
+                    <label>Return on Ad Spend (ROAS):</label>
+                    <input type="range" id="roasSlider" min="1" max="10" value="3" step="0.1" class="mystical-slider" aria-label="Return on ad spend">
+                    <span id="roasValue">3.0x</span>
+                </div>
+            </div>
+
+            <div class="mystical-card">
+                <h3>Sales Metrics</h3>
+                <div class="form-group mystical-form-group">
+                    <label>Conversion Rate (%):</label>
+                    <input type="number" id="conversionRate" value="2.5" step="0.1" min="0" max="20" class="mystical-input" aria-label="Conversion rate percentage">
+                </div>
+                
+                <div class="form-group mystical-form-group">
+                    <label>Average Order Value:</label>
+                    <input type="number" id="aov" value="45" step="0.01" class="mystical-input" aria-label="Average order value">
+                </div>
+                
+                <div class="form-group mystical-form-group">
+                    <label>Customer Lifetime Value:</label>
+                    <input type="number" id="clv" value="120" step="0.01" class="mystical-input" aria-label="Customer lifetime value">
+                </div>
+            </div>
+
+            <div class="mystical-card">
+                <h3>Customer Support SOP</h3>
+                <div class="form-group mystical-form-group">
+                    <label>Response Time Target (hours):</label>
+                    <input type="number" id="responseTime" value="4" min="1" max="24" class="mystical-input" aria-label="Response time target in hours">
+                </div>
+                
+                <div class="form-group mystical-form-group">
+                    <label>Support Channels:</label>
+                    <ul class="checklist mystical-checklist">
+                        <li><label><input type="checkbox" id="email" class="mystical-checkbox"> Email Support</label></li>
+                        <li><label><input type="checkbox" id="chat" class="mystical-checkbox"> Live Chat</label></li>
+                        <li><label><input type="checkbox" id="phone" class="mystical-checkbox"> Phone Support</label></li>
+                        <li><label><input type="checkbox" id="social" class="mystical-checkbox"> Social Media</label></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="simple-interactions.js"></script>
+    <script src="simple-calculators.js"></script>
+</body>
+</html>

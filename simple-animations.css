@@ -1,0 +1,73 @@
+/* Simple Animations - Clean and Lightweight */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.slide-in {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Simple hover effects */
+.mystical-card:hover {
+    transform: translateY(-2px);
+    transition: transform 0.2s ease;
+}
+
+.mystical-input:focus {
+    transform: scale(1.02);
+    transition: transform 0.2s ease;
+}
+
+/* Timeline styles */
+.timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.5rem;
+    top: 0.5rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    background: var(--moth-gold);
+    border-radius: 50%;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    left: -1.25rem;
+    top: 1rem;
+    width: 0.1rem;
+    height: calc(100% + 1rem);
+    background: var(--moth-gold);
+    opacity: 0.3;
+}
+
+.timeline-item:last-child::after {
+    display: none;
+}
+
+/* Remove complex animations */
+* {
+    animation-duration: 0.3s !important;
+    animation-iteration-count: 1 !important;
+}

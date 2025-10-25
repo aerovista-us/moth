@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supply Chain - Nailed IT</title>
+    <link rel="stylesheet" href="mystical-styles.css">
+    <link rel="stylesheet" href="simple-animations.css">
+</head>
+<body>
+    <header class="mystical-header">
+        <div class="container">
+            <div class="logo mystical-logo">🦋 Nailed IT</div>
+            <div class="tagline mystical-tagline">Artistic Nails - Where Beauty Takes Flight with Moth Wing Power</div>
+            <nav class="nav-tabs mystical-nav">
+                <a href="overview.html" class="nav-tab">Overview</a>
+                <a href="planning.html" class="nav-tab">Planning</a>
+                <a href="tracking.html" class="nav-tab">Tracking</a>
+                <a href="supply.html" class="nav-tab active">Supply Chain</a>
+                <a href="launch.html" class="nav-tab">Launch</a>
+                <a href="analytics.html" class="nav-tab">Analytics</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mystical-container">
+        <section class="section nail-art-accent mystical-section">
+            <h2><span class="section-icon mystical-icon">4</span> <span class="section-title">Supply Chain & Dropshipping</span></h2>
+            
+            <div class="mystical-card">
+                <h3>Supplier Management</h3>
+                <div class="form-group mystical-form-group">
+                    <label>Primary Supplier:</label>
+                    <input type="text" id="primarySupplier" placeholder="Supplier name" class="mystical-input" aria-label="Primary supplier name">
+                </div>
+                
+                <div class="form-group mystical-form-group">
+                    <label>Backup Supplier:</label>
+                    <input type="text" id="backupSupplier" placeholder="Backup supplier name" class="mystical-input" aria-label="Backup supplier name">
+                </div>
+                
+                <div class="form-group mystical-form-group">
+                    <label>Lead Time (days):</label>
+                    <input type="number" id="leadTime" value="7" min="1" max="30" class="mystical-input" aria-label="Lead time in days">
+                </div>
+            </div>
+
+            <div class="mystical-card">
+                <h3>Quality Control Checklist</h3>
+                <ul class="checklist mystical-checklist">
+                    <li><label><input type="checkbox" id="qc1" class="mystical-checkbox"> Product samples received and tested</label></li>
+                    <li><label><input type="checkbox" id="qc2" class="mystical-checkbox"> Quality standards documented</label></li>
+                    <li><label><input type="checkbox" id="qc3" class="mystical-checkbox"> Packaging requirements confirmed</label></li>
+                    <li><label><input type="checkbox" id="qc4" class="mystical-checkbox"> Shipping methods verified</label></li>
+                    <li><label><input type="checkbox" id="qc5" class="mystical-checkbox"> Return policy established</label></li>
+                    <li><label><input type="checkbox" id="qc6" class="mystical-checkbox"> Compliance certificates obtained</label></li>
+                </ul>
+            </div>
+
+            <div class="mystical-card">
+                <h3>Inventory Management</h3>
+                <div class="form-group mystical-form-group">
+                    <label>Initial Stock Quantity:</label>
+                    <input type="number" id="initialStock" value="100" min="10" max="1000" class="mystical-input" aria-label="Initial stock quantity">
+                </div>
+                
+                <div class="form-group mystical-form-group">
+                    <label>Reorder Point:</label>
+                    <input type="number" id="reorderPoint" value="20" min="5" max="100" class="mystical-input" aria-label="Reorder point quantity">
+                </div>
+                
+                <div class="form-group mystical-form-group">
+                    <label>Reorder Quantity:</label>
+                    <input type="number" id="reorderQuantity" value="50" min="10" max="500" class="mystical-input" aria-label="Reorder quantity">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="simple-interactions.js"></script>
+</body>
+</html>

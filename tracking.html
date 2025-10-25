@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Tracking - Nailed IT</title>
+    <link rel="stylesheet" href="mystical-styles.css">
+    <link rel="stylesheet" href="simple-animations.css">
+</head>
+<body>
+    <header class="mystical-header">
+        <div class="container">
+            <div class="logo mystical-logo">🦋 Nailed IT</div>
+            <div class="tagline mystical-tagline">Artistic Nails - Where Beauty Takes Flight with Moth Wing Power</div>
+            <nav class="nav-tabs mystical-nav">
+                <a href="overview.html" class="nav-tab">Overview</a>
+                <a href="planning.html" class="nav-tab">Planning</a>
+                <a href="tracking.html" class="nav-tab active">Tracking</a>
+                <a href="supply.html" class="nav-tab">Supply Chain</a>
+                <a href="launch.html" class="nav-tab">Launch</a>
+                <a href="analytics.html" class="nav-tab">Analytics</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mystical-container">
+        <section class="section nail-art-accent mystical-section">
+            <h2><span class="section-icon mystical-icon">3</span> <span class="section-title">Progress Tracking & Pricing</span></h2>
+            
+            <div class="mystical-card">
+                <h3>Pricing Calculator</h3>
+                <div class="form-group mystical-form-group">
+                    <label>Cost per Unit:</label>
+                    <input type="number" id="costPerUnit" value="5.00" step="0.01" class="mystical-input" aria-label="Cost per unit">
+                </div>
+                
+                <div class="form-group mystical-form-group">
+                    <label>Desired Profit Margin (%):</label>
+                    <input type="range" id="marginSlider" min="20" max="80" value="50" class="mystical-slider" aria-label="Desired profit margin">
+                    <span id="marginValue">50%</span>
+                </div>
+                
+                <div class="form-group mystical-form-group">
+                    <label>Recommended Selling Price:</label>
+                    <input type="text" id="sellingPrice" readonly class="mystical-input" aria-label="Recommended selling price">
+                </div>
+            </div>
+
+            <div class="mystical-card">
+                <h3>SKU Generator</h3>
+                <div class="form-group mystical-form-group">
+                    <label>Style:</label>
+                    <select id="style" class="mystical-select" aria-label="Style selection">
+                        <option value="S">Short</option>
+                        <option value="M">Medium</option>
+                        <option value="L">Long</option>
+                    </select>
+                </div>
+                
+                <div class="form-group mystical-form-group">
+                    <label>Length:</label>
+                    <select id="length" class="mystical-select" aria-label="Length selection">
+                        <option value="S">Small</option>
+                        <option value="M">Medium</option>
+                        <option value="L">Large</option>
+                    </select>
+                </div>
+                
+                <div class="form-group mystical-form-group">
+                    <label>Finish:</label>
+                    <select id="finish" class="mystical-select" aria-label="Finish selection">
+                        <option value="M">Matte</option>
+                        <option value="G">Glossy</option>
+                        <option value="S">Shimmer</option>
+                    </select>
+                </div>
+                
+                <div class="form-group mystical-form-group">
+                    <label>Design:</label>
+                    <select id="design" class="mystical-select" aria-label="Design selection">
+                        <option value="S">Solid</option>
+                        <option value="P">Pattern</option>
+                        <option value="A">Art</option>
+                    </select>
+                </div>
+                
+                <div class="form-group mystical-form-group">
+                    <label>Kit:</label>
+                    <select id="kit" class="mystical-select" aria-label="Kit selection">
+                        <option value="B">Basic</option>
+                        <option value="P">Premium</option>
+                        <option value="L">Luxury</option>
+                    </select>
+                </div>
+                
+                <div class="form-group mystical-form-group">
+                    <label>Generated SKU:</label>
+                    <input type="text" id="skuOutput" readonly class="mystical-input" aria-label="Generated SKU">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="simple-interactions.js"></script>
+    <script src="simple-calculators.js"></script>
+</body>
+</html>
