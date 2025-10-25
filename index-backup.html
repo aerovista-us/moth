@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nailed IT - Artistic Nails Planning & Tracking | Moth Empire</title>
+    <link rel="stylesheet" href="mystical-styles.css">
+    <link rel="stylesheet" href="animations.css">
+    <link rel="stylesheet" href="particle-effects.css">
+    <style>
+        :root {
+            --moth-primary: #2c1810;
+            --moth-gold: #d4af37;
+            --moth-copper: #b87333;
+            --moth-cream: #f5f5dc;
+            --nail-pink: #ffb6c1;
+            --nail-purple: #dda0dd;
+            --nail-chrome: #c0c0c0;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--moth-cream) 0%, #f0e6d2 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--moth-primary) 0%, #3d2a1a 100%);
+            color: var(--moth-cream);
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mystical-mode {
+            background: var(--mystical-gradient) !important;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="moth" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23d4af37" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23moth)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--moth-gold);
+            margin-bottom: 1rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid var(--moth-gold);
+            color: var(--moth-cream);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            background: var(--moth-gold);
+            color: var(--moth-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(212, 175, 55, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--moth-gold);
+        }
+
+        .section h2 {
+            color: var(--moth-primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--moth-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--moth-primary);
+            font-weight: bold;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .card {
+            background: var(--moth-cream);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--moth-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .card h3 {
+            color: var(--moth-primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .status-pending { background: #fff3cd; color: #856404; }
+        .status-progress { background: #d1ecf1; color: #0c5460; }
+        .status-complete { background: #d4edda; color: #155724; }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--moth-gold), var(--moth-copper));
+            transition: width 0.3s ease;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--moth-primary);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--moth-gold);
+        }
+
+        .btn {
+            background: var(--moth-gold);
+            color: var(--moth-primary);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: var(--moth-copper);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--moth-gold);
+            color: var(--moth-gold);
+        }
+
+        .btn-secondary:hover {
+            background: var(--moth-gold);
+            color: var(--moth-primary);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, var(--moth-cream), #f0e6d2);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid var(--moth-gold);
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--moth-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--moth-gold);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--moth-gold);
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: var(--moth-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--moth-gold);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .nail-art-accent {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nail-art-accent::after {
+            content: '💅';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            opacity: 0.3;
+        }
+
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo mystical-logo">🦋 Nailed IT</div>
+            <div class="tagline mystical-tagline">Artistic Nails - Where Beauty Takes Flight with Moth Wing Power</div>
+            <nav class="nav-tabs mystical-nav">
+                <a href="#overview" class="nav-tab active mystical-tab" onclick="showSection('overview')">Overview</a>
+                <a href="#planning" class="nav-tab mystical-tab" onclick="showSection('planning')">Planning</a>
+                <a href="#tracking" class="nav-tab mystical-tab" onclick="showSection('tracking')">Tracking</a>
+                <a href="#supply" class="nav-tab mystical-tab" onclick="showSection('supply')">Supply Chain</a>
+                <a href="#launch" class="nav-tab mystical-tab" onclick="showSection('launch')">Launch</a>
+                <a href="#analytics" class="nav-tab mystical-tab" onclick="showSection('analytics')">Analytics</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mystical Background Particles -->
+    <div id="particle-container"></div>
+    <div id="shimmer-overlay"></div>
+    
+    <div class="container mystical-container">
+        <!-- Overview Section -->
+        <section id="overview" class="section nail-art-accent mystical-section">
+            <h2><span class="section-icon mystical-icon">1</span> Product Overview</h2>
+            
+            <div class="card mystical-card brand-system-card" style="background: linear-gradient(135deg, var(--moth-cream), #f0e6d2); border: 3px solid var(--moth-gold); margin-bottom: 2rem;">
+                <h3>🦋 Brand System - "Brush & Edge" by Moth Empire</h3>
+                <p><strong>Tagline:</strong> <em>Nail art as your canvas - Where Beauty Takes Flight</em></p>
+                <p><strong>Voice:</strong> Confident, artistic, instructive. Tutorial-friendly copy with playful sophistication and moth wing power.</p>
+                <p><strong>Visuals:</strong> Soft neutrals with iridescent accents. Macro nail shots, painterly strokes, subtle chrome flares inspired by moth wing patterns.</p>
+            </div>
+
+            <div class="grid mystical-grid">
+                <div class="card mystical-card floating-card">
+                    <h3>🎨 Collection Architecture</h3>
+                    <ul class="checklist mystical-checklist">
+                        <li><strong>Signature Art Sets</strong> (core catalogue)</li>
+                        <li><strong>Accent/Remix Packs</strong> (2–4 add‑on nails)</li>
+                        <li><strong>Artist Series</strong> (numbered, hand‑painted)</li>
+                        <li><strong>Seasonal Drops</strong> (monthly limited themes)</li>
+                        <li><strong>Pet‑Friendly Collection</strong> (Paws & Polish, Buddy's Brush)</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🏷️ SKU Model</h3>
+                    <p><strong>Format:</strong> <code>NAIL-[STYLE]-[LENGTH]-[FINISH]-[DESIGN]-[SIZEKIT]</code></p>
+                    <p><strong>Example:</strong> <code>NAIL-ALMOND-M-GLOSS-MILKY-S12</code></p>
+                    <p><strong>Artist Series:</strong> <code>ART-NUMBERED-HANDPAINT-XX</code></p>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>🎨 Design Concepts</h3>
+                    <ul class="checklist">
+                        <li><strong>Milky Canvas + Minimal Accent</strong> - Base: sheer milk/cream; tip accent</li>
+                        <li><strong>Cat‑Eye / Iridescent Chrome</strong> - Magnetic cat‑eye gel; accent swirl</li>
+                        <li><strong>Bold French (Texture Twist)</strong> - Nude base; colored tips with micro motif</li>
+                        <li><strong>Nature & 3D Accents</strong> - Pearls, dew‑drops, tiny blossoms</li>
+                        <li><strong>Deep Tones + Mirror</strong> - Wine/plum/emerald; mirror foil accents</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🦋 Moth Wing Power Features</h3>
+                    <ul class="checklist">
+                        <li><strong>Art-first:</strong> hand‑painted details, not commodity prints</li>
+                        <li><strong>Care-first:</strong> sizing kits, tutorial QR, reuse options</li>
+                        <li><strong>Limited:</strong> numbered small batches for hype cycles</li>
+                        <li><strong>Premium finishes:</strong> chrome, cat‑eye, glass, 3D accents</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Planning Section -->
+        <section id="planning" class="section hidden nail-art-accent">
+            <h2><span class="section-icon">2</span> Content Planning & Marketing Strategy</h2>
+            
+            <div class="card" style="background: linear-gradient(135deg, var(--moth-cream), #f0e6d2); border: 3px solid var(--moth-gold); margin-bottom: 2rem;">
+                <h3>🦋 Launch Cadence (Month 1) - Moth Wing Power Strategy</h3>
+                <div class="grid">
+                    <div>
+                        <h4>Week 1: Tease 4 looks</h4>
+                        <p>Milky, chrome, French, pet-themed designs with moth wing inspiration</p>
+                    </div>
+                    <div>
+                        <h4>Week 2: Creator seeding</h4>
+                        <p>5 micro‑creators, sizing guide post, UGC brief distribution</p>
+                    </div>
+                    <div>
+                        <h4>Week 3: Live "apply with me"</h4>
+                        <p>Limited Artist Series drop, tutorial content</p>
+                    </div>
+                    <div>
+                        <h4>Week 4: Pet tie‑in challenge</h4>
+                        <p>Bundle promo, crossover content with pet pages</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>📸 Content Requirements</h3>
+                    <div class="form-group">
+                        <label>Hero Designs Needed:</label>
+                        <input type="number" id="heroDesigns" value="10" min="1" max="20">
+                    </div>
+                    <div class="form-group">
+                        <label>Design Categories:</label>
+                        <div class="checklist">
+                            <li><input type="checkbox" id="evergreen"> Evergreen (3 designs)</li>
+                            <li><input type="checkbox" id="trendy"> Trendy (4 designs)</li>
+                            <li><input type="checkbox" id="premium"> Premium (3 designs)</li>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Content Per Design:</label>
+                        <div class="checklist">
+                            <li><input type="checkbox"> 3 lifestyle photos</li>
+                            <li><input type="checkbox"> 1 application video (15-30s, vertical)</li>
+                            <li><input type="checkbox"> Macro nail shots (1:1, 4:5, 9:16)</li>
+                            <li><input type="checkbox"> Tutorial QR code integration</li>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>🎨 Brand Kit Requirements</h3>
+                    <div class="checklist">
+                        <li><input type="checkbox"> Logo SVG files with moth wing elements</li>
+                        <li><input type="checkbox"> Color palette definition (moth-inspired)</li>
+                        <li><input type="checkbox"> Tone of voice guide</li>
+                        <li><input type="checkbox"> Brand guidelines document</li>
+                        <li><input type="checkbox"> Moth wing pattern assets</li>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>📱 Marketing Channels</h3>
+                    <div class="checklist">
+                        <li><input type="checkbox"> TikTok Shop, IG Reels, Pinterest idea pins</li>
+                        <li><input type="checkbox"> Pet page crossover for "Paws & Polish"</li>
+                        <li><input type="checkbox"> Email: lookbook + restock alerts</li>
+                        <li><input type="checkbox"> Creator partnerships (5 micro-creators)</li>
+                        <li><input type="checkbox"> UGC seeding with moth wing power theme</li>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>🎁 Launch Offers</h3>
+                    <div class="checklist">
+                        <li><input type="checkbox"> Starter bundle: Set + Prep Kit + Accent Pack</li>
+                        <li><input type="checkbox"> BOGO tabs or free prep kit on first order</li>
+                        <li><input type="checkbox"> Quarterly subscription: "New drop every 90 days"</li>
+                        <li><input type="checkbox"> Pet-themed bundle promotions</li>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🎬 UGC Brief - Moth Wing Power Content</h3>
+                <div class="grid">
+                    <div>
+                        <h4>15–30s Application Reels:</h4>
+                        <ul class="checklist">
+                            <li><input type="checkbox"> Prep → apply → reveal (macro shots)</li>
+                            <li><input type="checkbox"> Talking‑hand: "Why premium press‑ons last me 10 days"</li>
+                            <li><input type="checkbox"> Moth wing pattern showcase</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Pet Crossover Content:</h4>
+                        <ul class="checklist">
+                            <li><input type="checkbox"> Pet cameo + set reveal for crossover SKUs</li>
+                            <li><input type="checkbox"> "Paws & Polish" themed content</li>
+                            <li><input type="checkbox"> Buddy's Brush collection features</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tracking Section -->
+        <section id="tracking" class="section hidden nail-art-accent">
+            <h2><span class="section-icon">3</span> Progress Tracking & Pricing Model</h2>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value" id="designProgress">0%</div>
+                    <div class="metric-label">Designs Complete</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="contentProgress">0%</div>
+                    <div class="metric-label">Content Ready</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="launchProgress">0%</div>
+                    <div class="metric-label">Launch Ready</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="marginTarget">65%</div>
+                    <div class="metric-label">Target Margin</div>
+                </div>
+            </div>
+
+            <div class="card" style="background: linear-gradient(135deg, var(--moth-cream), #f0e6d2); border: 3px solid var(--moth-gold); margin-bottom: 2rem;">
+                <h3>🦋 SKU & Pricing Model - Moth Wing Power Pricing</h3>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                        <thead>
+                            <tr style="background: var(--moth-gold); color: var(--moth-primary);">
+                                <th style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Type</th>
+                                <th style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Example SKU</th>
+                                <th style="padding: 0.8rem; border: 1px solid var(--moth-copper);">COGS (range)</th>
+                                <th style="padding: 0.8rem; border: 1px solid var(--moth-copper);">MSRP</th>
+                                <th style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Signature Set</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper); font-family: monospace;">NAIL-ALMOND-M-GLOSS-MILKY-S12</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">$6–$10</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">$34–$39</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">12-size kit, gloss glass top</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Premium Set (3D/Chrome)</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper); font-family: monospace;">NAIL-ALMOND-L-CHROME-LUNAR-S12</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">$9–$14</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">$49–$59</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Foil/pearls/cat‑eye, extra QC</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Accent/Remix Pack (4)</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper); font-family: monospace;">ACC-MIX-CHROME-GOLDLINE-4PK</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">$2–$4</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">$12–$18</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Upsell for reuse</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Artist Series</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper); font-family: monospace;">ART-NUMBERED-HANDPAINT-XX</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">$12–$18</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">$59–$89</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Limited, signed card</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Application Kit</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper); font-family: monospace;">KIT-PREP-REWEAR-V1</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">$2–$3</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">$9–$12</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Tabs, wipes, buffer, stick</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">Target gross margin: 60–70% pre‑ads. Adjust for US/EU warehouse premiums.</p>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>💰 Interactive Pricing Calculator</h3>
+                    <div class="form-group">
+                        <label>Base Set COGS:</label>
+                        <input type="range" id="cogsRange" min="6" max="14" value="8" oninput="updatePricing()">
+                        <span id="cogsValue">$8</span>
+                    </div>
+                    <div class="form-group">
+                        <label>MSRP Range:</label>
+                        <input type="range" id="msrpRange" min="24" max="89" value="39" oninput="updatePricing()">
+                        <span id="msrpValue">$39</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Target Margin:</label>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="marginBar" style="width: 65%"></div>
+                        </div>
+                        <span id="marginValue">65%</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Breakeven ROAS:</label>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="roasBar" style="width: 30%"></div>
+                        </div>
+                        <span id="roasValue">2.5x</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>📦 Materials & Sourcing</h3>
+                    <div class="checklist">
+                        <li><input type="checkbox"> Nail tips (gel/soft-gel, pre-etched)</li>
+                        <li><input type="checkbox"> Adhesives (glue tabs + brush-on resin)</li>
+                        <li><input type="checkbox"> Finishes (HEMA-free gel polishes)</li>
+                        <li><input type="checkbox"> Tools (UV lamp, buffers, alcohol wipes)</li>
+                        <li><input type="checkbox"> Vendor testing (7-day wear test)</li>
+                        <li><input type="checkbox"> Moth wing pattern stencils</li>
+                        <li><input type="checkbox"> Chrome/cat-eye effect materials</li>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🦋 Quick SKU Generator - Moth Wing Power</h3>
+                <div class="grid">
+                    <div class="form-group">
+                        <label>Shape:</label>
+                        <input id="shape" placeholder="ALMOND" value="ALMOND" />
+                    </div>
+                    <div class="form-group">
+                        <label>Length:</label>
+                        <input id="length" placeholder="M" value="M" />
+                    </div>
+                    <div class="form-group">
+                        <label>Finish:</label>
+                        <input id="finish" placeholder="GLOSS" value="GLOSS" />
+                    </div>
+                    <div class="form-group">
+                        <label>Design:</label>
+                        <input id="design" placeholder="MILKY" value="MILKY" />
+                    </div>
+                    <div class="form-group">
+                        <label>Size Kit:</label>
+                        <input id="sizekit" placeholder="S12" value="S12" />
+                    </div>
+                    <div class="form-group">
+                        <button class="btn" onclick="genSku()">Generate SKU</button>
+                        <p id="skuOut" style="font-family: monospace; margin-top: 0.5rem; color: var(--moth-primary);"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Supply Chain Section -->
+        <section id="supply" class="section hidden nail-art-accent">
+            <h2><span class="section-icon">4</span> Supply Chain & Dropshipping</h2>
+            
+            <div class="card" style="background: linear-gradient(135deg, var(--moth-cream), #f0e6d2); border: 3px solid var(--moth-gold); margin-bottom: 2rem;">
+                <h3>🦋 Hybrid Supply Chain - Moth Wing Power Operations</h3>
+                <p><strong>Structure:</strong> Maintain a curated catalog fulfilled via dropshipping partners (US/EU where possible) + limited, hand‑painted "Artist Series" crafted locally for higher AOV and content.</p>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>📦 Dropshipping Structure</h3>
+                    <ul class="checklist">
+                        <li><input type="checkbox"> <strong>Catalogue:</strong> stocked SKUs via DS partners (US/EU when possible)</li>
+                        <li><input type="checkbox"> <strong>Artist Series:</strong> in‑house, made‑to‑order</li>
+                        <li><input type="checkbox"> <strong>QC:</strong> incoming samples + random batch tests</li>
+                        <li><input type="checkbox"> <strong>Finish testing:</strong> sizing, adhesion, durability</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🏭 Supplier Vetting</h3>
+                    <ul class="checklist">
+                        <li><input type="checkbox"> Lead time (processing + ship‑from locations)</li>
+                        <li><input type="checkbox"> Finish library (chrome, cat‑eye, matte, HEMA‑free)</li>
+                        <li><input type="checkbox"> Defect rate & remake policy (goal &lt; 3% over 100 orders)</li>
+                        <li><input type="checkbox"> Packaging customization + insert printing</li>
+                        <li><input type="checkbox"> Moth wing pattern capability</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>⚡ Service Level Agreements</h3>
+                    <ul class="checklist">
+                        <li><input type="checkbox"> Stock SKUs: ship in 48h</li>
+                        <li><input type="checkbox"> MTO Artist Series: 5–7 biz days</li>
+                        <li><input type="checkbox"> Ticket response &lt; 24h</li>
+                        <li><input type="checkbox"> DOA replacement in 7 days</li>
+                        <li><input type="checkbox"> Size swap: one free rematch set (first order)</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🚚 Logistics & Fulfillment</h3>
+                    <ul class="checklist">
+                        <li><input type="checkbox"> Label routing: branded sender with returns hub</li>
+                        <li><input type="checkbox"> US/EU warehouses prioritized for Q4 speed</li>
+                        <li><input type="checkbox"> Track & notify (email + SMS + FB/IG DM fallback)</li>
+                        <li><input type="checkbox"> Moth wing branded packaging</li>
+                        <li><input type="checkbox"> Tutorial QR codes in packaging</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>⚖️ Compliance & Safety - Moth Wing Power Standards</h3>
+                <div class="grid">
+                    <div>
+                        <h4>Cosmetic Claims</h4>
+                        <ul class="checklist">
+                            <li><input type="checkbox"> Cosmetic claims only; avoid medical/therapeutic language</li>
+                            <li><input type="checkbox"> Adhesive labels: ingredients, warnings, manufacturer/shipper address</li>
+                            <li><input type="checkbox"> Tutorials: safe removal guidance; patch test advisory</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Regulatory Compliance</h4>
+                        <ul class="checklist">
+                            <li><input type="checkbox"> Prop 65/CPSIA review for CA/minors exposure if relevant</li>
+                            <li><input type="checkbox"> HEMA-free options clearly labeled</li>
+                            <li><input type="checkbox"> Age-appropriate warnings</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Launch Section -->
+        <section id="launch" class="section hidden nail-art-accent">
+            <h2><span class="section-icon">5</span> Launch Timeline & Risk Management</h2>
+            
+            <div class="card" style="background: linear-gradient(135deg, var(--moth-cream), #f0e6d2); border: 3px solid var(--moth-gold); margin-bottom: 2rem;">
+                <h3>🦋 12‑Week Launch Timeline - Moth Wing Power Strategy</h3>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                        <thead>
+                            <tr style="background: var(--moth-gold); color: var(--moth-primary);">
+                                <th style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Week</th>
+                                <th style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Milestones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">1–2</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Finalize 8–12 designs, supplier short‑list, sample orders, brand kit</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">3–4</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">QC samples, packaging mockups, photo/video content, PDPs & size guide</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">5–6</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Creator seeding, email list build, pre‑launch waitlist</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">7–8</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Go‑live core SKUs, Artist Series #1, pet crossover campaign</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">9–10</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Optimize ads/UGC, expand accent packs, retail outreach</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">11–12</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Seasonal drop, subscription beta, ops review + scale plan</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>📋 Operations Checklist</h3>
+                    <div class="checklist">
+                        <li><input type="checkbox"> SLA: 2-3 biz days standard, 5-7 customs</li>
+                        <li><input type="checkbox"> Returns policy (hygiene-safe, unworn)</li>
+                        <li><input type="checkbox"> Inventory: Kanban min/max system</li>
+                        <li><input type="checkbox"> 2 weeks of tips/packaging on hand</li>
+                        <li><input type="checkbox"> Moth wing branded packaging ready</li>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>⚖️ Compliance Checklist</h3>
+                    <div class="checklist">
+                        <li><input type="checkbox"> Cosmetic claims review (avoid medical language)</li>
+                        <li><input type="checkbox"> Adhesive labeling (ingredients, warnings)</li>
+                        <li><input type="checkbox"> CPSIA/Prop 65 review for CA sales</li>
+                        <li><input type="checkbox"> Manufacturer/reseller address on labels</li>
+                        <li><input type="checkbox"> HEMA-free options clearly marked</li>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>⚠️ Risk Register - Moth Wing Power Mitigation</h3>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                        <thead>
+                            <tr style="background: var(--moth-gold); color: var(--moth-primary);">
+                                <th style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Risk</th>
+                                <th style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Impact</th>
+                                <th style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Mitigation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Supplier delays/quality drift</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);"><span style="background: #fff3cd; color: #856404; padding: 0.2rem 0.5rem; border-radius: 10px; font-size: 0.8rem;">Medium</span></td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Backup vendors; batch QC; defect diary; swap if &gt;3% defects</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Ad costs squeeze margin</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);"><span style="background: #fff3cd; color: #856404; padding: 0.2rem 0.5rem; border-radius: 10px; font-size: 0.8rem;">Medium</span></td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Focus UGC; bundles to raise AOV; BE‑ROAS monitor</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Return hygiene issues</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);"><span style="background: #fecaca; color: #dc2626; padding: 0.2rem 0.5rem; border-radius: 10px; font-size: 0.8rem;">High</span></td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Strict unopened policy; size rematch; clear tutorials</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Copycats</td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);"><span style="background: #fff3cd; color: #856404; padding: 0.2rem 0.5rem; border-radius: 10px; font-size: 0.8rem;">Medium</span></td>
+                                <td style="padding: 0.8rem; border: 1px solid var(--moth-copper);">Limited runs; signature artist marks; community loyalty</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section id="analytics" class="section hidden nail-art-accent">
+            <h2><span class="section-icon">6</span> Analytics & KPIs</h2>
+            
+            <div class="card" style="background: linear-gradient(135deg, var(--moth-cream), #f0e6d2); border: 3px solid var(--moth-gold); margin-bottom: 2rem;">
+                <h3>🦋 Key Performance Indicators - Moth Wing Power Metrics</h3>
+                <div class="grid">
+                    <div>
+                        <h4>Financial Metrics</h4>
+                        <ul class="checklist">
+                            <li><input type="checkbox"> Blended ROAS, AOV, contribution margin after ad spend</li>
+                            <li><input type="checkbox"> Refund/defect rate, repeat purchase rate</li>
+                            <li><input type="checkbox"> Attachment rate for Accent Packs</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Content Metrics</h4>
+                        <ul class="checklist">
+                            <li><input type="checkbox"> Content velocity: posts/week, creator CTR</li>
+                            <li><input type="checkbox"> PDP view-to-cart conversion</li>
+                            <li><input type="checkbox"> UGC engagement rates</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>💰 Breakeven ROAS Calculator</h3>
+                    <div class="form-group">
+                        <label>COGS ($):</label>
+                        <input type="number" id="cogs" value="10" min="1" max="50" />
+                    </div>
+                    <div class="form-group">
+                        <label>MSRP ($):</label>
+                        <input type="number" id="msrp" value="39" min="10" max="200" />
+                    </div>
+                    <div class="form-group">
+                        <label>Shipping & Fees ($):</label>
+                        <input type="number" id="fees" value="6" min="0" max="50" />
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-light); margin: 1rem 0;">Breakeven ROAS = Revenue / (Revenue − COGS − Fees)</p>
+                    <button class="btn" onclick="calcROAS()">Calculate ROAS</button>
+                    <p id="roasOut" style="font-family: monospace; margin-top: 0.5rem; color: var(--moth-primary); font-weight: bold;"></p>
+                </div>
+                <div class="card">
+                    <h3>📊 Storefront UX Requirements</h3>
+                    <div class="checklist">
+                        <li><input type="checkbox"> Product pages: macro images (1:1, 4:5, 9:16)</li>
+                        <li><input type="checkbox"> 15–30s application reel integration</li>
+                        <li><input type="checkbox"> Size guide modal</li>
+                        <li><input type="checkbox"> Variant logic: shape × length × finish × size kit</li>
+                        <li><input type="checkbox"> Accent packs shown as "Complete the look"</li>
+                        <li><input type="checkbox"> "How to Apply" page with chapters + QR in box</li>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🎯 Customer Support SOP - Moth Wing Power Service</h3>
+                <div class="grid">
+                    <div>
+                        <h4>Response SLAs</h4>
+                        <ul class="checklist">
+                            <li><input type="checkbox"> &lt; 12h weekdays / &lt; 24h weekends</li>
+                            <li><input type="checkbox"> Fit Guarantee: one free size rematch on first order</li>
+                            <li><input type="checkbox"> DOA/Defect: immediate reship; collect photo evidence</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Returns Policy</h4>
+                        <ul class="checklist">
+                            <li><input type="checkbox"> Hygiene-safe (unworn/unused)</li>
+                            <li><input type="checkbox"> Partial credit for opened but unused sets at discretion</li>
+                            <li><input type="checkbox"> Size rematch before return</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section nail-art-accent">
+            <h2><span class="section-icon">❓</span> Frequently Asked Questions</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>⏱️ Wear Time</h3>
+                    <p><strong>7-14 days</strong> with proper prep. Re-usable with tabs.</p>
+                </div>
+                <div class="card">
+                    <h3>📏 Custom Sizing</h3>
+                    <p><strong>Free once</strong> per 30 days after one fit swap.</p>
+                </div>
+                <div class="card">
+                    <h3>🤧 Allergies</h3>
+                    <p><strong>HEMA-free options</strong> available on request.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                if (section.id !== 'overview') {
+                    section.classList.add('hidden');
+                }
+            });
+
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show selected section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        function updatePricing() {
+            const cogs = document.getElementById('cogsRange').value;
+            const msrp = document.getElementById('msrpRange').value;
+            
+            document.getElementById('cogsValue').textContent = '$' + cogs;
+            document.getElementById('msrpValue').textContent = '$' + msrp;
+            
+            const margin = ((msrp - cogs) / msrp * 100).toFixed(0);
+            document.getElementById('marginValue').textContent = margin + '%';
+            document.getElementById('marginBar').style.width = margin + '%';
+            
+            // Calculate ROAS
+            const fees = 6; // Default shipping and fees
+            const roas = (msrp / (msrp - cogs - fees)).toFixed(2);
+            document.getElementById('roasValue').textContent = roas + 'x';
+            document.getElementById('roasBar').style.width = Math.min((roas / 5) * 100, 100) + '%';
+        }
+
+        function calcROAS() {
+            const c = parseFloat(document.getElementById('cogs').value || 0);
+            const m = parseFloat(document.getElementById('msrp').value || 0);
+            const f = parseFloat(document.getElementById('fees').value || 0);
+            const denom = (m - c - f);
+            if(denom <= 0 || m <= 0){ 
+                document.getElementById('roasOut').textContent = "Check inputs — margin is non‑positive."; 
+                return; 
+            }
+            const be = (m / denom);
+            document.getElementById('roasOut').textContent = "Breakeven ROAS: " + be.toFixed(2) + "x";
+        }
+
+        function genSku() {
+            const s = (document.getElementById('shape').value || "").toUpperCase().replace(/\s+/g,'');
+            const l = (document.getElementById('length').value || "").toUpperCase();
+            const f = (document.getElementById('finish').value || "").toUpperCase().replace(/\s+/g,'-');
+            const d = (document.getElementById('design').value || "").toUpperCase().replace(/\s+/g,'-');
+            const k = (document.getElementById('sizekit').value || "").toUpperCase();
+            const sku = `NAIL-${s}-${l}-${f}-${d}-${k}`;
+            document.getElementById('skuOut').textContent = sku;
+        }
+
+        // Initialize progress tracking
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const checked = document.querySelectorAll('input[type="checkbox"]:checked');
+            const progress = (checked.length / checkboxes.length * 100).toFixed(0);
+            
+            document.getElementById('designProgress').textContent = progress + '%';
+            document.getElementById('contentProgress').textContent = (progress * 0.8) + '%';
+            document.getElementById('launchProgress').textContent = (progress * 0.6) + '%';
+        }
+
+        // Add event listeners to checkboxes
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateProgress);
+            });
+            
+            updateProgress();
+            updatePricing();
+        });
+
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+        
+        // Secret hotkey functionality
+        let keySequence = '';
+        let mysticalMode = false;
+        
+        document.addEventListener('keydown', function(e) {
+            keySequence += e.key.toLowerCase();
+            if (keySequence.length > 5) {
+                keySequence = keySequence.slice(-5);
+            }
+            
+            if (keySequence === 'penny') {
+                toggleMysticalMode();
+                keySequence = '';
+            }
+        });
+        
+        function toggleMysticalMode() {
+            // Redirect to enhanced version
+            window.location.href = 'nailedit-enhanced.html';
+        }
+    </script>
+    
+    <script src="mystical-animations.js"></script>
+    <script src="particle-system.js"></script>
+    <script src="interactive-features.js"></script>
+</body>
+</html>
