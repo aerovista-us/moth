@@ -484,22 +484,8 @@ class AdvancedNavigation {
     
     // Progressive Disclosure
     implementProgressiveDisclosure() {
-        // Hide advanced tools by default, show on demand
-        const advancedTools = document.querySelectorAll('[data-category="advanced"]');
-        advancedTools.forEach(tool => {
-            tool.style.display = 'none';
-        });
-        
-        // Add "Show Advanced Tools" button
-        const showAdvancedBtn = document.createElement('button');
-        showAdvancedBtn.className = 'show-advanced-btn';
-        showAdvancedBtn.textContent = '🔧 Show Advanced Tools';
-        showAdvancedBtn.onclick = () => this.toggleAdvancedTools();
-        
-        const navContainer = document.querySelector('.mystical-nav');
-        if (navContainer) {
-            navContainer.appendChild(showAdvancedBtn);
-        }
+        // All tools are visible by default - no need to hide advanced tools
+        // This provides a cleaner, more accessible interface
     }
     
     // Utility Methods
