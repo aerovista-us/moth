@@ -312,7 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const loadingStyle = document.createElement('style');
 loadingStyle.textContent = `
     .loading-overlay {
-        animation: fadeIn 0.3s ease-out;
+        animation: loadingFadeIn 0.3s ease-out;
     }
     
     .mystical-spinner {
@@ -321,7 +321,7 @@ loadingStyle.textContent = `
         border: 4px solid rgba(212, 175, 55, 0.3);
         border-top: 4px solid var(--moth-gold);
         border-radius: 50%;
-        animation: spin 1s linear infinite;
+        animation: loadingSpin 1s linear infinite;
         margin-bottom: 1rem;
     }
     
@@ -357,7 +357,7 @@ loadingStyle.textContent = `
     }
     
     .section-loader {
-        animation: fadeIn 0.3s ease-out;
+        animation: loadingFadeIn 0.3s ease-out;
     }
     
     .section-spinner {
@@ -366,7 +366,7 @@ loadingStyle.textContent = `
         border: 3px solid rgba(212, 175, 55, 0.3);
         border-top: 3px solid var(--moth-gold);
         border-radius: 50%;
-        animation: spin 1s linear infinite;
+        animation: loadingSpin 1s linear infinite;
         margin-bottom: 0.5rem;
     }
     
@@ -377,7 +377,7 @@ loadingStyle.textContent = `
     }
     
     .card-loader {
-        animation: fadeIn 0.3s ease-out;
+        animation: loadingFadeIn 0.3s ease-out;
     }
     
     .card-spinner {
@@ -386,15 +386,15 @@ loadingStyle.textContent = `
         border: 2px solid rgba(212, 175, 55, 0.3);
         border-top: 2px solid var(--moth-gold);
         border-radius: 50%;
-        animation: spin 1s linear infinite;
+        animation: loadingSpin 1s linear infinite;
     }
     
-    @keyframes spin {
+    @keyframes loadingSpin {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
     
-    @keyframes fadeIn {
+    @keyframes loadingFadeIn {
         from { opacity: 0; }
         to { opacity: 1; }
     }

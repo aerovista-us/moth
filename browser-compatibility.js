@@ -420,7 +420,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const compatibilityStyle = document.createElement('style');
 compatibilityStyle.textContent = `
     .compatibility-warning {
-        animation: fadeIn 0.3s ease-out;
+        animation: browserFadeIn 0.3s ease-out;
     }
     
     .warning-content {
@@ -455,7 +455,7 @@ compatibilityStyle.textContent = `
         margin-top: 1rem;
     }
     
-    @keyframes fadeIn {
+    @keyframes browserFadeIn {
         from { opacity: 0; transform: scale(0.9); }
         to { opacity: 1; transform: scale(1); }
     }

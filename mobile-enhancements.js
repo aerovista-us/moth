@@ -294,10 +294,12 @@ class MobileEnhancements {
             particleContainer.style.display = 'none';
         }
         
-        // Disable all animations
+        // Disable only heavy animations, not all animations
         const style = document.createElement('style');
         style.textContent = `
-            * {
+            .floating-card,
+            .mystical-float,
+            .particle-container * {
                 animation: none !important;
                 transition: none !important;
             }

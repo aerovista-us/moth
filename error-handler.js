@@ -260,7 +260,7 @@ class ErrorHandler {
             z-index: 10000;
             max-width: 300px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            animation: slideIn 0.3s ease-out;
+            animation: errorSlideIn 0.3s ease-out;
         `;
         
         document.body.appendChild(errorDiv);
@@ -472,25 +472,25 @@ function showHealthCheck() {
 const errorStyle = document.createElement('style');
 errorStyle.textContent = `
     .error-notification {
-        animation: slideIn 0.3s ease-out;
+        animation: errorSlideIn 0.3s ease-out;
     }
     
-    @keyframes slideIn {
+    @keyframes errorSlideIn {
         from { transform: translateX(100%); opacity: 0; }
         to { transform: translateX(0); opacity: 1; }
     }
     
-    @keyframes slideOut {
+    @keyframes errorSlideOut {
         from { transform: translateX(0); opacity: 1; }
         to { transform: translateX(100%); opacity: 0; }
     }
     
-    @keyframes fadeIn {
+    @keyframes errorFadeIn {
         from { opacity: 0; }
         to { opacity: 1; }
     }
     
-    @keyframes fadeOut {
+    @keyframes errorFadeOut {
         from { opacity: 1; }
         to { opacity: 0; }
     }

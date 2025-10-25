@@ -628,7 +628,7 @@ class AdminPanel {
             z-index: 10002;
             color: white;
             background: ${type === 'success' ? '#4caf50' : type === 'error' ? '#f44336' : '#2196f3'};
-            animation: slideIn 0.3s ease-out;
+            animation: adminSlideIn 0.3s ease-out;
         `;
         
         document.body.appendChild(notification);
@@ -877,10 +877,10 @@ adminStyle.textContent = `
     }
     
     .admin-notification {
-        animation: slideIn 0.3s ease-out;
+        animation: adminSlideIn 0.3s ease-out;
     }
     
-    @keyframes slideIn {
+    @keyframes adminSlideIn {
         from { transform: translateX(100%); opacity: 0; }
         to { transform: translateX(0); opacity: 1; }
     }

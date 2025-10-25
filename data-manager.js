@@ -310,7 +310,7 @@ class DataManager {
             color: white;
             border-radius: 4px;
             z-index: 10000;
-            animation: slideIn 0.3s ease-out;
+            animation: dataSlideIn 0.3s ease-out;
         `;
         
         document.body.appendChild(indicator);
@@ -384,12 +384,12 @@ function handleFileImport(input) {
 // Add CSS for animations
 const style = document.createElement('style');
 style.textContent = `
-    @keyframes slideIn {
+    @keyframes dataSlideIn {
         from { transform: translateX(100%); opacity: 0; }
         to { transform: translateX(0); opacity: 1; }
     }
     
-    @keyframes slideOut {
+    @keyframes dataSlideOut {
         from { transform: translateX(0); opacity: 1; }
         to { transform: translateX(100%); opacity: 0; }
     }

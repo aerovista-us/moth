@@ -91,7 +91,7 @@ class OfflineSupport {
             text-align: center;
             z-index: 10000;
             display: none;
-            animation: slideDown 0.3s ease-out;
+            animation: offlineSlideDown 0.3s ease-out;
         `;
         
         document.body.appendChild(offlineIndicator);
@@ -395,10 +395,10 @@ document.addEventListener('DOMContentLoaded', () => {
 const offlineStyle = document.createElement('style');
 offlineStyle.textContent = `
     .offline-indicator {
-        animation: slideDown 0.3s ease-out;
+        animation: offlineSlideDown 0.3s ease-out;
     }
     
-    @keyframes slideDown {
+    @keyframes offlineSlideDown {
         from { transform: translateY(-100%); }
         to { transform: translateY(0); }
     }
