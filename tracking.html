@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Progress Tracking - Nailed IT</title>
+    <title>Progress Tracking & Pricing Model - Nailed IT Business Planning</title>
     <link rel="stylesheet" href="mystical-styles.css">
     <link rel="stylesheet" href="simple-animations.css">
 </head>
 <body>
+    <!-- Shared Navigation Header -->
     <header class="mystical-header">
         <div class="container">
             <div class="logo mystical-logo">🦋 Nailed IT</div>
@@ -25,83 +26,125 @@
 
     <main class="container mystical-container">
         <section class="section nail-art-accent mystical-section">
-            <h2><span class="section-icon mystical-icon">3</span> <span class="section-title">Progress Tracking & Pricing</span></h2>
+            <h2><span class="section-icon mystical-icon">3</span> <span class="section-title">Progress Tracking & Pricing Model</span></h2>
             
-            <div class="mystical-card">
-                <h3>Pricing Calculator</h3>
-                <div class="form-group mystical-form-group">
-                    <label>Cost per Unit:</label>
-                    <input type="number" id="costPerUnit" value="5.00" step="0.01" class="mystical-input" aria-label="Cost per unit">
+            <div class="metrics-grid mystical-metrics">
+                <div class="metric-card mystical-metric floating-card">
+                    <div class="metric-value mystical-metric-value" id="designProgress">0%</div>
+                    <div class="metric-label mystical-metric-label">Designs Complete</div>
                 </div>
-                
-                <div class="form-group mystical-form-group">
-                    <label>Desired Profit Margin (%):</label>
-                    <input type="range" id="marginSlider" min="20" max="80" value="50" class="mystical-slider" aria-label="Desired profit margin">
-                    <span id="marginValue">50%</span>
+                <div class="metric-card mystical-metric floating-card">
+                    <div class="metric-value mystical-metric-value" id="contentProgress">0%</div>
+                    <div class="metric-label mystical-metric-label">Content Ready</div>
                 </div>
-                
-                <div class="form-group mystical-form-group">
-                    <label>Recommended Selling Price:</label>
-                    <input type="text" id="sellingPrice" readonly class="mystical-input" aria-label="Recommended selling price">
+                <div class="metric-card mystical-metric floating-card">
+                    <div class="metric-value mystical-metric-value" id="launchProgress">0%</div>
+                    <div class="metric-label mystical-metric-label">Launch Ready</div>
+                </div>
+                <div class="metric-card mystical-metric floating-card">
+                    <div class="metric-value mystical-metric-value" id="marginTarget">65%</div>
+                    <div class="metric-label mystical-metric-label">Target Margin</div>
                 </div>
             </div>
 
-            <div class="mystical-card">
-                <h3>SKU Generator</h3>
-                <div class="form-group mystical-form-group">
-                    <label>Style:</label>
-                    <select id="style" class="mystical-select" aria-label="Style selection">
-                        <option value="S">Short</option>
-                        <option value="M">Medium</option>
-                        <option value="L">Long</option>
-                    </select>
+            <div class="card mystical-card brand-system-card">
+                <h3>🦋 SKU & Pricing Model - Moth Wing Power Pricing</h3>
+                <div class="mystical-table-container">
+                    <table class="mystical-table">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Example SKU</th>
+                                <th>COGS (range)</th>
+                                <th>MSRP</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Signature Set</td>
+                                <td class="mystical-code">NAIL-ALMOND-M-GLOSS-MILKY-S12</td>
+                                <td>$6–$10</td>
+                                <td>$34–$39</td>
+                                <td>12-size kit, gloss glass top</td>
+                            </tr>
+                            <tr>
+                                <td>Premium Set (3D/Chrome)</td>
+                                <td class="mystical-code">NAIL-ALMOND-L-CHROME-LUNAR-S12</td>
+                                <td>$9–$14</td>
+                                <td>$49–$59</td>
+                                <td>Foil/pearls/cat‑eye, extra QC</td>
+                            </tr>
+                            <tr>
+                                <td>Accent/Remix Pack (4)</td>
+                                <td class="mystical-code">ACC-MIX-CHROME-GOLDLINE-4PK</td>
+                                <td>$2–$4</td>
+                                <td>$12–$18</td>
+                                <td>Upsell for reuse</td>
+                            </tr>
+                            <tr>
+                                <td>Artist Series</td>
+                                <td class="mystical-code">ART-NUMBERED-HANDPAINT-XX</td>
+                                <td>$12–$18</td>
+                                <td>$59–$89</td>
+                                <td>Limited, signed card</td>
+                            </tr>
+                            <tr>
+                                <td>Application Kit</td>
+                                <td class="mystical-code">KIT-PREP-REWEAR-V1</td>
+                                <td>$2–$3</td>
+                                <td>$9–$12</td>
+                                <td>Tabs, wipes, buffer, stick</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                
-                <div class="form-group mystical-form-group">
-                    <label>Length:</label>
-                    <select id="length" class="mystical-select" aria-label="Length selection">
-                        <option value="S">Small</option>
-                        <option value="M">Medium</option>
-                        <option value="L">Large</option>
-                    </select>
+                <p class="mystical-note">Target gross margin: 60–70% pre‑ads. Adjust for US/EU warehouse premiums.</p>
+            </div>
+
+            <div class="grid mystical-grid">
+                <div class="card mystical-card floating-card">
+                    <h3>💰 Interactive Pricing Calculator</h3>
+                    <div class="form-group mystical-form-group">
+                        <label>Base Set COGS:</label>
+                        <input type="range" id="cogsRange" min="6" max="14" value="8" oninput="updatePricing()" class="mystical-range" aria-label="Base Set COGS range">
+                        <span id="cogsValue" class="mystical-value">$8</span>
+                    </div>
+                    <div class="form-group mystical-form-group">
+                        <label>MSRP Range:</label>
+                        <input type="range" id="msrpRange" min="24" max="89" value="39" oninput="updatePricing()" class="mystical-range" aria-label="MSRP range">
+                        <span id="msrpValue" class="mystical-value">$39</span>
+                    </div>
+                    <div class="form-group mystical-form-group">
+                        <label>Target Margin:</label>
+                        <div class="progress-bar mystical-progress">
+                            <div class="progress-fill mystical-progress-fill" id="marginBar"></div>
+                        </div>
+                        <span id="marginValue" class="mystical-value">65%</span>
+                    </div>
+                    <div class="form-group mystical-form-group">
+                        <label>Breakeven ROAS:</label>
+                        <div class="progress-bar mystical-progress">
+                            <div class="progress-fill mystical-progress-fill" id="roasBar"></div>
+                        </div>
+                        <span id="roasValue" class="mystical-value">2.5x</span>
+                    </div>
                 </div>
-                
-                <div class="form-group mystical-form-group">
-                    <label>Finish:</label>
-                    <select id="finish" class="mystical-select" aria-label="Finish selection">
-                        <option value="M">Matte</option>
-                        <option value="G">Glossy</option>
-                        <option value="S">Shimmer</option>
-                    </select>
-                </div>
-                
-                <div class="form-group mystical-form-group">
-                    <label>Design:</label>
-                    <select id="design" class="mystical-select" aria-label="Design selection">
-                        <option value="S">Solid</option>
-                        <option value="P">Pattern</option>
-                        <option value="A">Art</option>
-                    </select>
-                </div>
-                
-                <div class="form-group mystical-form-group">
-                    <label>Kit:</label>
-                    <select id="kit" class="mystical-select" aria-label="Kit selection">
-                        <option value="B">Basic</option>
-                        <option value="P">Premium</option>
-                        <option value="L">Luxury</option>
-                    </select>
-                </div>
-                
-                <div class="form-group mystical-form-group">
-                    <label>Generated SKU:</label>
-                    <input type="text" id="skuOutput" readonly class="mystical-input" aria-label="Generated SKU">
+                <div class="card mystical-card floating-card">
+                    <h3>🔧 Materials Sourcing</h3>
+                    <ul class="checklist mystical-checklist">
+                        <li><label><input type="checkbox" class="mystical-checkbox"> HEMA-free gel base (EU compliance)</label></li>
+                        <li><label><input type="checkbox" class="mystical-checkbox"> Chrome/mirror foil sheets</label></li>
+                        <li><label><input type="checkbox" class="mystical-checkbox"> Cat-eye magnetic gel</label></li>
+                        <li><label><input type="checkbox" class="mystical-checkbox"> 3D accent pearls & charms</label></li>
+                        <li><label><input type="checkbox" class="mystical-checkbox"> Size kit components (tabs, wipes, buffer)</label></li>
+                        <li><label><input type="checkbox" class="mystical-checkbox"> Moth wing pattern stencils</label></li>
+                    </ul>
                 </div>
             </div>
         </section>
     </main>
 
-    <script src="simple-interactions.js"></script>
-    <script src="simple-calculators.js"></script>
+    <script src="calculators.js"></script>
 </body>
 </html>

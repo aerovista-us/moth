@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="simple-animations.css">
 </head>
 <body>
+    <!-- Shared Navigation Header -->
     <header class="mystical-header">
         <div class="container">
             <div class="logo mystical-logo">🦋 Nailed IT</div>
@@ -27,25 +28,85 @@
         <section class="section nail-art-accent mystical-section">
             <h2><span class="section-icon mystical-icon">1</span> <span class="section-title">Product Overview</span></h2>
             
-            <div class="mystical-card">
-                <h3>Product Line Summary</h3>
-                <div class="form-group mystical-form-group">
-                    <label>Total SKUs Planned:</label>
-                    <input type="number" id="totalSkus" value="50" min="1" max="200" class="mystical-input" aria-label="Total SKUs planned">
-                </div>
-                
-                <div class="form-group mystical-form-group">
-                    <label>Product Categories:</label>
+            <div class="card mystical-card brand-system-card">
+                <h3>🦋 Brand System - "Brush & Edge" by Moth Empire</h3>
+                <p><strong>Tagline:</strong> <em>Nail art as your canvas - Where Beauty Takes Flight</em></p>
+                <p><strong>Voice:</strong> Confident, artistic, instructive. Tutorial-friendly copy with playful sophistication and moth wing power.</p>
+                <p><strong>Visuals:</strong> Soft neutrals with iridescent accents. Macro nail shots, painterly strokes, subtle chrome flares inspired by moth wing patterns.</p>
+            </div>
+
+            <div class="grid mystical-grid">
+                <div class="card mystical-card floating-card">
+                    <h3>🎨 Collection Architecture</h3>
                     <ul class="checklist mystical-checklist">
-                        <li><label><input type="checkbox" id="pressOn" class="mystical-checkbox"> Press-on Nails (30 SKUs)</label></li>
-                        <li><label><input type="checkbox" id="nailArt" class="mystical-checkbox"> Nail Art Kits (15 SKUs)</label></li>
-                        <li><label><input type="checkbox" id="accessories" class="mystical-checkbox"> Nail Accessories (5 SKUs)</label></li>
+                        <li><strong>Signature Art Sets</strong> (core catalogue)</li>
+                        <li><strong>Accent/Remix Packs</strong> (2–4 add‑on nails)</li>
+                        <li><strong>Artist Series</strong> (numbered, hand‑painted)</li>
+                        <li><strong>Seasonal Drops</strong> (monthly limited themes)</li>
+                        <li><strong>Pet‑Friendly Collection</strong> (Paws & Polish, Buddy's Brush)</li>
                     </ul>
                 </div>
+                <div class="card mystical-card floating-card">
+                    <h3>🏷️ SKU Model</h3>
+                    <p><strong>Format:</strong> <code class="mystical-code">NAIL-[STYLE]-[LENGTH]-[FINISH]-[DESIGN]-[SIZEKIT]</code></p>
+                    <p><strong>Example:</strong> <code class="mystical-code">NAIL-ALMOND-M-GLOSS-MILKY-S12</code></p>
+                    <p><strong>Artist Series:</strong> <code class="mystical-code">ART-NUMBERED-HANDPAINT-XX</code></p>
+                </div>
+            </div>
+
+            <div class="grid mystical-grid">
+                <div class="card mystical-card floating-card">
+                    <h3>🎨 Design Concepts</h3>
+                    <ul class="checklist mystical-checklist">
+                        <li><strong>Milky Canvas + Minimal Accent</strong> - Base: sheer milk/cream; tip accent</li>
+                        <li><strong>Cat‑Eye / Iridescent Chrome</strong> - Magnetic cat‑eye gel; accent swirl</li>
+                        <li><strong>Bold French (Texture Twist)</strong> - Nude base; colored tips with micro motif</li>
+                        <li><strong>Nature & 3D Accents</strong> - Pearls, dew‑drops, tiny blossoms</li>
+                        <li><strong>Deep Tones + Mirror</strong> - Wine/plum/emerald; mirror foil accents</li>
+                    </ul>
+                </div>
+                <div class="card mystical-card floating-card">
+                    <h3>🦋 Moth Wing Power Features</h3>
+                    <ul class="checklist mystical-checklist">
+                        <li><strong>Art-first:</strong> hand‑painted details, not commodity prints</li>
+                        <li><strong>Care-first:</strong> sizing kits, tutorial QR, reuse options</li>
+                        <li><strong>Limited:</strong> numbered small batches for hype cycles</li>
+                        <li><strong>Premium finishes:</strong> chrome, cat‑eye, glass, 3D accents</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SKU Generator Tool -->
+            <div class="card mystical-card floating-card">
+                <h3>🔧 SKU Generator Tool</h3>
+                <div class="grid mystical-grid">
+                    <div class="form-group mystical-form-group">
+                        <label>Shape:</label>
+                        <input id="shape" placeholder="ALMOND" value="ALMOND" class="mystical-input" />
+                    </div>
+                    <div class="form-group mystical-form-group">
+                        <label>Length:</label>
+                        <input id="length" placeholder="M" value="M" class="mystical-input" />
+                    </div>
+                    <div class="form-group mystical-form-group">
+                        <label>Finish:</label>
+                        <input id="finish" placeholder="GLOSS" value="GLOSS" class="mystical-input" />
+                    </div>
+                    <div class="form-group mystical-form-group">
+                        <label>Design:</label>
+                        <input id="design" placeholder="MILKY" value="MILKY" class="mystical-input" />
+                    </div>
+                    <div class="form-group mystical-form-group">
+                        <label>Size Kit:</label>
+                        <input id="sizekit" placeholder="S12" value="S12" class="mystical-input" />
+                    </div>
+                </div>
+                <button class="btn mystical-btn" onclick="genSku()">Generate SKU</button>
+                <p id="skuOut" class="mystical-output"></p>
             </div>
         </section>
     </main>
 
-    <script src="simple-interactions.js"></script>
+    <script src="calculators.js"></script>
 </body>
 </html>

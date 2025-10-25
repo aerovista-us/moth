@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analytics & KPIs - Nailed IT</title>
+    <title>Analytics & KPIs - Nailed IT Business Planning</title>
     <link rel="stylesheet" href="mystical-styles.css">
     <link rel="stylesheet" href="simple-animations.css">
 </head>
 <body>
+    <!-- Shared Navigation Header -->
     <header class="mystical-header">
         <div class="container">
             <div class="logo mystical-logo">🦋 Nailed IT</div>
@@ -27,64 +28,108 @@
         <section class="section nail-art-accent mystical-section">
             <h2><span class="section-icon mystical-icon">6</span> <span class="section-title">Analytics & KPIs</span></h2>
             
-            <div class="mystical-card">
-                <h3>Key Performance Indicators</h3>
-                <div class="form-group mystical-form-group">
-                    <label>Monthly Revenue Target:</label>
-                    <input type="number" id="revenueTarget" value="5000" min="100" max="100000" class="mystical-input" aria-label="Monthly revenue target">
-                </div>
-                
-                <div class="form-group mystical-form-group">
-                    <label>Customer Acquisition Cost (CAC):</label>
-                    <input type="number" id="cac" value="25" step="0.01" class="mystical-input" aria-label="Customer acquisition cost">
-                </div>
-                
-                <div class="form-group mystical-form-group">
-                    <label>Return on Ad Spend (ROAS):</label>
-                    <input type="range" id="roasSlider" min="1" max="10" value="3" step="0.1" class="mystical-slider" aria-label="Return on ad spend">
-                    <span id="roasValue">3.0x</span>
-                </div>
-            </div>
-
-            <div class="mystical-card">
-                <h3>Sales Metrics</h3>
-                <div class="form-group mystical-form-group">
-                    <label>Conversion Rate (%):</label>
-                    <input type="number" id="conversionRate" value="2.5" step="0.1" min="0" max="20" class="mystical-input" aria-label="Conversion rate percentage">
-                </div>
-                
-                <div class="form-group mystical-form-group">
-                    <label>Average Order Value:</label>
-                    <input type="number" id="aov" value="45" step="0.01" class="mystical-input" aria-label="Average order value">
-                </div>
-                
-                <div class="form-group mystical-form-group">
-                    <label>Customer Lifetime Value:</label>
-                    <input type="number" id="clv" value="120" step="0.01" class="mystical-input" aria-label="Customer lifetime value">
+            <div class="card mystical-card brand-system-card">
+                <h3>🦋 Key Performance Indicators - Moth Wing Power Metrics</h3>
+                <div class="grid mystical-grid">
+                    <div>
+                        <h4>Financial Metrics</h4>
+                        <ul class="checklist mystical-checklist">
+                            <li><label><input type="checkbox" class="mystical-checkbox"> Blended ROAS, AOV, contribution margin after ad spend</label></li>
+                            <li><label><input type="checkbox" class="mystical-checkbox"> Refund/defect rate, repeat purchase rate</label></li>
+                            <li><label><input type="checkbox" class="mystical-checkbox"> Attachment rate for Accent Packs</label></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Content Metrics</h4>
+                        <ul class="checklist mystical-checklist">
+                            <li><label><input type="checkbox" class="mystical-checkbox"> Content velocity: posts/week, creator CTR</label></li>
+                            <li><label><input type="checkbox" class="mystical-checkbox"> PDP view-to-cart conversion</label></li>
+                            <li><label><input type="checkbox" class="mystical-checkbox"> UGC engagement rates</label></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-            <div class="mystical-card">
-                <h3>Customer Support SOP</h3>
-                <div class="form-group mystical-form-group">
-                    <label>Response Time Target (hours):</label>
-                    <input type="number" id="responseTime" value="4" min="1" max="24" class="mystical-input" aria-label="Response time target in hours">
+            <div class="grid mystical-grid">
+                <div class="card mystical-card floating-card">
+                    <h3>💰 Breakeven ROAS Calculator</h3>
+                    <div class="form-group mystical-form-group">
+                        <label>COGS ($):</label>
+                        <input type="number" id="cogs" value="10" min="1" max="50" class="mystical-input" aria-label="COGS amount" />
+                    </div>
+                    <div class="form-group mystical-form-group">
+                        <label>MSRP ($):</label>
+                        <input type="number" id="msrp" value="39" min="10" max="200" class="mystical-input" aria-label="MSRP amount" />
+                    </div>
+                    <div class="form-group mystical-form-group">
+                        <label>Shipping & Fees ($):</label>
+                        <input type="number" id="fees" value="6" min="0" max="50" class="mystical-input" aria-label="Shipping and fees amount" />
+                    </div>
+                    <p class="mystical-note">Breakeven ROAS = Revenue / (Revenue − COGS − Fees)</p>
+                    <button class="btn mystical-btn" onclick="calcROAS()">Calculate ROAS</button>
+                    <p id="roasOut" class="mystical-output"></p>
                 </div>
-                
-                <div class="form-group mystical-form-group">
-                    <label>Support Channels:</label>
+                <div class="card mystical-card floating-card">
+                    <h3>📊 Storefront UX Requirements</h3>
                     <ul class="checklist mystical-checklist">
-                        <li><label><input type="checkbox" id="email" class="mystical-checkbox"> Email Support</label></li>
-                        <li><label><input type="checkbox" id="chat" class="mystical-checkbox"> Live Chat</label></li>
-                        <li><label><input type="checkbox" id="phone" class="mystical-checkbox"> Phone Support</label></li>
-                        <li><label><input type="checkbox" id="social" class="mystical-checkbox"> Social Media</label></li>
+                        <li><label><input type="checkbox" class="mystical-checkbox"> Product pages: macro images (1:1, 4:5, 9:16)</label></li>
+                        <li><label><input type="checkbox" class="mystical-checkbox"> 15–30s application reel integration</label></li>
+                        <li><label><input type="checkbox" class="mystical-checkbox"> Size guide modal</label></li>
+                        <li><label><input type="checkbox" class="mystical-checkbox"> Quick add to cart (1-click)</label></li>
+                        <li><label><input type="checkbox" class="mystical-checkbox"> Mobile-optimized checkout</label></li>
                     </ul>
+                </div>
+            </div>
+
+            <div class="grid mystical-grid">
+                <div class="card mystical-card floating-card">
+                    <h3>📈 Performance Tracking</h3>
+                    <ul class="checklist mystical-checklist">
+                        <li><label><input type="checkbox" class="mystical-checkbox"> Daily sales tracking</label></li>
+                        <li><label><input type="checkbox" class="mystical-checkbox"> Weekly ROAS analysis</label></li>
+                        <li><label><input type="checkbox" class="mystical-checkbox"> Monthly customer acquisition cost</label></li>
+                        <li><label><input type="checkbox" class="mystical-checkbox"> Quarterly profit margin review</label></li>
+                        <li><label><input type="checkbox" class="mystical-checkbox"> Annual growth rate calculation</label></li>
+                    </ul>
+                </div>
+                <div class="card mystical-card floating-card">
+                    <h3>🎯 Customer Support SOP</h3>
+                    <ul class="checklist mystical-checklist">
+                        <li><label><input type="checkbox" class="mystical-checkbox"> 24-hour response time SLA</label></li>
+                        <li><label><input type="checkbox" class="mystical-checkbox"> Size exchange policy (first order free)</label></li>
+                        <li><label><input type="checkbox" class="mystical-checkbox"> Defect replacement process</label></li>
+                        <li><label><input type="checkbox" class="mystical-checkbox"> FAQ + video tutorial library</label></li>
+                        <li><label><input type="checkbox" class="mystical-checkbox"> Customer feedback collection</label></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card mystical-card floating-card">
+                <h3>📊 Analytics Dashboard Requirements</h3>
+                <div class="grid mystical-grid">
+                    <div>
+                        <h4>Financial Dashboard:</h4>
+                        <ul class="checklist mystical-checklist">
+                            <li><label><input type="checkbox" class="mystical-checkbox"> Daily/weekly/monthly revenue</label></li>
+                            <li><label><input type="checkbox" class="mystical-checkbox"> COGS tracking by SKU</label></li>
+                            <li><label><input type="checkbox" class="mystical-checkbox"> Ad spend vs. revenue ratio</label></li>
+                            <li><label><input type="checkbox" class="mystical-checkbox"> Profit margin trends</label></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Customer Dashboard:</h4>
+                        <ul class="checklist mystical-checklist">
+                            <li><label><input type="checkbox" class="mystical-checkbox"> Customer acquisition cost</label></li>
+                            <li><label><input type="checkbox" class="mystical-checkbox"> Lifetime value tracking</label></li>
+                            <li><label><input type="checkbox" class="mystical-checkbox"> Repeat purchase rate</label></li>
+                            <li><label><input type="checkbox" class="mystical-checkbox"> Customer satisfaction scores</label></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <script src="simple-interactions.js"></script>
-    <script src="simple-calculators.js"></script>
+    <script src="calculators.js"></script>
 </body>
 </html>

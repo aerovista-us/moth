@@ -28,44 +28,6 @@
     transition: transform 0.2s ease;
 }
 
-/* Timeline styles */
-.timeline {
-    position: relative;
-    padding-left: 2rem;
-}
-
-.timeline-item {
-    position: relative;
-    margin-bottom: 2rem;
-    padding-left: 1rem;
-}
-
-.timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -1.5rem;
-    top: 0.5rem;
-    width: 0.5rem;
-    height: 0.5rem;
-    background: var(--moth-gold);
-    border-radius: 50%;
-}
-
-.timeline-item::after {
-    content: '';
-    position: absolute;
-    left: -1.25rem;
-    top: 1rem;
-    width: 0.1rem;
-    height: calc(100% + 1rem);
-    background: var(--moth-gold);
-    opacity: 0.3;
-}
-
-.timeline-item:last-child::after {
-    display: none;
-}
-
 /* Remove complex animations */
 * {
     animation-duration: 0.3s !important;
