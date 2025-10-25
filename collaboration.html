@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Collaboration - Nailed IT</title>
+    <link rel="stylesheet" href="mystical-styles.css">
+    <link rel="stylesheet" href="simple-animations.css">
+    <style>
+        .collaboration-dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .team-members {
+            background: white;
+            border: 2px solid var(--brand-purple);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+        
+        .member-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border: 1px solid var(--brand-purple);
+            border-radius: 15px;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .member-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(107, 70, 193, 0.2);
+        }
+        
+        .member-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-dusty-pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .member-info {
+            flex: 1;
+        }
+        
+        .member-name {
+            font-weight: bold;
+            color: var(--brand-black);
+        }
+        
+        .member-role {
+            color: var(--brand-purple);
+            font-size: 0.9rem;
+        }
+        
+        .member-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .status-online {
+            background: #10b981;
+            color: white;
+        }
+        
+        .status-busy {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        .status-offline {
+            background: #e5e7eb;
+            color: #6b7280;
+        }
+        
+        .project-board {
+            background: var(--brand-pink-accent);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+        
+        .board-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .board-column {
+            background: white;
+            border-radius: 15px;
+            padding: 1rem;
+            min-height: 300px;
+        }
+        
+        .column-header {
+            font-weight: bold;
+            color: var(--brand-black);
+            margin-bottom: 1rem;
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 10px;
+        }
+        
+        .todo-column .column-header {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .progress-column .column-header {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .done-column .column-header {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .task-card {
+            background: white;
+            border: 2px solid var(--brand-purple);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            cursor: move;
+            transition: all 0.3s ease;
+        }
+        
+        .task-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(107, 70, 193, 0.2);
+        }
+        
+        .task-title {
+            font-weight: bold;
+            color: var(--brand-black);
+            margin-bottom: 0.5rem;
+        }
+        
+        .task-assignee {
+            font-size: 0.8rem;
+            color: var(--brand-purple);
+        }
+        
+        .task-due {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+        
+        .chat-section {
+            background: linear-gradient(135deg, var(--brand-black), var(--brand-dark-purple));
+            color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            border: 2px solid var(--brand-purple);
+            border-radius: 15px;
+            padding: 1rem;
+            background: white;
+            margin-bottom: 1rem;
+        }
+        
+        .message {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+        
+        .message.sent {
+            background: var(--brand-purple);
+            color: white;
+            margin-left: auto;
+        }
+        
+        .message.received {
+            background: #f3f4f6;
+            color: var(--brand-black);
+            margin-right: auto;
+        }
+        
+        .message-input {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .message-input input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid var(--brand-purple);
+            border-radius: 25px;
+            outline: none;
+        }
+        
+        .send-button {
+            background: var(--brand-purple);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .send-button:hover {
+            background: var(--brand-dusty-pink);
+        }
+        
+        .file-sharing {
+            background: white;
+            border: 2px solid var(--brand-purple);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .file-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            margin: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .file-item:hover {
+            background: var(--brand-pink-accent);
+        }
+        
+        .file-icon {
+            font-size: 2rem;
+        }
+        
+        .file-info {
+            flex: 1;
+        }
+        
+        .file-name {
+            font-weight: bold;
+            color: var(--brand-black);
+        }
+        
+        .file-size {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+        
+        .file-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .action-button {
+            padding: 0.25rem 0.5rem;
+            border: 1px solid var(--brand-purple);
+            border-radius: 5px;
+            background: white;
+            color: var(--brand-purple);
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        .action-button:hover {
+            background: var(--brand-purple);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Shared Navigation Header -->
+    <header class="mystical-header">
+        <div class="container">
+            <div class="logo mystical-logo">🦋 Nailed IT</div>
+            <div class="tagline mystical-tagline">Artistic Nails - Where Beauty Meets Bold Black, Purple & Dusty Pink</div>
+            <nav class="nav-tabs mystical-nav">
+                <a href="index.html" class="nav-tab">Home</a>
+                <a href="overview.html" class="nav-tab">Overview</a>
+                <a href="planning.html" class="nav-tab">Planning</a>
+                <a href="tracking.html" class="nav-tab">Tracking</a>
+                <a href="supply.html" class="nav-tab">Supply Chain</a>
+                <a href="launch.html" class="nav-tab">Launch</a>
+                <a href="analytics.html" class="nav-tab">Analytics</a>
+                <a href="advanced-analytics.html" class="nav-tab">Advanced</a>
+                <a href="ai-assistant.html" class="nav-tab">AI Assistant</a>
+                <a href="automation-tools.html" class="nav-tab">Automation</a>
+                <a href="collaboration.html" class="nav-tab active">Team</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="mystical-section">
+            <h1>👥 Team Collaboration</h1>
+            <p>Work together seamlessly with your team using powerful collaboration tools and features.</p>
+            
+            <!-- Collaboration Dashboard -->
+            <div class="collaboration-dashboard">
+                <!-- Team Members -->
+                <div class="team-members">
+                    <h2>👥 Team Members</h2>
+                    
+                    <div class="member-card">
+                        <div class="member-avatar">JD</div>
+                        <div class="member-info">
+                            <div class="member-name">Jane Doe</div>
+                            <div class="member-role">Creative Director</div>
+                        </div>
+                        <div class="member-status status-online">Online</div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-avatar">MS</div>
+                        <div class="member-info">
+                            <div class="member-name">Mike Smith</div>
+                            <div class="member-role">Marketing Manager</div>
+                        </div>
+                        <div class="member-status status-busy">Busy</div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-avatar">AL</div>
+                        <div class="member-info">
+                            <div class="member-name">Alex Lee</div>
+                            <div class="member-role">Operations Lead</div>
+                        </div>
+                        <div class="member-status status-online">Online</div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-avatar">SC</div>
+                        <div class="member-info">
+                            <div class="member-name">Sarah Chen</div>
+                            <div class="member-role">Content Creator</div>
+                        </div>
+                        <div class="member-status status-offline">Offline</div>
+                    </div>
+                </div>
+                
+                <!-- Project Board -->
+                <div class="project-board">
+                    <h2>📋 Project Board</h2>
+                    <div class="board-columns">
+                        <div class="board-column todo-column">
+                            <div class="column-header">To Do</div>
+                            
+                            <div class="task-card" draggable="true">
+                                <div class="task-title">Design Spring Collection</div>
+                                <div class="task-assignee">Assigned to: Jane Doe</div>
+                                <div class="task-due">Due: Mar 15, 2025</div>
+                            </div>
+                            
+                            <div class="task-card" draggable="true">
+                                <div class="task-title">Update Website Copy</div>
+                                <div class="task-assignee">Assigned to: Mike Smith</div>
+                                <div class="task-due">Due: Feb 28, 2025</div>
+                            </div>
+                            
+                            <div class="task-card" draggable="true">
+                                <div class="task-title">Create Product Photos</div>
+                                <div class="task-assignee">Assigned to: Sarah Chen</div>
+                                <div class="task-due">Due: Mar 5, 2025</div>
+                            </div>
+                        </div>
+                        
+                        <div class="board-column progress-column">
+                            <div class="column-header">In Progress</div>
+                            
+                            <div class="task-card" draggable="true">
+                                <div class="task-title">Social Media Strategy</div>
+                                <div class="task-assignee">Assigned to: Mike Smith</div>
+                                <div class="task-due">Due: Feb 20, 2025</div>
+                            </div>
+                            
+                            <div class="task-card" draggable="true">
+                                <div class="task-title">Inventory Management</div>
+                                <div class="task-assignee">Assigned to: Alex Lee</div>
+                                <div class="task-due">Due: Feb 25, 2025</div>
+                            </div>
+                        </div>
+                        
+                        <div class="board-column done-column">
+                            <div class="column-header">Done</div>
+                            
+                            <div class="task-card" draggable="true">
+                                <div class="task-title">Brand Guidelines</div>
+                                <div class="task-assignee">Completed by: Jane Doe</div>
+                                <div class="task-due">Completed: Feb 10, 2025</div>
+                            </div>
+                            
+                            <div class="task-card" draggable="true">
+                                <div class="task-title">Supplier Research</div>
+                                <div class="task-assignee">Completed by: Alex Lee</div>
+                                <div class="task-due">Completed: Feb 8, 2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Team Chat -->
+            <div class="chat-section">
+                <h2>💬 Team Chat</h2>
+                <div class="chat-messages" id="teamChat">
+                    <div class="message received">
+                        <strong>Jane Doe:</strong> Hey team! I've finished the initial designs for the spring collection. What do you think?
+                    </div>
+                    <div class="message sent">
+                        <strong>You:</strong> They look amazing! The color palette is perfect for spring.
+                    </div>
+                    <div class="message received">
+                        <strong>Mike Smith:</strong> Great work! I'll start working on the marketing strategy for these designs.
+                    </div>
+                    <div class="message received">
+                        <strong>Alex Lee:</strong> The production timeline looks good. We should be able to launch on schedule.
+                    </div>
+                </div>
+                <div class="message-input">
+                    <input type="text" id="messageInput" placeholder="Type your message..." />
+                    <button class="send-button" onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+            
+            <!-- File Sharing -->
+            <div class="file-sharing">
+                <h2>📁 File Sharing</h2>
+                
+                <div class="file-item">
+                    <div class="file-icon">📄</div>
+                    <div class="file-info">
+                        <div class="file-name">Spring Collection Designs.pdf</div>
+                        <div class="file-size">2.4 MB • Uploaded by Jane Doe</div>
+                    </div>
+                    <div class="file-actions">
+                        <button class="action-button" onclick="downloadFile('designs.pdf')">Download</button>
+                        <button class="action-button" onclick="shareFile('designs.pdf')">Share</button>
+                    </div>
+                </div>
+                
+                <div class="file-item">
+                    <div class="file-icon">📊</div>
+                    <div class="file-info">
+                        <div class="file-name">Marketing Strategy.xlsx</div>
+                        <div class="file-size">1.8 MB • Uploaded by Mike Smith</div>
+                    </div>
+                    <div class="file-actions">
+                        <button class="action-button" onclick="downloadFile('strategy.xlsx')">Download</button>
+                        <button class="action-button" onclick="shareFile('strategy.xlsx')">Share</button>
+                    </div>
+                </div>
+                
+                <div class="file-item">
+                    <div class="file-icon">📋</div>
+                    <div class="file-info">
+                        <div class="file-name">Production Timeline.docx</div>
+                        <div class="file-size">856 KB • Uploaded by Alex Lee</div>
+                    </div>
+                    <div class="file-actions">
+                        <button class="action-button" onclick="downloadFile('timeline.docx')">Download</button>
+                        <button class="action-button" onclick="shareFile('timeline.docx')">Share</button>
+                    </div>
+                </div>
+                
+                <button class="control-button" onclick="uploadFile()" style="margin-top: 1rem; width: 100%;">
+                    + Upload New File
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <script src="shared-navigation.js"></script>
+    <script>
+        // Collaboration JavaScript
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            if (message) {
+                const chatMessages = document.getElementById('teamChat');
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message sent';
+                messageDiv.innerHTML = `<strong>You:</strong> ${message}`;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                input.value = '';
+            }
+        }
+        
+        function downloadFile(filename) {
+            alert(`Downloading ${filename}`);
+        }
+        
+        function shareFile(filename) {
+            alert(`Sharing ${filename}`);
+        }
+        
+        function uploadFile() {
+            alert('Upload new file');
+        }
+        
+        // Drag and drop functionality for task cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const taskCards = document.querySelectorAll('.task-card');
+            taskCards.forEach(card => {
+                card.addEventListener('dragstart', function(e) {
+                    e.dataTransfer.setData('text/plain', this.outerHTML);
+                });
+            });
+            
+            const columns = document.querySelectorAll('.board-column');
+            columns.forEach(column => {
+                column.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                });
+                
+                column.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    const data = e.dataTransfer.getData('text/plain');
+                    this.insertAdjacentHTML('beforeend', data);
+                });
+            });
+        });
+        
+        // Allow Enter key to send message
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>

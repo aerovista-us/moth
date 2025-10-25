@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Analytics - Nailed IT Business Planning</title>
+    <link rel="stylesheet" href="mystical-styles.css">
+    <link rel="stylesheet" href="simple-animations.css">
+    <style>
+        /* Advanced Analytics Styles */
+        .analytics-dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .kpi-card {
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-light-purple));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .kpi-card:hover::before {
+            left: 100%;
+        }
+        
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+        
+        .kpi-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .goal-progress {
+            background: var(--brand-pink-accent);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .progress-bar {
+            background: var(--brand-black);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, var(--brand-purple), var(--brand-dusty-pink));
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+        
+        .smart-goals {
+            background: var(--brand-pink-accent);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .goal-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(107, 70, 193, 0.2);
+        }
+        
+        .goal-item:last-child {
+            border-bottom: none;
+        }
+        
+        .ai-insights {
+            background: linear-gradient(135deg, var(--brand-black), var(--brand-dark-purple));
+            color: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .insight-item {
+            background: rgba(107, 70, 193, 0.2);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-left: 4px solid var(--brand-dusty-pink);
+        }
+        
+        .trend-chart {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(107, 70, 193, 0.1);
+        }
+        
+        .chart-placeholder {
+            height: 200px;
+            background: linear-gradient(45deg, var(--brand-purple), var(--brand-dusty-pink));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Shared Navigation Header -->
+    <header class="mystical-header">
+        <div class="container">
+            <div class="logo mystical-logo">🦋 Nailed IT</div>
+            <div class="tagline mystical-tagline">Artistic Nails - Where Beauty Meets Bold Black, Purple & Dusty Pink</div>
+            <nav class="nav-tabs mystical-nav">
+                <a href="index.html" class="nav-tab">Home</a>
+                <a href="overview.html" class="nav-tab">Overview</a>
+                <a href="planning.html" class="nav-tab">Planning</a>
+                <a href="tracking.html" class="nav-tab">Tracking</a>
+                <a href="supply.html" class="nav-tab">Supply Chain</a>
+                <a href="launch.html" class="nav-tab">Launch</a>
+                <a href="analytics.html" class="nav-tab">Analytics</a>
+                <a href="advanced-analytics.html" class="nav-tab active">Advanced</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="mystical-section">
+            <h1>🚀 Advanced Analytics & Goal Achievement</h1>
+            <p>Powerful insights and tools to maximize your business success with data-driven decisions.</p>
+            
+            <!-- Key Performance Indicators -->
+            <div class="analytics-dashboard">
+                <div class="kpi-card">
+                    <div class="kpi-label">Monthly Revenue</div>
+                    <div class="kpi-value" id="monthlyRevenue">$0</div>
+                    <div class="kpi-label">Target: $5,000</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Customer Acquisition</div>
+                    <div class="kpi-value" id="customerAcquisition">0</div>
+                    <div class="kpi-label">Target: 100 customers</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Conversion Rate</div>
+                    <div class="kpi-value" id="conversionRate">0%</div>
+                    <div class="kpi-label">Target: 3.5%</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">ROAS</div>
+                    <div class="kpi-value" id="roas">0.0x</div>
+                    <div class="kpi-label">Target: 4.0x</div>
+                </div>
+            </div>
+            
+            <!-- SMART Goals System -->
+            <div class="smart-goals">
+                <h2>🎯 SMART Goals Tracking</h2>
+                <div class="goal-item">
+                    <div>
+                        <strong>Launch First Collection</strong>
+                        <br><small>Specific, Measurable, Achievable, Relevant, Time-bound</small>
+                    </div>
+                    <div class="goal-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%"></div>
+                        </div>
+                        <small>75% Complete - Due: Dec 15, 2024</small>
+                    </div>
+                </div>
+                <div class="goal-item">
+                    <div>
+                        <strong>Reach 1,000 Instagram Followers</strong>
+                        <br><small>Build brand awareness and community</small>
+                    </div>
+                    <div class="goal-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 45%"></div>
+                        </div>
+                        <small>45% Complete - Due: Jan 30, 2025</small>
+                    </div>
+                </div>
+                <div class="goal-item">
+                    <div>
+                        <strong>Generate $10K Revenue</strong>
+                        <br><small>First quarter revenue target</small>
+                    </div>
+                    <div class="goal-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 20%"></div>
+                        </div>
+                        <small>20% Complete - Due: Mar 31, 2025</small>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- AI-Powered Insights -->
+            <div class="ai-insights">
+                <h2>🤖 AI-Powered Business Insights</h2>
+                <div class="insight-item">
+                    <strong>📈 Revenue Optimization</strong>
+                    <p>Your conversion rate is 15% below industry average. Consider A/B testing your product photos and pricing strategy.</p>
+                </div>
+                <div class="insight-item">
+                    <strong>🎯 Marketing Opportunities</strong>
+                    <p>Peak engagement times are 7-9 PM. Schedule your social media posts during these hours for maximum reach.</p>
+                </div>
+                <div class="insight-item">
+                    <strong>💰 Pricing Strategy</strong>
+                    <p>Your current pricing is 20% below market rate. Consider premium positioning to increase perceived value.</p>
+                </div>
+                <div class="insight-item">
+                    <strong>📱 Content Performance</strong>
+                    <p>Video content performs 3x better than static images. Focus on nail art tutorials and behind-the-scenes content.</p>
+                </div>
+            </div>
+            
+            <!-- Trend Analysis -->
+            <div class="trend-chart">
+                <h2>📊 Revenue Trend Analysis</h2>
+                <div class="chart-placeholder">
+                    📈 Interactive Chart Coming Soon
+                    <br><small>Revenue, Customer Growth, and Conversion Trends</small>
+                </div>
+            </div>
+            
+            <!-- Action Items -->
+            <div class="mystical-card">
+                <h2>⚡ Recommended Actions</h2>
+                <ul>
+                    <li>✅ Update product photography with better lighting</li>
+                    <li>✅ Implement A/B testing for pricing</li>
+                    <li>✅ Schedule social media posts for peak hours</li>
+                    <li>✅ Create video content strategy</li>
+                    <li>✅ Set up automated email sequences</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="shared-navigation.js"></script>
+    <script>
+        // Advanced Analytics JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize analytics dashboard
+            initializeAnalytics();
+            
+            // Update KPIs with real-time data
+            updateKPIs();
+            
+            // Animate progress bars
+            animateProgressBars();
+        });
+        
+        function initializeAnalytics() {
+            console.log('Advanced Analytics Dashboard Initialized');
+        }
+        
+        function updateKPIs() {
+            // Simulate real-time data updates
+            const kpis = {
+                monthlyRevenue: 3250,
+                customerAcquisition: 67,
+                conversionRate: 2.8,
+                roas: 3.2
+            };
+            
+            document.getElementById('monthlyRevenue').textContent = `$${kpis.monthlyRevenue.toLocaleString()}`;
+            document.getElementById('customerAcquisition').textContent = kpis.customerAcquisition;
+            document.getElementById('conversionRate').textContent = `${kpis.conversionRate}%`;
+            document.getElementById('roas').textContent = `${kpis.roas}x`;
+        }
+        
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+        }
+    </script>
+</body>
+</html>

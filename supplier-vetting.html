@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier Vetting - Nailed IT</title>
+    <link rel="stylesheet" href="mystical-styles.css">
+    <link rel="stylesheet" href="simple-animations.css">
+    <style>
+        .vetting-container {
+            background: white;
+            border: 2px solid var(--brand-purple);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .supplier-header {
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-light-purple));
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .supplier-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .info-section {
+            background: var(--brand-pink-accent);
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+        
+        .form-group {
+            margin: 1rem 0;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: bold;
+            color: var(--brand-black);
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--brand-purple);
+            border-radius: 10px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: var(--brand-dusty-pink);
+        }
+        
+        .form-textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        .checklist-section {
+            background: white;
+            border: 2px solid var(--brand-purple);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .checklist-category {
+            margin: 2rem 0;
+        }
+        
+        .category-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--brand-black);
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: var(--brand-purple);
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            margin: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .checklist-item:hover {
+            background: var(--brand-pink-accent);
+        }
+        
+        .checklist-item.completed {
+            background: #d1fae5;
+            border-color: #10b981;
+        }
+        
+        .checklist-checkbox {
+            width: 20px;
+            height: 20px;
+            margin-right: 1rem;
+            cursor: pointer;
+        }
+        
+        .checklist-label {
+            flex: 1;
+            color: var(--brand-black);
+        }
+        
+        .checklist-score {
+            background: var(--brand-purple);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .scoring-section {
+            background: linear-gradient(135deg, var(--brand-black), var(--brand-dark-purple));
+            color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .score-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .score-card {
+            background: rgba(107, 70, 193, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .score-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--brand-dusty-pink);
+            margin: 0.5rem 0;
+        }
+        
+        .score-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .overall-score {
+            background: var(--brand-dusty-pink);
+            color: var(--brand-black);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .overall-score-value {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        
+        .score-status {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        
+        .status-approved { color: #10b981; }
+        .status-pending { color: #f59e0b; }
+        .status-rejected { color: #ef4444; }
+        
+        .recommendations {
+            background: var(--brand-pink-accent);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .recommendation-item {
+            background: white;
+            border: 2px solid var(--brand-purple);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .recommendation-title {
+            font-weight: bold;
+            color: var(--brand-black);
+            margin-bottom: 0.5rem;
+        }
+        
+        .recommendation-text {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .action-button {
+            background: var(--brand-purple);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 1rem 2rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .action-button:hover {
+            background: var(--brand-dusty-pink);
+            transform: scale(1.05);
+        }
+        
+        .action-button.secondary {
+            background: white;
+            color: var(--brand-purple);
+            border: 2px solid var(--brand-purple);
+        }
+        
+        .action-button.secondary:hover {
+            background: var(--brand-purple);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Shared Navigation Header -->
+    <header class="mystical-header">
+        <div class="container">
+            <div class="logo mystical-logo">🦋 Nailed IT</div>
+            <div class="tagline mystical-tagline">Artistic Nails - Where Beauty Meets Bold Black, Purple & Dusty Pink</div>
+            <nav class="nav-tabs mystical-nav">
+                <a href="index.html" class="nav-tab">Home</a>
+                <a href="overview.html" class="nav-tab">Overview</a>
+                <a href="planning.html" class="nav-tab">Planning</a>
+                <a href="tracking.html" class="nav-tab">Tracking</a>
+                <a href="supply.html" class="nav-tab">Supply Chain</a>
+                <a href="launch.html" class="nav-tab">Launch</a>
+                <a href="analytics.html" class="nav-tab">Analytics</a>
+                <a href="advanced-analytics.html" class="nav-tab">Advanced</a>
+                <a href="ai-assistant.html" class="nav-tab">AI Assistant</a>
+                <a href="automation-tools.html" class="nav-tab">Automation</a>
+                <a href="collaboration.html" class="nav-tab">Team</a>
+                <a href="mobile-pwa.html" class="nav-tab">Mobile</a>
+                <a href="content-calendar.html" class="nav-tab">Content</a>
+                <a href="pricing-calculator.html" class="nav-tab">Pricing</a>
+                <a href="supplier-vetting.html" class="nav-tab active">Suppliers</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="mystical-section">
+            <h1>🔍 Supplier Vetting Tool</h1>
+            <p>Comprehensive supplier evaluation with AI-powered insights and risk assessment.</p>
+            
+            <!-- Supplier Information -->
+            <div class="vetting-container">
+                <div class="supplier-header">
+                    <h2>🏢 Supplier Information</h2>
+                    <p>Enter supplier details to begin the vetting process</p>
+                </div>
+                
+                <div class="supplier-info">
+                    <div class="info-section">
+                        <h3>📋 Basic Information</h3>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Company Name</label>
+                            <input type="text" class="form-input" id="companyName" placeholder="Enter company name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Contact Person</label>
+                            <input type="text" class="form-input" id="contactPerson" placeholder="Enter contact person">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-input" id="email" placeholder="Enter email address">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Phone</label>
+                            <input type="tel" class="form-input" id="phone" placeholder="Enter phone number">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Website</label>
+                            <input type="url" class="form-input" id="website" placeholder="Enter website URL">
+                        </div>
+                    </div>
+                    
+                    <div class="info-section">
+                        <h3>📍 Location & Details</h3>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Country</label>
+                            <select class="form-select" id="country">
+                                <option value="">Select Country</option>
+                                <option value="US">United States</option>
+                                <option value="CN">China</option>
+                                <option value="KR">South Korea</option>
+                                <option value="JP">Japan</option>
+                                <option value="TW">Taiwan</option>
+                                <option value="VN">Vietnam</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Years in Business</label>
+                            <input type="number" class="form-input" id="yearsInBusiness" placeholder="Enter years in business">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Company Size</label>
+                            <select class="form-select" id="companySize">
+                                <option value="">Select Size</option>
+                                <option value="small">Small (1-50 employees)</option>
+                                <option value="medium">Medium (51-200 employees)</option>
+                                <option value="large">Large (200+ employees)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Specialization</label>
+                            <input type="text" class="form-input" id="specialization" placeholder="Enter specialization">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Vetting Checklist -->
+            <div class="checklist-section">
+                <h2>✅ Vetting Checklist</h2>
+                <p>Complete each section to evaluate the supplier comprehensively</p>
+                
+                <div class="checklist-category">
+                    <div class="category-title">🏢 Company Information</div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-score="10">
+                        <span class="checklist-label">Business license verification</span>
+                        <span class="checklist-score">10 pts</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-score="10">
+                        <span class="checklist-label">Company registration documents</span>
+                        <span class="checklist-score">10 pts</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-score="10">
+                        <span class="checklist-label">Tax identification number</span>
+                        <span class="checklist-score">10 pts</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-score="15">
+                        <span class="checklist-label">Years in business (minimum 2 years)</span>
+                        <span class="checklist-score">15 pts</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-score="15">
+                        <span class="checklist-label">References from other clients</span>
+                        <span class="checklist-score">15 pts</span>
+                    </div>
+                </div>
+                
+                <div class="checklist-category">
+                    <div class="category-title">🎯 Product Quality</div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-score="20">
+                        <span class="checklist-label">Sample products received and tested</span>
+                        <span class="checklist-score">20 pts</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-score="15">
+                        <span class="checklist-label">Quality control processes documented</span>
+                        <span class="checklist-score">15 pts</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-score="15">
+                        <span class="checklist-label">Defect rate below 3%</span>
+                        <span class="checklist-score">15 pts</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-score="10">
+                        <span class="checklist-label">Material safety certifications</span>
+                        <span class="checklist-score">10 pts</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-score="10">
+                        <span class="checklist-label">HEMA-free options available</span>
+                        <span class="checklist-score">10 pts</span>
+                    </div>
+                </div>
+                
+                <div class="checklist-category">
+                    <div class="category-title">🏭 Production Capacity</div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-score="10">
+                        <span class="checklist-label">Minimum order quantities</span>
+                        <span class="checklist-score">10 pts</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-score="15">
+                        <span class="checklist-label">Maximum production capacity</span>
+                        <span class="checklist-score">15 pts</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-score="15">
+                        <span class="checklist-label">Lead times (standard and rush)</span>
+                        <span class="checklist-score">15 pts</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-score="20">
+                        <span class="checklist-label">Production facilities tour</span>
+                        <span class="checklist-score">20 pts</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-score="15">
+                        <span class="checklist-label">Quality control measures</span>
+                        <span class="checklist-score">15 pts</span>
+                    </div>
+                </div>
+                
+                <div class="checklist-category">
+                    <div class="category-title">📞 Communication & Support</div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-score="15">
+                        <span class="checklist-label">Response time to inquiries (within 24 hours)</span>
+                        <span class="checklist-score">15 pts</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-score="10">
+                        <span class="checklist-label">English language proficiency</span>
+                        <span class="checklist-score">10 pts</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-score="15">
+                        <span class="checklist-label">Dedicated account manager</span>
+                        <span class="checklist-score">15 pts</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-score="10">
+                        <span class="checklist-label">Technical support availability</span>
+                        <span class="checklist-score">10 pts</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox" data-score="10">
+                        <span class="checklist-label">Problem resolution process</span>
+                        <span class="checklist-score">10 pts</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scoring Section -->
+            <div class="scoring-section">
+                <h2>📊 Vetting Score</h2>
+                <div class="score-grid">
+                    <div class="score-card">
+                        <div class="score-label">Company Info</div>
+                        <div class="score-value" id="companyScore">0</div>
+                    </div>
+                    <div class="score-card">
+                        <div class="score-label">Product Quality</div>
+                        <div class="score-value" id="qualityScore">0</div>
+                    </div>
+                    <div class="score-card">
+                        <div class="score-label">Production</div>
+                        <div class="score-value" id="productionScore">0</div>
+                    </div>
+                    <div class="score-card">
+                        <div class="score-label">Communication</div>
+                        <div class="score-value" id="communicationScore">0</div>
+                    </div>
+                </div>
+                
+                <div class="overall-score">
+                    <div class="score-label">Overall Score</div>
+                    <div class="overall-score-value" id="overallScore">0</div>
+                    <div class="score-status" id="scoreStatus">Pending</div>
+                </div>
+            </div>
+            
+            <!-- Recommendations -->
+            <div class="recommendations">
+                <h2>💡 AI Recommendations</h2>
+                <div class="recommendation-item">
+                    <div class="recommendation-title">🎯 Supplier Assessment</div>
+                    <div class="recommendation-text">Based on your evaluation, this supplier shows strong potential for partnership. Focus on finalizing contract terms and establishing clear communication protocols.</div>
+                </div>
+                <div class="recommendation-item">
+                    <div class="recommendation-title">⚠️ Risk Factors</div>
+                    <div class="recommendation-text">Consider geographic location risks and currency fluctuation impact. Implement hedging strategies for international suppliers.</div>
+                </div>
+                <div class="recommendation-item">
+                    <div class="recommendation-title">📈 Improvement Areas</div>
+                    <div class="recommendation-text">Request additional quality control documentation and establish regular performance reviews to ensure consistent standards.</div>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="action-button" onclick="approveSupplier()">✅ Approve Supplier</button>
+                <button class="action-button secondary" onclick="requestMoreInfo()">📋 Request More Info</button>
+                <button class="action-button secondary" onclick="rejectSupplier()">❌ Reject Supplier</button>
+                <button class="action-button secondary" onclick="exportReport()">📄 Export Report</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="shared-navigation.js"></script>
+    <script>
+        // Supplier Vetting JavaScript
+        let scores = {
+            company: 0,
+            quality: 0,
+            production: 0,
+            communication: 0
+        };
+        
+        function updateScores() {
+            // Reset scores
+            scores = { company: 0, quality: 0, production: 0, communication: 0 };
+            
+            // Calculate scores based on checked items
+            const checkboxes = document.querySelectorAll('.checklist-checkbox');
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    const score = parseInt(checkbox.dataset.score);
+                    const category = getCategoryFromCheckbox(checkbox);
+                    scores[category] += score;
+                }
+            });
+            
+            // Update display
+            document.getElementById('companyScore').textContent = scores.company;
+            document.getElementById('qualityScore').textContent = scores.quality;
+            document.getElementById('productionScore').textContent = scores.production;
+            document.getElementById('communicationScore').textContent = scores.communication;
+            
+            // Calculate overall score
+            const overallScore = Object.values(scores).reduce((sum, score) => sum + score, 0);
+            document.getElementById('overallScore').textContent = overallScore;
+            
+            // Update status
+            const statusElement = document.getElementById('scoreStatus');
+            if (overallScore >= 80) {
+                statusElement.textContent = 'Approved';
+                statusElement.className = 'score-status status-approved';
+            } else if (overallScore >= 60) {
+                statusElement.textContent = 'Pending Review';
+                statusElement.className = 'score-status status-pending';
+            } else {
+                statusElement.textContent = 'Rejected';
+                statusElement.className = 'score-status status-rejected';
+            }
+        }
+        
+        function getCategoryFromCheckbox(checkbox) {
+            const category = checkbox.closest('.checklist-category');
+            const title = category.querySelector('.category-title').textContent;
+            
+            if (title.includes('Company')) return 'company';
+            if (title.includes('Quality')) return 'quality';
+            if (title.includes('Production')) return 'production';
+            if (title.includes('Communication')) return 'communication';
+            return 'company';
+        }
+        
+        function approveSupplier() {
+            const overallScore = Object.values(scores).reduce((sum, score) => sum + score, 0);
+            if (overallScore >= 80) {
+                alert('Supplier approved! Proceeding with contract negotiations.');
+            } else {
+                alert('Supplier needs more evaluation before approval.');
+            }
+        }
+        
+        function requestMoreInfo() {
+            alert('Requesting additional information from supplier...');
+        }
+        
+        function rejectSupplier() {
+            if (confirm('Are you sure you want to reject this supplier?')) {
+                alert('Supplier rejected. Consider alternative suppliers.');
+            }
+        }
+        
+        function exportReport() {
+            alert('Exporting supplier vetting report...');
+        }
+        
+        // Add event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('.checklist-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateScores);
+            });
+        });
+    </script>
+</body>
+</html>

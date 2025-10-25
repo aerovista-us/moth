@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Navigation - Nailed IT</title>
+    <link rel="stylesheet" href="mystical-styles.css">
+    <link rel="stylesheet" href="simple-animations.css">
+    <style>
+        /* Smart Navigation Styles */
+        .smart-nav-container {
+            background: white;
+            border: 2px solid var(--brand-purple);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .nav-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .nav-category {
+            background: var(--brand-pink-accent);
+            border: 2px solid var(--brand-purple);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(107, 70, 193, 0.3);
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .category-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-dusty-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .category-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--brand-black);
+        }
+        
+        .category-description {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: white;
+            border: 1px solid var(--brand-purple);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--brand-black);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: var(--brand-purple);
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .nav-link-icon {
+            font-size: 1.2rem;
+        }
+        
+        .nav-link-text {
+            font-weight: 500;
+        }
+        
+        .nav-link-desc {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-left: auto;
+        }
+        
+        .search-section {
+            background: linear-gradient(135deg, var(--brand-black), var(--brand-dark-purple));
+            color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .search-container {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid var(--brand-purple);
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+            background: white;
+            color: var(--brand-black);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: var(--brand-purple);
+        }
+        
+        .search-results {
+            background: white;
+            border-radius: 15px;
+            padding: 1rem;
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        .search-result {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .search-result:hover {
+            background: var(--brand-pink-accent);
+        }
+        
+        .search-result:last-child {
+            border-bottom: none;
+        }
+        
+        .quick-actions {
+            background: var(--brand-pink-accent);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .quick-actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .quick-action {
+            background: white;
+            border: 2px solid var(--brand-purple);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quick-action:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(107, 70, 193, 0.3);
+        }
+        
+        .quick-action-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quick-action-title {
+            font-weight: bold;
+            color: var(--brand-black);
+            margin-bottom: 0.5rem;
+        }
+        
+        .quick-action-desc {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+        
+        .breadcrumb {
+            background: var(--brand-pink-accent);
+            border-radius: 15px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .breadcrumb-list {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .breadcrumb-item {
+            color: var(--brand-purple);
+            font-weight: 500;
+        }
+        
+        .breadcrumb-item:not(:last-child)::after {
+            content: '→';
+            margin-left: 0.5rem;
+            color: #6b7280;
+        }
+        
+        .breadcrumb-item.active {
+            color: var(--brand-black);
+        }
+        
+        .mobile-nav-toggle {
+            display: none;
+            background: var(--brand-purple);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-nav-toggle {
+                display: block;
+            }
+            
+            .nav-categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .nav-links.mobile-open {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Shared Navigation Header -->
+    <header class="mystical-header">
+        <div class="container">
+            <div class="logo mystical-logo">🦋 Nailed IT</div>
+            <div class="tagline mystical-tagline">Artistic Nails - Where Beauty Meets Bold Black, Purple & Dusty Pink</div>
+            <nav class="nav-tabs mystical-nav">
+                <a href="index.html" class="nav-tab">Home</a>
+                <a href="smart-navigation.html" class="nav-tab active">Navigation</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="mystical-section">
+            <h1>🧭 Smart Navigation</h1>
+            <p>Intelligent navigation system with categories, search, and quick actions for maximum efficiency.</p>
+            
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <ul class="breadcrumb-list">
+                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item active">Smart Navigation</li>
+                </ul>
+            </div>
+            
+            <!-- Search Section -->
+            <div class="search-section">
+                <h2>🔍 Quick Search</h2>
+                <p>Find any tool or feature instantly</p>
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search tools, features, or pages...">
+                    <div class="search-results" id="searchResults"></div>
+                </div>
+            </div>
+            
+            <!-- Navigation Categories -->
+            <div class="smart-nav-container">
+                <h2>📋 Navigation Categories</h2>
+                <p>Organized by business function for easy access</p>
+                
+                <div class="nav-categories">
+                    <!-- Core Business -->
+                    <div class="nav-category">
+                        <div class="category-header">
+                            <div class="category-icon">🏢</div>
+                            <div class="category-title">Core Business</div>
+                        </div>
+                        <div class="category-description">Essential business planning and management tools</div>
+                        <div class="nav-links">
+                            <a href="index.html" class="nav-link">
+                                <span class="nav-link-icon">🏠</span>
+                                <span class="nav-link-text">Home</span>
+                                <span class="nav-link-desc">Dashboard</span>
+                            </a>
+                            <a href="overview.html" class="nav-link">
+                                <span class="nav-link-icon">🎨</span>
+                                <span class="nav-link-text">Overview</span>
+                                <span class="nav-link-desc">Product & Brand</span>
+                            </a>
+                            <a href="planning.html" class="nav-link">
+                                <span class="nav-link-icon">📸</span>
+                                <span class="nav-link-text">Planning</span>
+                                <span class="nav-link-desc">Content Strategy</span>
+                            </a>
+                            <a href="launch.html" class="nav-link">
+                                <span class="nav-link-icon">🚀</span>
+                                <span class="nav-link-text">Launch</span>
+                                <span class="nav-link-desc">Go-to-Market</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Analytics & Tracking -->
+                    <div class="nav-category">
+                        <div class="category-header">
+                            <div class="category-icon">📊</div>
+                            <div class="category-title">Analytics & Tracking</div>
+                        </div>
+                        <div class="category-description">Data-driven insights and performance monitoring</div>
+                        <div class="nav-links">
+                            <a href="tracking.html" class="nav-link">
+                                <span class="nav-link-icon">📊</span>
+                                <span class="nav-link-text">Tracking</span>
+                                <span class="nav-link-desc">Progress Monitor</span>
+                            </a>
+                            <a href="analytics.html" class="nav-link">
+                                <span class="nav-link-icon">📈</span>
+                                <span class="nav-link-text">Analytics</span>
+                                <span class="nav-link-desc">Performance Data</span>
+                            </a>
+                            <a href="advanced-analytics.html" class="nav-link">
+                                <span class="nav-link-icon">🚀</span>
+                                <span class="nav-link-text">Advanced</span>
+                                <span class="nav-link-desc">AI Insights</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Operations -->
+                    <div class="nav-category">
+                        <div class="category-header">
+                            <div class="category-icon">⚙️</div>
+                            <div class="category-title">Operations</div>
+                        </div>
+                        <div class="category-description">Supply chain, pricing, and operational tools</div>
+                        <div class="nav-links">
+                            <a href="supply.html" class="nav-link">
+                                <span class="nav-link-icon">📦</span>
+                                <span class="nav-link-text">Supply Chain</span>
+                                <span class="nav-link-desc">Logistics</span>
+                            </a>
+                            <a href="pricing-calculator.html" class="nav-link">
+                                <span class="nav-link-icon">💰</span>
+                                <span class="nav-link-text">Pricing</span>
+                                <span class="nav-link-desc">Calculator</span>
+                            </a>
+                            <a href="supplier-vetting.html" class="nav-link">
+                                <span class="nav-link-icon">🔍</span>
+                                <span class="nav-link-text">Suppliers</span>
+                                <span class="nav-link-desc">Vetting Tool</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Marketing & Content -->
+                    <div class="nav-category">
+                        <div class="category-header">
+                            <div class="category-icon">📱</div>
+                            <div class="category-title">Marketing & Content</div>
+                        </div>
+                        <div class="category-description">Content creation and marketing automation</div>
+                        <div class="nav-links">
+                            <a href="content-calendar.html" class="nav-link">
+                                <span class="nav-link-icon">📅</span>
+                                <span class="nav-link-text">Content</span>
+                                <span class="nav-link-desc">Calendar</span>
+                            </a>
+                            <a href="automation-tools.html" class="nav-link">
+                                <span class="nav-link-icon">⚡</span>
+                                <span class="nav-link-text">Automation</span>
+                                <span class="nav-link-desc">Workflows</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- AI & Technology -->
+                    <div class="nav-category">
+                        <div class="category-header">
+                            <div class="category-icon">🤖</div>
+                            <div class="category-title">AI & Technology</div>
+                        </div>
+                        <div class="category-description">Artificial intelligence and advanced technology tools</div>
+                        <div class="nav-links">
+                            <a href="ai-assistant.html" class="nav-link">
+                                <span class="nav-link-icon">🤖</span>
+                                <span class="nav-link-text">AI Assistant</span>
+                                <span class="nav-link-desc">Smart Help</span>
+                            </a>
+                            <a href="mobile-pwa.html" class="nav-link">
+                                <span class="nav-link-icon">📱</span>
+                                <span class="nav-link-text">Mobile</span>
+                                <span class="nav-link-desc">PWA Features</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Team & Collaboration -->
+                    <div class="nav-category">
+                        <div class="category-header">
+                            <div class="category-icon">👥</div>
+                            <div class="category-title">Team & Collaboration</div>
+                        </div>
+                        <div class="category-description">Team management and collaboration tools</div>
+                        <div class="nav-links">
+                            <a href="collaboration.html" class="nav-link">
+                                <span class="nav-link-icon">👥</span>
+                                <span class="nav-link-text">Team</span>
+                                <span class="nav-link-desc">Collaboration</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h2>⚡ Quick Actions</h2>
+                <p>Most frequently used tools and shortcuts</p>
+                
+                <div class="quick-actions-grid">
+                    <div class="quick-action" onclick="navigateTo('pricing-calculator.html')">
+                        <div class="quick-action-icon">💰</div>
+                        <div class="quick-action-title">Calculate Price</div>
+                        <div class="quick-action-desc">Quick pricing calculation</div>
+                    </div>
+                    
+                    <div class="quick-action" onclick="navigateTo('content-calendar.html')">
+                        <div class="quick-action-icon">📅</div>
+                        <div class="quick-action-title">Schedule Content</div>
+                        <div class="quick-action-desc">Plan social media posts</div>
+                    </div>
+                    
+                    <div class="quick-action" onclick="navigateTo('ai-assistant.html')">
+                        <div class="quick-action-icon">🤖</div>
+                        <div class="quick-action-title">Ask AI</div>
+                        <div class="quick-action-desc">Get instant help</div>
+                    </div>
+                    
+                    <div class="quick-action" onclick="navigateTo('supplier-vetting.html')">
+                        <div class="quick-action-icon">🔍</div>
+                        <div class="quick-action-title">Vet Supplier</div>
+                        <div class="quick-action-desc">Evaluate new suppliers</div>
+                    </div>
+                    
+                    <div class="quick-action" onclick="navigateTo('advanced-analytics.html')">
+                        <div class="quick-action-icon">📊</div>
+                        <div class="quick-action-title">View Analytics</div>
+                        <div class="quick-action-desc">Check performance</div>
+                    </div>
+                    
+                    <div class="quick-action" onclick="navigateTo('collaboration.html')">
+                        <div class="quick-action-icon">👥</div>
+                        <div class="quick-action-title">Team Chat</div>
+                        <div class="quick-action-desc">Collaborate with team</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="shared-navigation.js"></script>
+    <script>
+        // Smart Navigation JavaScript
+        const searchData = [
+            { title: 'Home', description: 'Main dashboard', url: 'index.html', icon: '🏠' },
+            { title: 'Overview', description: 'Product and brand system', url: 'overview.html', icon: '🎨' },
+            { title: 'Planning', description: 'Content and marketing strategy', url: 'planning.html', icon: '📸' },
+            { title: 'Tracking', description: 'Progress and pricing models', url: 'tracking.html', icon: '📊' },
+            { title: 'Supply Chain', description: 'Dropshipping and supplier management', url: 'supply.html', icon: '📦' },
+            { title: 'Launch', description: '12-week launch strategy', url: 'launch.html', icon: '🚀' },
+            { title: 'Analytics', description: 'Performance tracking and KPIs', url: 'analytics.html', icon: '📈' },
+            { title: 'Advanced Analytics', description: 'AI-powered insights', url: 'advanced-analytics.html', icon: '🚀' },
+            { title: 'AI Assistant', description: 'Intelligent business support', url: 'ai-assistant.html', icon: '🤖' },
+            { title: 'Automation', description: 'Workflow automation tools', url: 'automation-tools.html', icon: '⚡' },
+            { title: 'Team', description: 'Collaboration and project management', url: 'collaboration.html', icon: '👥' },
+            { title: 'Mobile', description: 'PWA features and mobile optimization', url: 'mobile-pwa.html', icon: '📱' },
+            { title: 'Content Calendar', description: 'Social media planning', url: 'content-calendar.html', icon: '📅' },
+            { title: 'Pricing Calculator', description: 'Product pricing tool', url: 'pricing-calculator.html', icon: '💰' },
+            { title: 'Supplier Vetting', description: 'Supplier evaluation tool', url: 'supplier-vetting.html', icon: '🔍' }
+        ];
+        
+        function initializeSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase();
+                if (query.length < 2) {
+                    searchResults.style.display = 'none';
+                    return;
+                }
+                
+                const filtered = searchData.filter(item => 
+                    item.title.toLowerCase().includes(query) || 
+                    item.description.toLowerCase().includes(query)
+                );
+                
+                if (filtered.length > 0) {
+                    searchResults.innerHTML = filtered.map(item => `
+                        <div class="search-result" onclick="navigateTo('${item.url}')">
+                            <span style="margin-right: 0.5rem;">${item.icon}</span>
+                            <strong>${item.title}</strong> - ${item.description}
+                        </div>
+                    `).join('');
+                    searchResults.style.display = 'block';
+                } else {
+                    searchResults.innerHTML = '<div class="search-result">No results found</div>';
+                    searchResults.style.display = 'block';
+                }
+            });
+            
+            // Hide results when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                    searchResults.style.display = 'none';
+                }
+            });
+        }
+        
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+        
+        // Initialize smart navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSearch();
+        });
+    </script>
+</body>
+</html>

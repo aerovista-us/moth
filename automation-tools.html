@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automation Tools - Nailed IT</title>
+    <link rel="stylesheet" href="mystical-styles.css">
+    <link rel="stylesheet" href="simple-animations.css">
+    <style>
+        .automation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .automation-card {
+            background: white;
+            border: 2px solid var(--brand-purple);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .automation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(107, 70, 193, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .automation-card:hover::before {
+            left: 100%;
+        }
+        
+        .automation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(107, 70, 193, 0.3);
+        }
+        
+        .automation-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-dusty-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .automation-status {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        
+        .status-active {
+            background: linear-gradient(135deg, #10b981, #34d399);
+            color: white;
+        }
+        
+        .status-inactive {
+            background: #e5e7eb;
+            color: #6b7280;
+        }
+        
+        .automation-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        
+        .control-button {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--brand-purple);
+            border-radius: 25px;
+            background: white;
+            color: var(--brand-purple);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .control-button:hover {
+            background: var(--brand-purple);
+            color: white;
+        }
+        
+        .control-button.active {
+            background: var(--brand-purple);
+            color: white;
+        }
+        
+        .automation-stats {
+            background: linear-gradient(135deg, var(--brand-black), var(--brand-dark-purple));
+            color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--brand-dusty-pink);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .workflow-builder {
+            background: var(--brand-pink-accent);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .workflow-step {
+            background: white;
+            border: 2px solid var(--brand-purple);
+            border-radius: 15px;
+            padding: 1rem;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .step-number {
+            background: var(--brand-purple);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .action-button {
+            padding: 0.25rem 0.5rem;
+            border: 1px solid var(--brand-purple);
+            border-radius: 5px;
+            background: white;
+            color: var(--brand-purple);
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        .action-button:hover {
+            background: var(--brand-purple);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Shared Navigation Header -->
+    <header class="mystical-header">
+        <div class="container">
+            <div class="logo mystical-logo">🦋 Nailed IT</div>
+            <div class="tagline mystical-tagline">Artistic Nails - Where Beauty Meets Bold Black, Purple & Dusty Pink</div>
+            <nav class="nav-tabs mystical-nav">
+                <a href="index.html" class="nav-tab">Home</a>
+                <a href="overview.html" class="nav-tab">Overview</a>
+                <a href="planning.html" class="nav-tab">Planning</a>
+                <a href="tracking.html" class="nav-tab">Tracking</a>
+                <a href="supply.html" class="nav-tab">Supply Chain</a>
+                <a href="launch.html" class="nav-tab">Launch</a>
+                <a href="analytics.html" class="nav-tab">Analytics</a>
+                <a href="advanced-analytics.html" class="nav-tab">Advanced</a>
+                <a href="ai-assistant.html" class="nav-tab">AI Assistant</a>
+                <a href="automation-tools.html" class="nav-tab active">Automation</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="mystical-section">
+            <h1>⚡ Automation Tools</h1>
+            <p>Streamline your business operations with powerful automation tools that save time and increase efficiency.</p>
+            
+            <!-- Automation Statistics -->
+            <div class="automation-stats">
+                <h2>📊 Automation Impact</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">15</div>
+                        <div class="stat-label">Hours Saved/Week</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">85%</div>
+                        <div class="stat-label">Task Automation</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">$2,400</div>
+                        <div class="stat-label">Monthly Savings</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">Active Automations</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Automation Tools Grid -->
+            <div class="automation-grid">
+                <!-- Social Media Automation -->
+                <div class="automation-card">
+                    <div class="automation-icon">📱</div>
+                    <h3>Social Media Automation</h3>
+                    <p>Automatically schedule and post content across all platforms</p>
+                    <div class="automation-status status-active">Active</div>
+                    <div class="automation-controls">
+                        <button class="control-button active" onclick="toggleAutomation('social')">ON</button>
+                        <button class="control-button" onclick="configureAutomation('social')">Configure</button>
+                    </div>
+                </div>
+                
+                <!-- Email Marketing -->
+                <div class="automation-card">
+                    <div class="automation-icon">📧</div>
+                    <h3>Email Marketing</h3>
+                    <p>Automated email sequences and customer follow-ups</p>
+                    <div class="automation-status status-active">Active</div>
+                    <div class="automation-controls">
+                        <button class="control-button active" onclick="toggleAutomation('email')">ON</button>
+                        <button class="control-button" onclick="configureAutomation('email')">Configure</button>
+                    </div>
+                </div>
+                
+                <!-- Inventory Management -->
+                <div class="automation-card">
+                    <div class="automation-icon">📦</div>
+                    <h3>Inventory Management</h3>
+                    <p>Automatic stock alerts and reorder notifications</p>
+                    <div class="automation-status status-active">Active</div>
+                    <div class="automation-controls">
+                        <button class="control-button active" onclick="toggleAutomation('inventory')">ON</button>
+                        <button class="control-button" onclick="configureAutomation('inventory')">Configure</button>
+                    </div>
+                </div>
+                
+                <!-- Customer Support -->
+                <div class="automation-card">
+                    <div class="automation-icon">💬</div>
+                    <h3>Customer Support</h3>
+                    <p>AI-powered chatbot and automated responses</p>
+                    <div class="automation-status status-inactive">Inactive</div>
+                    <div class="automation-controls">
+                        <button class="control-button" onclick="toggleAutomation('support')">OFF</button>
+                        <button class="control-button" onclick="configureAutomation('support')">Configure</button>
+                    </div>
+                </div>
+                
+                <!-- Analytics Reports -->
+                <div class="automation-card">
+                    <div class="automation-icon">📊</div>
+                    <h3>Analytics Reports</h3>
+                    <p>Automated weekly and monthly business reports</p>
+                    <div class="automation-status status-active">Active</div>
+                    <div class="automation-controls">
+                        <button class="control-button active" onclick="toggleAutomation('analytics')">ON</button>
+                        <button class="control-button" onclick="configureAutomation('analytics')">Configure</button>
+                    </div>
+                </div>
+                
+                <!-- Content Creation -->
+                <div class="automation-card">
+                    <div class="automation-icon">🎨</div>
+                    <h3>Content Creation</h3>
+                    <p>AI-generated product descriptions and social media captions</p>
+                    <div class="automation-status status-inactive">Inactive</div>
+                    <div class="automation-controls">
+                        <button class="control-button" onclick="toggleAutomation('content')">OFF</button>
+                        <button class="control-button" onclick="configureAutomation('content')">Configure</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Workflow Builder -->
+            <div class="workflow-builder">
+                <h2>🔧 Custom Workflow Builder</h2>
+                <p>Create custom automation workflows tailored to your business needs.</p>
+                
+                <div class="workflow-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <strong>New Order Received</strong>
+                        <br><small>Trigger: Customer places order</small>
+                    </div>
+                    <div class="step-actions">
+                        <button class="action-button" onclick="editStep(1)">Edit</button>
+                        <button class="action-button" onclick="deleteStep(1)">Delete</button>
+                    </div>
+                </div>
+                
+                <div class="workflow-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <strong>Send Confirmation Email</strong>
+                        <br><small>Action: Send automated email with order details</small>
+                    </div>
+                    <div class="step-actions">
+                        <button class="action-button" onclick="editStep(2)">Edit</button>
+                        <button class="action-button" onclick="deleteStep(2)">Delete</button>
+                    </div>
+                </div>
+                
+                <div class="workflow-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <strong>Update Inventory</strong>
+                        <br><small>Action: Decrease stock levels automatically</small>
+                    </div>
+                    <div class="step-actions">
+                        <button class="action-button" onclick="editStep(3)">Edit</button>
+                        <button class="action-button" onclick="deleteStep(3)">Delete</button>
+                    </div>
+                </div>
+                
+                <div class="workflow-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <strong>Notify Fulfillment Team</strong>
+                        <br><small>Action: Send notification to team for order processing</small>
+                    </div>
+                    <div class="step-actions">
+                        <button class="action-button" onclick="editStep(4)">Edit</button>
+                        <button class="action-button" onclick="deleteStep(4)">Delete</button>
+                    </div>
+                </div>
+                
+                <button class="control-button" onclick="addWorkflowStep()" style="margin-top: 1rem; width: 100%;">
+                    + Add New Step
+                </button>
+            </div>
+            
+            <!-- Automation Tips -->
+            <div class="mystical-card">
+                <h2>💡 Automation Best Practices</h2>
+                <ul>
+                    <li><strong>Start Small:</strong> Begin with simple automations and gradually add complexity</li>
+                    <li><strong>Test Thoroughly:</strong> Always test automations before going live</li>
+                    <li><strong>Monitor Performance:</strong> Regularly review automation effectiveness</li>
+                    <li><strong>Backup Plans:</strong> Have manual processes as fallbacks</li>
+                    <li><strong>Customer Experience:</strong> Ensure automations enhance, not hinder, customer experience</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="shared-navigation.js"></script>
+    <script>
+        // Automation Tools JavaScript
+        const automationStatus = {
+            social: true,
+            email: true,
+            inventory: true,
+            support: false,
+            analytics: true,
+            content: false
+        };
+        
+        function toggleAutomation(type) {
+            automationStatus[type] = !automationStatus[type];
+            updateAutomationUI(type);
+        }
+        
+        function updateAutomationUI(type) {
+            const card = document.querySelector(`[onclick*="${type}"]`).closest('.automation-card');
+            const status = card.querySelector('.automation-status');
+            const button = card.querySelector('.control-button');
+            
+            if (automationStatus[type]) {
+                status.textContent = 'Active';
+                status.className = 'automation-status status-active';
+                button.textContent = 'ON';
+                button.className = 'control-button active';
+            } else {
+                status.textContent = 'Inactive';
+                status.className = 'automation-status status-inactive';
+                button.textContent = 'OFF';
+                button.className = 'control-button';
+            }
+        }
+        
+        function configureAutomation(type) {
+            alert(`Configure ${type} automation settings`);
+        }
+        
+        function editStep(stepNumber) {
+            alert(`Edit step ${stepNumber}`);
+        }
+        
+        function deleteStep(stepNumber) {
+            if (confirm(`Delete step ${stepNumber}?`)) {
+                alert(`Step ${stepNumber} deleted`);
+            }
+        }
+        
+        function addWorkflowStep() {
+            alert('Add new workflow step');
+        }
+        
+        // Initialize automation tools
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Automation Tools Initialized');
+        });
+    </script>
+</body>
+</html>

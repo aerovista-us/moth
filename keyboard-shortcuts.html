@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard Shortcuts - Nailed IT</title>
+    <link rel="stylesheet" href="mystical-styles.css">
+    <link rel="stylesheet" href="simple-animations.css">
+    <style>
+        .shortcuts-container {
+            background: white;
+            border: 2px solid var(--brand-purple);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .shortcuts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .shortcut-category {
+            background: var(--brand-pink-accent);
+            border: 2px solid var(--brand-purple);
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .category-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-dusty-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .category-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--brand-black);
+        }
+        
+        .shortcut-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .shortcut-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid var(--brand-purple);
+            transition: all 0.3s ease;
+        }
+        
+        .shortcut-item:hover {
+            background: var(--brand-purple);
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .shortcut-description {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .shortcut-icon {
+            font-size: 1.2rem;
+        }
+        
+        .shortcut-text {
+            font-weight: 500;
+        }
+        
+        .shortcut-keys {
+            display: flex;
+            gap: 0.25rem;
+        }
+        
+        .key {
+            background: var(--brand-purple);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            font-family: monospace;
+        }
+        
+        .key.combo {
+            background: var(--brand-dusty-pink);
+        }
+        
+        .key.plus {
+            background: #6b7280;
+            font-size: 0.7rem;
+        }
+        
+        .practice-section {
+            background: linear-gradient(135deg, var(--brand-black), var(--brand-dark-purple));
+            color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .practice-area {
+            background: rgba(107, 70, 193, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .practice-instruction {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--brand-dusty-pink);
+        }
+        
+        .practice-shortcut {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border: 2px solid var(--brand-dusty-pink);
+        }
+        
+        .practice-feedback {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        
+        .practice-feedback.success {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border: 1px solid #10b981;
+        }
+        
+        .practice-feedback.error {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid #ef4444;
+        }
+        
+        .customization-section {
+            background: var(--brand-pink-accent);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .custom-shortcut {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            margin: 0.5rem 0;
+        }
+        
+        .custom-shortcut input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 2px solid var(--brand-purple);
+            border-radius: 5px;
+            outline: none;
+        }
+        
+        .custom-shortcut button {
+            background: var(--brand-purple);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+        
+        .shortcut-help {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--brand-black);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid var(--brand-purple);
+            z-index: 1000;
+            display: none;
+            max-width: 500px;
+            text-align: center;
+        }
+        
+        .shortcut-help.show {
+            display: block;
+        }
+        
+        .help-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+        
+        .help-overlay.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Shared Navigation Header -->
+    <header class="mystical-header">
+        <div class="container">
+            <div class="logo mystical-logo">🦋 Nailed IT</div>
+            <div class="tagline mystical-tagline">Artistic Nails - Where Beauty Meets Bold Black, Purple & Dusty Pink</div>
+            <nav class="nav-tabs mystical-nav">
+                <a href="index.html" class="nav-tab">Home</a>
+                <a href="smart-navigation.html" class="nav-tab">Navigation</a>
+                <a href="keyboard-shortcuts.html" class="nav-tab active">Shortcuts</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="mystical-section">
+            <h1>⌨️ Keyboard Shortcuts</h1>
+            <p>Master the Nailed IT system with powerful keyboard shortcuts for maximum efficiency.</p>
+            
+            <!-- Quick Help -->
+            <div class="shortcuts-container">
+                <h2>🚀 Quick Start</h2>
+                <p>Press <span class="key">Alt</span> + <span class="key">?</span> anytime to see all available shortcuts!</p>
+                <button onclick="showShortcutHelp()" class="mystical-button">Show All Shortcuts</button>
+            </div>
+            
+            <!-- Navigation Shortcuts -->
+            <div class="shortcuts-container">
+                <h2>🧭 Navigation Shortcuts</h2>
+                <div class="shortcuts-grid">
+                    <div class="shortcut-category">
+                        <div class="category-header">
+                            <div class="category-icon">🏠</div>
+                            <div class="category-title">Quick Navigation</div>
+                        </div>
+                        <div class="shortcut-list">
+                            <div class="shortcut-item">
+                                <div class="shortcut-description">
+                                    <span class="shortcut-icon">🏠</span>
+                                    <span class="shortcut-text">Go to Home</span>
+                                </div>
+                                <div class="shortcut-keys">
+                                    <span class="key">Alt</span>
+                                    <span class="key plus">+</span>
+                                    <span class="key">H</span>
+                                </div>
+                            </div>
+                            <div class="shortcut-item">
+                                <div class="shortcut-description">
+                                    <span class="shortcut-icon">🔍</span>
+                                    <span class="shortcut-text">Open Search</span>
+                                </div>
+                                <div class="shortcut-keys">
+                                    <span class="key">Alt</span>
+                                    <span class="key plus">+</span>
+                                    <span class="key">S</span>
+                                </div>
+                            </div>
+                            <div class="shortcut-item">
+                                <div class="shortcut-description">
+                                    <span class="shortcut-icon">⭐</span>
+                                    <span class="shortcut-text">Toggle Favorites</span>
+                                </div>
+                                <div class="shortcut-keys">
+                                    <span class="key">Alt</span>
+                                    <span class="key plus">+</span>
+                                    <span class="key">F</span>
+                                </div>
+                            </div>
+                            <div class="shortcut-item">
+                                <div class="shortcut-description">
+                                    <span class="shortcut-icon">📊</span>
+                                    <span class="shortcut-text">Analytics Dashboard</span>
+                                </div>
+                                <div class="shortcut-keys">
+                                    <span class="key">Alt</span>
+                                    <span class="key plus">+</span>
+                                    <span class="key">A</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="shortcut-category">
+                        <div class="category-header">
+                            <div class="category-icon">🔢</div>
+                            <div class="category-title">Number Shortcuts</div>
+                        </div>
+                        <div class="shortcut-list">
+                            <div class="shortcut-item">
+                                <div class="shortcut-description">
+                                    <span class="shortcut-icon">🏠</span>
+                                    <span class="shortcut-text">Home (Alt + 1)</span>
+                                </div>
+                                <div class="shortcut-keys">
+                                    <span class="key">Alt</span>
+                                    <span class="key plus">+</span>
+                                    <span class="key">1</span>
+                                </div>
+                            </div>
+                            <div class="shortcut-item">
+                                <div class="shortcut-description">
+                                    <span class="shortcut-icon">🎨</span>
+                                    <span class="shortcut-text">Overview (Alt + 2)</span>
+                                </div>
+                                <div class="shortcut-keys">
+                                    <span class="key">Alt</span>
+                                    <span class="key plus">+</span>
+                                    <span class="key">2</span>
+                                </div>
+                            </div>
+                            <div class="shortcut-item">
+                                <div class="shortcut-description">
+                                    <span class="shortcut-icon">📸</span>
+                                    <span class="shortcut-text">Planning (Alt + 3)</span>
+                                </div>
+                                <div class="shortcut-keys">
+                                    <span class="key">Alt</span>
+                                    <span class="key plus">+</span>
+                                    <span class="key">3</span>
+                                </div>
+                            </div>
+                            <div class="shortcut-item">
+                                <div class="shortcut-description">
+                                    <span class="shortcut-icon">📊</span>
+                                    <span class="shortcut-text">Tracking (Alt + 4)</span>
+                                </div>
+                                <div class="shortcut-keys">
+                                    <span class="key">Alt</span>
+                                    <span class="key plus">+</span>
+                                    <span class="key">4</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tool Shortcuts -->
+            <div class="shortcuts-container">
+                <h2>🛠️ Tool Shortcuts</h2>
+                <div class="shortcuts-grid">
+                    <div class="shortcut-category">
+                        <div class="category-header">
+                            <div class="category-icon">💰</div>
+                            <div class="category-title">Business Tools</div>
+                        </div>
+                        <div class="shortcut-list">
+                            <div class="shortcut-item">
+                                <div class="shortcut-description">
+                                    <span class="shortcut-icon">💰</span>
+                                    <span class="shortcut-text">Pricing Calculator</span>
+                                </div>
+                                <div class="shortcut-keys">
+                                    <span class="key">Alt</span>
+                                    <span class="key plus">+</span>
+                                    <span class="key">P</span>
+                                </div>
+                            </div>
+                            <div class="shortcut-item">
+                                <div class="shortcut-description">
+                                    <span class="shortcut-icon">📅</span>
+                                    <span class="shortcut-text">Content Calendar</span>
+                                </div>
+                                <div class="shortcut-keys">
+                                    <span class="key">Alt</span>
+                                    <span class="key plus">+</span>
+                                    <span class="key">C</span>
+                                </div>
+                            </div>
+                            <div class="shortcut-item">
+                                <div class="shortcut-description">
+                                    <span class="shortcut-icon">🔍</span>
+                                    <span class="shortcut-text">Supplier Vetting</span>
+                                </div>
+                                <div class="shortcut-keys">
+                                    <span class="key">Alt</span>
+                                    <span class="key plus">+</span>
+                                    <span class="key">V</span>
+                                </div>
+                            </div>
+                            <div class="shortcut-item">
+                                <div class="shortcut-description">
+                                    <span class="shortcut-icon">📦</span>
+                                    <span class="shortcut-text">Supply Chain</span>
+                                </div>
+                                <div class="shortcut-keys">
+                                    <span class="key">Alt</span>
+                                    <span class="key plus">+</span>
+                                    <span class="key">U</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="shortcut-category">
+                        <div class="category-header">
+                            <div class="category-icon">🤖</div>
+                            <div class="category-title">AI & Automation</div>
+                        </div>
+                        <div class="shortcut-list">
+                            <div class="shortcut-item">
+                                <div class="shortcut-description">
+                                    <span class="shortcut-icon">🤖</span>
+                                    <span class="shortcut-text">AI Assistant</span>
+                                </div>
+                                <div class="shortcut-keys">
+                                    <span class="key">Alt</span>
+                                    <span class="key plus">+</span>
+                                    <span class="key">I</span>
+                                </div>
+                            </div>
+                            <div class="shortcut-item">
+                                <div class="shortcut-description">
+                                    <span class="shortcut-icon">⚡</span>
+                                    <span class="shortcut-text">Automation Tools</span>
+                                </div>
+                                <div class="shortcut-keys">
+                                    <span class="key">Alt</span>
+                                    <span class="key plus">+</span>
+                                    <span class="key">T</span>
+                                </div>
+                            </div>
+                            <div class="shortcut-item">
+                                <div class="shortcut-description">
+                                    <span class="shortcut-icon">👥</span>
+                                    <span class="shortcut-text">Team Collaboration</span>
+                                </div>
+                                <div class="shortcut-keys">
+                                    <span class="key">Alt</span>
+                                    <span class="key plus">+</span>
+                                    <span class="key">M</span>
+                                </div>
+                            </div>
+                            <div class="shortcut-item">
+                                <div class="shortcut-description">
+                                    <span class="shortcut-icon">📱</span>
+                                    <span class="shortcut-text">Mobile PWA</span>
+                                </div>
+                                <div class="shortcut-keys">
+                                    <span class="key">Alt</span>
+                                    <span class="key plus">+</span>
+                                    <span class="key">O</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Practice Section -->
+            <div class="practice-section">
+                <h2>🎯 Practice Your Shortcuts</h2>
+                <div class="practice-area">
+                    <div class="practice-instruction">Try this shortcut:</div>
+                    <div class="practice-shortcut" id="practiceShortcut">Alt + H (Go to Home)</div>
+                    <div class="practice-feedback" id="practiceFeedback" style="display: none;"></div>
+                </div>
+                <button onclick="nextPracticeShortcut()" class="mystical-button">Next Shortcut</button>
+            </div>
+            
+            <!-- Customization -->
+            <div class="customization-section">
+                <h2>⚙️ Customize Your Shortcuts</h2>
+                <p>Create custom keyboard shortcuts for your most-used tools.</p>
+                
+                <div class="custom-shortcut">
+                    <input type="text" placeholder="Tool name" id="customToolName">
+                    <input type="text" placeholder="Shortcut (e.g., Alt+K)" id="customShortcut">
+                    <button onclick="addCustomShortcut()">Add Shortcut</button>
+                </div>
+                
+                <div id="customShortcutsList">
+                    <!-- Custom shortcuts will be listed here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Shortcut Help Modal -->
+    <div class="help-overlay" id="helpOverlay" onclick="hideShortcutHelp()"></div>
+    <div class="shortcut-help" id="shortcutHelp">
+        <h2>⌨️ All Keyboard Shortcuts</h2>
+        <div id="allShortcutsList">
+            <!-- All shortcuts will be listed here -->
+        </div>
+        <button onclick="hideShortcutHelp()" class="mystical-button">Close</button>
+    </div>
+
+    <script src="shared-navigation.js"></script>
+    <script src="advanced-navigation.js"></script>
+    <script>
+        // Keyboard Shortcuts JavaScript
+        const practiceShortcuts = [
+            { keys: 'Alt + H', description: 'Go to Home', action: () => window.location.href = 'index.html' },
+            { keys: 'Alt + S', description: 'Open Search', action: () => focusSearch() },
+            { keys: 'Alt + F', description: 'Toggle Favorites', action: () => toggleFavorites() },
+            { keys: 'Alt + P', description: 'Pricing Calculator', action: () => window.location.href = 'pricing-calculator.html' },
+            { keys: 'Alt + C', description: 'Content Calendar', action: () => window.location.href = 'content-calendar.html' },
+            { keys: 'Alt + A', description: 'Analytics Dashboard', action: () => window.location.href = 'navigation-analytics.html' }
+        ];
+        
+        let currentPracticeIndex = 0;
+        let customShortcuts = JSON.parse(localStorage.getItem('customShortcuts') || '[]');
+        
+        function initializeShortcuts() {
+            loadAllShortcuts();
+            loadCustomShortcuts();
+            setupKeyboardListeners();
+        }
+        
+        function setupKeyboardListeners() {
+            document.addEventListener('keydown', (e) => {
+                // Handle Alt + ? for help
+                if (e.altKey && e.key === '?') {
+                    e.preventDefault();
+                    showShortcutHelp();
+                }
+                
+                // Handle practice shortcuts
+                if (e.altKey && e.key === 'Enter') {
+                    e.preventDefault();
+                    testCurrentShortcut();
+                }
+                
+                // Handle custom shortcuts
+                handleCustomShortcuts(e);
+            });
+        }
+        
+        function loadAllShortcuts() {
+            const allShortcuts = [
+                { category: 'Navigation', shortcuts: [
+                    { keys: 'Alt + H', description: 'Go to Home' },
+                    { keys: 'Alt + S', description: 'Open Search' },
+                    { keys: 'Alt + F', description: 'Toggle Favorites' },
+                    { keys: 'Alt + A', description: 'Analytics Dashboard' }
+                ]},
+                { category: 'Number Shortcuts', shortcuts: [
+                    { keys: 'Alt + 1', description: 'Home' },
+                    { keys: 'Alt + 2', description: 'Overview' },
+                    { keys: 'Alt + 3', description: 'Planning' },
+                    { keys: 'Alt + 4', description: 'Tracking' }
+                ]},
+                { category: 'Business Tools', shortcuts: [
+                    { keys: 'Alt + P', description: 'Pricing Calculator' },
+                    { keys: 'Alt + C', description: 'Content Calendar' },
+                    { keys: 'Alt + V', description: 'Supplier Vetting' },
+                    { keys: 'Alt + U', description: 'Supply Chain' }
+                ]},
+                { category: 'AI & Automation', shortcuts: [
+                    { keys: 'Alt + I', description: 'AI Assistant' },
+                    { keys: 'Alt + T', description: 'Automation Tools' },
+                    { keys: 'Alt + M', description: 'Team Collaboration' },
+                    { keys: 'Alt + O', description: 'Mobile PWA' }
+                ]}
+            ];
+            
+            const shortcutsList = document.getElementById('allShortcutsList');
+            shortcutsList.innerHTML = allShortcuts.map(category => `
+                <div style="margin: 1rem 0;">
+                    <h3 style="color: var(--brand-dusty-pink); margin-bottom: 0.5rem;">${category.category}</h3>
+                    ${category.shortcuts.map(shortcut => `
+                        <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: rgba(255,255,255,0.1); border-radius: 5px; margin: 0.25rem 0;">
+                            <span>${shortcut.description}</span>
+                            <span style="font-family: monospace; background: var(--brand-purple); padding: 0.25rem 0.5rem; border-radius: 3px;">${shortcut.keys}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `).join('');
+        }
+        
+        function loadCustomShortcuts() {
+            const customList = document.getElementById('customShortcutsList');
+            customList.innerHTML = customShortcuts.map(shortcut => `
+                <div class="custom-shortcut">
+                    <span>${shortcut.tool}</span>
+                    <span style="font-family: monospace; background: var(--brand-purple); color: white; padding: 0.25rem 0.5rem; border-radius: 3px;">${shortcut.keys}</span>
+                    <button onclick="removeCustomShortcut('${shortcut.tool}')" style="background: #ef4444; color: white; border: none; border-radius: 3px; padding: 0.25rem 0.5rem;">Remove</button>
+                </div>
+            `).join('');
+        }
+        
+        function addCustomShortcut() {
+            const toolName = document.getElementById('customToolName').value;
+            const shortcut = document.getElementById('customShortcut').value;
+            
+            if (toolName && shortcut) {
+                customShortcuts.push({ tool: toolName, keys: shortcut });
+                localStorage.setItem('customShortcuts', JSON.stringify(customShortcuts));
+                loadCustomShortcuts();
+                
+                // Clear inputs
+                document.getElementById('customToolName').value = '';
+                document.getElementById('customShortcut').value = '';
+            }
+        }
+        
+        function removeCustomShortcut(tool) {
+            customShortcuts = customShortcuts.filter(s => s.tool !== tool);
+            localStorage.setItem('customShortcuts', JSON.stringify(customShortcuts));
+            loadCustomShortcuts();
+        }
+        
+        function handleCustomShortcuts(e) {
+            customShortcuts.forEach(shortcut => {
+                if (shortcut.keys === `Alt + ${e.key.toUpperCase()}` && e.altKey) {
+                    e.preventDefault();
+                    // Handle custom shortcut action
+                    console.log(`Custom shortcut triggered: ${shortcut.tool}`);
+                }
+            });
+        }
+        
+        function nextPracticeShortcut() {
+            currentPracticeIndex = (currentPracticeIndex + 1) % practiceShortcuts.length;
+            const shortcut = practiceShortcuts[currentPracticeIndex];
+            document.getElementById('practiceShortcut').textContent = `${shortcut.keys} (${shortcut.description})`;
+            document.getElementById('practiceFeedback').style.display = 'none';
+        }
+        
+        function testCurrentShortcut() {
+            const shortcut = practiceShortcuts[currentPracticeIndex];
+            const feedback = document.getElementById('practiceFeedback');
+            
+            feedback.style.display = 'block';
+            feedback.className = 'practice-feedback success';
+            feedback.textContent = '✅ Correct! Great job!';
+            
+            setTimeout(() => {
+                nextPracticeShortcut();
+            }, 2000);
+        }
+        
+        function showShortcutHelp() {
+            document.getElementById('helpOverlay').classList.add('show');
+            document.getElementById('shortcutHelp').classList.add('show');
+        }
+        
+        function hideShortcutHelp() {
+            document.getElementById('helpOverlay').classList.remove('show');
+            document.getElementById('shortcutHelp').classList.remove('show');
+        }
+        
+        function focusSearch() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.focus();
+            }
+        }
+        
+        function toggleFavorites() {
+            // This would integrate with the favorites system
+            console.log('Toggle favorites');
+        }
+        
+        // Initialize shortcuts
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeShortcuts();
+        });
+    </script>
+</body>
+</html>

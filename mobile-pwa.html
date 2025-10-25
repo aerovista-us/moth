@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile PWA - Nailed IT</title>
+    <link rel="stylesheet" href="mystical-styles.css">
+    <link rel="stylesheet" href="simple-animations.css">
+    <style>
+        .pwa-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .pwa-card {
+            background: white;
+            border: 2px solid var(--brand-purple);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pwa-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(107, 70, 193, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .pwa-card:hover::before {
+            left: 100%;
+        }
+        
+        .pwa-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(107, 70, 193, 0.3);
+        }
+        
+        .pwa-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-dusty-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .pwa-status {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        
+        .status-enabled {
+            background: linear-gradient(135deg, #10b981, #34d399);
+            color: white;
+        }
+        
+        .status-disabled {
+            background: #e5e7eb;
+            color: #6b7280;
+        }
+        
+        .pwa-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        
+        .control-button {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--brand-purple);
+            border-radius: 25px;
+            background: white;
+            color: var(--brand-purple);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .control-button:hover {
+            background: var(--brand-purple);
+            color: white;
+        }
+        
+        .control-button.active {
+            background: var(--brand-purple);
+            color: white;
+        }
+        
+        .mobile-preview {
+            background: linear-gradient(135deg, var(--brand-black), var(--brand-dark-purple));
+            color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .phone-mockup {
+            width: 200px;
+            height: 400px;
+            background: white;
+            border-radius: 25px;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-dusty-pink));
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .app-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .app-subtitle {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        .offline-features {
+            background: var(--brand-pink-accent);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .feature-item {
+            background: white;
+            border: 2px solid var(--brand-purple);
+            border-radius: 15px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .feature-icon {
+            font-size: 1.5rem;
+        }
+        
+        .feature-text {
+            flex: 1;
+        }
+        
+        .feature-title {
+            font-weight: bold;
+            color: var(--brand-black);
+        }
+        
+        .feature-desc {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+        
+        .install-prompt {
+            background: linear-gradient(135deg, var(--brand-purple), var(--brand-light-purple));
+            color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .install-button {
+            background: white;
+            color: var(--brand-purple);
+            border: none;
+            border-radius: 25px;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .install-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .pwa-manifest {
+            background: white;
+            border: 2px solid var(--brand-purple);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .manifest-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .manifest-item:last-child {
+            border-bottom: none;
+        }
+        
+        .manifest-label {
+            font-weight: bold;
+            color: var(--brand-black);
+        }
+        
+        .manifest-value {
+            color: var(--brand-purple);
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <!-- Shared Navigation Header -->
+    <header class="mystical-header">
+        <div class="container">
+            <div class="logo mystical-logo">🦋 Nailed IT</div>
+            <div class="tagline mystical-tagline">Artistic Nails - Where Beauty Meets Bold Black, Purple & Dusty Pink</div>
+            <nav class="nav-tabs mystical-nav">
+                <a href="index.html" class="nav-tab">Home</a>
+                <a href="overview.html" class="nav-tab">Overview</a>
+                <a href="planning.html" class="nav-tab">Planning</a>
+                <a href="tracking.html" class="nav-tab">Tracking</a>
+                <a href="supply.html" class="nav-tab">Supply Chain</a>
+                <a href="launch.html" class="nav-tab">Launch</a>
+                <a href="analytics.html" class="nav-tab">Analytics</a>
+                <a href="advanced-analytics.html" class="nav-tab">Advanced</a>
+                <a href="ai-assistant.html" class="nav-tab">AI Assistant</a>
+                <a href="automation-tools.html" class="nav-tab">Automation</a>
+                <a href="collaboration.html" class="nav-tab">Team</a>
+                <a href="mobile-pwa.html" class="nav-tab active">Mobile</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="mystical-section">
+            <h1>📱 Mobile PWA Features</h1>
+            <p>Access your business planning tools anywhere with our powerful Progressive Web App.</p>
+            
+            <!-- Mobile Preview -->
+            <div class="mobile-preview">
+                <h2>📱 Mobile App Preview</h2>
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="app-icon">🦋</div>
+                        <div class="app-title">Nailed IT</div>
+                        <div class="app-subtitle">Business Planning</div>
+                    </div>
+                </div>
+                <p>Install the app on your mobile device for instant access to all your business tools.</p>
+            </div>
+            
+            <!-- PWA Features -->
+            <div class="pwa-features">
+                <div class="pwa-card">
+                    <div class="pwa-icon">📱</div>
+                    <h3>Installable App</h3>
+                    <p>Install directly to your home screen for native app experience</p>
+                    <div class="pwa-status status-enabled">Enabled</div>
+                    <div class="pwa-controls">
+                        <button class="control-button active" onclick="toggleFeature('install')">ON</button>
+                        <button class="control-button" onclick="configureFeature('install')">Configure</button>
+                    </div>
+                </div>
+                
+                <div class="pwa-card">
+                    <div class="pwa-icon">🌐</div>
+                    <h3>Offline Access</h3>
+                    <p>Work without internet connection with cached data</p>
+                    <div class="pwa-status status-enabled">Enabled</div>
+                    <div class="pwa-controls">
+                        <button class="control-button active" onclick="toggleFeature('offline')">ON</button>
+                        <button class="control-button" onclick="configureFeature('offline')">Configure</button>
+                    </div>
+                </div>
+                
+                <div class="pwa-card">
+                    <div class="pwa-icon">🔔</div>
+                    <h3>Push Notifications</h3>
+                    <p>Get instant updates and reminders</p>
+                    <div class="pwa-status status-enabled">Enabled</div>
+                    <div class="pwa-controls">
+                        <button class="control-button active" onclick="toggleFeature('notifications')">ON</button>
+                        <button class="control-button" onclick="configureFeature('notifications')">Configure</button>
+                    </div>
+                </div>
+                
+                <div class="pwa-card">
+                    <div class="pwa-icon">⚡</div>
+                    <h3>Fast Loading</h3>
+                    <p>Optimized performance with service workers</p>
+                    <div class="pwa-status status-enabled">Enabled</div>
+                    <div class="pwa-controls">
+                        <button class="control-button active" onclick="toggleFeature('performance')">ON</button>
+                        <button class="control-button" onclick="configureFeature('performance')">Configure</button>
+                    </div>
+                </div>
+                
+                <div class="pwa-card">
+                    <div class="pwa-icon">🔒</div>
+                    <h3>Secure Connection</h3>
+                    <p>HTTPS encryption for all data transmission</p>
+                    <div class="pwa-status status-enabled">Enabled</div>
+                    <div class="pwa-controls">
+                        <button class="control-button active" onclick="toggleFeature('security')">ON</button>
+                        <button class="control-button" onclick="configureFeature('security')">Configure</button>
+                    </div>
+                </div>
+                
+                <div class="pwa-card">
+                    <div class="pwa-icon">📊</div>
+                    <h3>Analytics Sync</h3>
+                    <p>Sync data across all devices automatically</p>
+                    <div class="pwa-status status-enabled">Enabled</div>
+                    <div class="pwa-controls">
+                        <button class="control-button active" onclick="toggleFeature('sync')">ON</button>
+                        <button class="control-button" onclick="configureFeature('sync')">Configure</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Offline Features -->
+            <div class="offline-features">
+                <h2>🌐 Offline Capabilities</h2>
+                <p>Continue working even without internet connection with these offline features:</p>
+                
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">📋</div>
+                        <div class="feature-text">
+                            <div class="feature-title">Task Management</div>
+                            <div class="feature-desc">View and edit tasks offline</div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">📊</div>
+                        <div class="feature-text">
+                            <div class="feature-title">Analytics Dashboard</div>
+                            <div class="feature-desc">Access cached analytics data</div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">📝</div>
+                        <div class="feature-text">
+                            <div class="feature-title">Note Taking</div>
+                            <div class="feature-desc">Create and edit notes offline</div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">📅</div>
+                        <div class="feature-text">
+                            <div class="feature-title">Calendar View</div>
+                            <div class="feature-desc">View scheduled events offline</div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">💰</div>
+                        <div class="feature-text">
+                            <div class="feature-title">Pricing Calculator</div>
+                            <div class="feature-desc">Calculate prices without internet</div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">📱</div>
+                        <div class="feature-text">
+                            <div class="feature-title">Social Media</div>
+                            <div class="feature-desc">Draft posts for later publishing</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Install Prompt -->
+            <div class="install-prompt">
+                <h2>📱 Install Nailed IT App</h2>
+                <p>Get the full mobile experience with our Progressive Web App</p>
+                <button class="install-button" onclick="installPWA()">Install App</button>
+            </div>
+            
+            <!-- PWA Manifest -->
+            <div class="pwa-manifest">
+                <h2>⚙️ PWA Configuration</h2>
+                <div class="manifest-item">
+                    <div class="manifest-label">App Name:</div>
+                    <div class="manifest-value">Nailed IT Business Planning</div>
+                </div>
+                <div class="manifest-item">
+                    <div class="manifest-label">Short Name:</div>
+                    <div class="manifest-value">Nailed IT</div>
+                </div>
+                <div class="manifest-item">
+                    <div class="manifest-label">Theme Color:</div>
+                    <div class="manifest-value">#6b46c1</div>
+                </div>
+                <div class="manifest-item">
+                    <div class="manifest-label">Background Color:</div>
+                    <div class="manifest-value">#f3e8ff</div>
+                </div>
+                <div class="manifest-item">
+                    <div class="manifest-label">Display Mode:</div>
+                    <div class="manifest-value">standalone</div>
+                </div>
+                <div class="manifest-item">
+                    <div class="manifest-label">Orientation:</div>
+                    <div class="manifest-value">portrait</div>
+                </div>
+                <div class="manifest-item">
+                    <div class="manifest-label">Start URL:</div>
+                    <div class="manifest-value">/index.html</div>
+                </div>
+                <div class="manifest-item">
+                    <div class="manifest-label">Scope:</div>
+                    <div class="manifest-value">/</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="shared-navigation.js"></script>
+    <script>
+        // PWA JavaScript
+        let deferredPrompt;
+        
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('Service Worker registered:', registration);
+                })
+                .catch(error => {
+                    console.log('Service Worker registration failed:', error);
+                });
+        }
+        
+        // Listen for beforeinstallprompt event
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            console.log('PWA install prompt available');
+        });
+        
+        function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                    } else {
+                        console.log('User dismissed the install prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            } else {
+                alert('PWA install prompt not available. Please use your browser\'s install option.');
+            }
+        }
+        
+        function toggleFeature(feature) {
+            console.log(`Toggle ${feature} feature`);
+            alert(`${feature} feature toggled`);
+        }
+        
+        function configureFeature(feature) {
+            console.log(`Configure ${feature} feature`);
+            alert(`Configure ${feature} settings`);
+        }
+        
+        // Initialize PWA features
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Mobile PWA Features Initialized');
+            
+            // Check if app is already installed
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                console.log('App is running in standalone mode');
+            }
+        });
+    </script>
+</body>
+</html>
