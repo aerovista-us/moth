@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Test - Nailed IT</title>
+    <style>
+        /* Basic navigation styles for testing */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .test-header {
+            background: #2c1810;
+            color: #f5f5dc;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .test-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .test-nav a {
+            background: #d4af37;
+            color: #2c1810;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .test-nav a:hover {
+            background: #b87333;
+            color: #f5f5dc;
+            transform: translateY(-2px);
+        }
+        
+        .test-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .status {
+            background: #e8f5e8;
+            border: 1px solid #4caf50;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-header">
+        <h1>🦋 Nailed IT - Navigation Test</h1>
+        <p>Testing navigation system visibility and functionality</p>
+    </div>
+    
+    <div class="test-nav">
+        <a href="overview.html">
+            <span>🎨</span>
+            <span>Overview</span>
+        </a>
+        <a href="planning.html">
+            <span>📸</span>
+            <span>Planning</span>
+        </a>
+        <a href="tracking.html">
+            <span>📊</span>
+            <span>Tracking</span>
+        </a>
+        <a href="supply.html">
+            <span>📦</span>
+            <span>Supply Chain</span>
+        </a>
+        <a href="launch.html">
+            <span>🚀</span>
+            <span>Launch</span>
+        </a>
+        <a href="analytics.html">
+            <span>📈</span>
+            <span>Analytics</span>
+        </a>
+    </div>
+    
+    <div class="test-content">
+        <h2>Navigation Test Results</h2>
+        
+        <div class="status">
+            <strong>✅ Navigation Test Page Loaded</strong><br>
+            If you can see this page and the navigation buttons above, the basic structure is working.
+        </div>
+        
+        <h3>What to Check:</h3>
+        <ul>
+            <li><strong>Navigation Buttons:</strong> You should see 6 buttons with icons and text</li>
+            <li><strong>Hover Effects:</strong> Buttons should change color when you hover over them</li>
+            <li><strong>Click Functionality:</strong> Buttons should be clickable and navigate to pages</li>
+            <li><strong>Responsive Design:</strong> Buttons should wrap on smaller screens</li>
+        </ul>
+        
+        <h3>If Navigation is Not Visible:</h3>
+        <ul>
+            <li>Check if CSS files are loading properly</li>
+            <li>Look for JavaScript errors in browser console</li>
+            <li>Verify file paths are correct</li>
+            <li>Check if browser is blocking scripts</li>
+        </ul>
+        
+        <h3>Keyboard Shortcuts Test:</h3>
+        <p>Try these keyboard shortcuts:</p>
+        <ul>
+            <li><strong>Alt + 1:</strong> Go to Overview</li>
+            <li><strong>Alt + 2:</strong> Go to Planning</li>
+            <li><strong>Alt + 3:</strong> Go to Tracking</li>
+            <li><strong>Alt + 4:</strong> Go to Supply Chain</li>
+            <li><strong>Alt + 5:</strong> Go to Launch</li>
+            <li><strong>Alt + 6:</strong> Go to Analytics</li>
+        </ul>
+    </div>
+    
+    <script>
+        // Simple navigation test
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Navigation test page loaded');
+            
+            const navLinks = document.querySelectorAll('.test-nav a');
+            console.log('Found navigation links:', navLinks.length);
+            
+            navLinks.forEach((link, index) => {
+                link.addEventListener('click', function(e) {
+                    console.log('Navigation clicked:', this.textContent.trim());
+                });
+            });
+            
+            // Test keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.altKey) {
+                    const keyMap = {
+                        '1': 'overview.html',
+                        '2': 'planning.html',
+                        '3': 'tracking.html',
+                        '4': 'supply.html',
+                        '5': 'launch.html',
+                        '6': 'analytics.html'
+                    };
+                    
+                    if (keyMap[e.key]) {
+                        e.preventDefault();
+                        console.log('Keyboard shortcut:', e.key, '->', keyMap[e.key]);
+                        window.location.href = keyMap[e.key];
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

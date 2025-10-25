@@ -4,55 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nailed IT Business Planning - Black, Purple & Dusty Pink</title>
-    <link rel="stylesheet" href="mystical-styles.css">
-    <link rel="stylesheet" href="simple-animations.css">
     <style>
-        /* Fallback styles to ensure navigation is visible */
-        .nav-tab {
-            background: rgba(107, 70, 193, 0.2) !important;
-            border: 2px solid #6b46c1 !important;
-            color: #f3e8ff !important;
-            padding: 0.8rem 1.5rem !important;
-            border-radius: 25px !important;
-            cursor: pointer !important;
-            transition: all 0.3s ease !important;
-            font-weight: 600 !important;
-            text-decoration: none !important;
-            display: flex !important;
-            align-items: center !important;
-            gap: 0.5rem !important;
-            min-width: 120px !important;
-            justify-content: center !important;
+        /* Simplified styles to ensure navigation is visible */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
-        .nav-tab:hover {
-            background: #6b46c1 !important;
-            color: #f3e8ff !important;
-            transform: translateY(-2px) !important;
-            box-shadow: 0 4px 8px rgba(107, 70, 193, 0.3) !important;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d1b69 25%, #6b46c1 50%, #2d1b69 75%, #1a1a1a 100%);
+            color: #1a1a1a;
+            line-height: 1.6;
         }
         
-        .nav-icon {
-            font-size: 1.2rem !important;
-            transition: transform 0.3s ease !important;
+        .mystical-header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d1b69 25%, #6b46c1 50%, #2d1b69 75%, #1a1a1a 100%);
+            color: #f3e8ff;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
         }
         
-        .nav-text {
-            font-size: 0.9rem !important;
-            font-weight: 600 !important;
+        .mystical-logo {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #6b46c1;
+        }
+        
+        .mystical-tagline {
+            font-size: 1.2rem;
+            color: #d4a5a5;
+            margin-bottom: 1rem;
         }
         
         .mystical-nav {
-            display: flex !important;
-            justify-content: center !important;
-            gap: 1rem !important;
-            margin-top: 2rem !important;
-            flex-wrap: wrap !important;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav-tab {
+            background: rgba(107, 70, 193, 0.2);
+            border: 2px solid #6b46c1;
+            color: #f3e8ff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-width: 120px;
+            justify-content: center;
+        }
+        
+        .nav-tab:hover {
+            background: #6b46c1;
+            color: #f3e8ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(107, 70, 193, 0.3);
+        }
+        
+        .nav-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .mystical-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #d4af37;
+        }
+        
+        .mystical-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .mystical-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+        }
+        
+        .btn {
+            background: #d4af37;
+            color: #2c1810;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #b87333;
+            color: #f5f5dc;
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
-    <!-- Shared Navigation Header -->
+    <!-- Navigation Header -->
     <header class="mystical-header">
         <div class="container">
             <div class="logo mystical-logo">🦋 Nailed IT</div>
@@ -86,129 +166,96 @@
         </div>
     </header>
 
-    <main class="container mystical-container">
-        <section class="section nail-art-accent mystical-section">
-            <h2><span class="section-icon mystical-icon">🦋</span> <span class="section-title">Business Planning Dashboard</span></h2>
+    <main class="container">
+        <section class="mystical-section">
+            <h2>🦋 Business Planning Dashboard</h2>
             
-            <div class="card mystical-card brand-system-card">
+            <div class="mystical-card">
                 <h3>Welcome to Nailed IT Business Planning System</h3>
                 <p>Your comprehensive toolkit for launching and managing a successful nail art business with <strong>Bold Black, Purple & Dusty Pink</strong> branding.</p>
                 <p>Navigate through the sections below to access specialized tools and resources for each aspect of your business.</p>
             </div>
 
-            <div class="grid mystical-grid">
-                <div class="card mystical-card floating-card">
+            <div class="mystical-grid">
+                <div class="mystical-card">
                     <h3>🎨 Product Overview</h3>
                     <p>Brand system, collection architecture, SKU models, and design concepts.</p>
-                    <ul class="checklist mystical-checklist">
+                    <ul>
                         <li>Brand identity and voice guidelines</li>
                         <li>Collection architecture planning</li>
                         <li>SKU generator tool</li>
                         <li>Design concept showcase</li>
                     </ul>
-                    <a href="overview.html" class="btn mystical-btn">Go to Overview →</a>
+                    <a href="overview.html" class="btn">Go to Overview →</a>
                 </div>
-                <div class="card mystical-card floating-card">
+                
+                <div class="mystical-card">
                     <h3>📸 Content Planning</h3>
                     <p>Marketing strategy, content requirements, and launch cadence.</p>
-                    <ul class="checklist mystical-checklist">
+                    <ul>
                         <li>4-week launch strategy</li>
                         <li>Content requirements planning</li>
                         <li>Brand kit requirements</li>
                         <li>UGC brief creation</li>
                     </ul>
-                    <a href="planning.html" class="btn mystical-btn">Go to Planning →</a>
+                    <a href="planning.html" class="btn">Go to Planning →</a>
                 </div>
-            </div>
-
-            <div class="grid mystical-grid">
-                <div class="card mystical-card floating-card">
+                
+                <div class="mystical-card">
                     <h3>📊 Progress Tracking</h3>
                     <p>Progress metrics, pricing models, and interactive calculators.</p>
-                    <ul class="checklist mystical-checklist">
+                    <ul>
                         <li>Progress dashboard</li>
                         <li>Interactive pricing calculator</li>
                         <li>SKU & pricing model table</li>
                         <li>Materials sourcing checklist</li>
                     </ul>
-                    <a href="tracking.html" class="btn mystical-btn">Go to Tracking →</a>
+                    <a href="tracking.html" class="btn">Go to Tracking →</a>
                 </div>
-                <div class="card mystical-card floating-card">
+                
+                <div class="mystical-card">
                     <h3>📦 Supply Chain</h3>
                     <p>Dropshipping structure, supplier vetting, and quality control.</p>
-                    <ul class="checklist mystical-checklist">
+                    <ul>
                         <li>Hybrid supply chain planning</li>
                         <li>Supplier vetting checklist</li>
                         <li>Service level agreements</li>
                         <li>Quality control standards</li>
                     </ul>
-                    <a href="supply.html" class="btn mystical-btn">Go to Supply →</a>
+                    <a href="supply.html" class="btn">Go to Supply →</a>
                 </div>
-            </div>
-
-            <div class="grid mystical-grid">
-                <div class="card mystical-card floating-card">
+                
+                <div class="mystical-card">
                     <h3>🚀 Launch Timeline</h3>
                     <p>12-week launch strategy, operations checklist, and risk management.</p>
-                    <ul class="checklist mystical-checklist">
+                    <ul>
                         <li>12-week launch timeline</li>
                         <li>Operations checklist</li>
                         <li>Risk management strategies</li>
                         <li>Go-live preparation</li>
                     </ul>
-                    <a href="launch.html" class="btn mystical-btn">Go to Launch →</a>
+                    <a href="launch.html" class="btn">Go to Launch →</a>
                 </div>
-                <div class="card mystical-card floating-card">
+                
+                <div class="mystical-card">
                     <h3>📈 Analytics & KPIs</h3>
                     <p>Performance tracking, ROAS calculator, and business metrics.</p>
-                    <ul class="checklist mystical-checklist">
+                    <ul>
                         <li>Breakeven ROAS calculator</li>
                         <li>Performance tracking</li>
                         <li>Customer support SOP</li>
                         <li>Analytics dashboard requirements</li>
                     </ul>
-                    <a href="analytics.html" class="btn mystical-btn">Go to Analytics →</a>
-                </div>
-            </div>
-
-            <div class="card mystical-card floating-card">
-                <h3>🦋 Quick Start Guide</h3>
-                <div class="grid mystical-grid">
-                    <div>
-                        <h4>1. Start with Overview</h4>
-                        <p>Define your brand system and product architecture using the SKU generator tool.</p>
-                    </div>
-                    <div>
-                        <h4>2. Plan Your Content</h4>
-                        <p>Set up your marketing strategy and content requirements for launch.</p>
-                    </div>
-                    <div>
-                        <h4>3. Track Progress</h4>
-                        <p>Use the pricing calculator and progress metrics to monitor your business.</p>
-                    </div>
-                    <div>
-                        <h4>4. Manage Supply Chain</h4>
-                        <p>Set up your dropshipping structure and supplier relationships.</p>
-                    </div>
-                    <div>
-                        <h4>5. Execute Launch</h4>
-                        <p>Follow the 12-week timeline and operations checklist.</p>
-                    </div>
-                    <div>
-                        <h4>6. Monitor Analytics</h4>
-                        <p>Track performance and optimize using the ROAS calculator.</p>
-                    </div>
+                    <a href="analytics.html" class="btn">Go to Analytics →</a>
                 </div>
             </div>
         </section>
     </main>
 
-    <script src="calculators.js"></script>
-    <script src="shared-navigation.js"></script>
     <script>
-        // Fallback navigation functionality
+        // Simple navigation functionality
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Nailed IT page loaded with fallback navigation');
+            console.log('Nailed IT page loaded');
             
             // Add active state to current page
             const currentPage = 'index';

@@ -1,25 +1,42 @@
-/* Mystical Moth Wing Power Styles */
+/* Nailed IT - Black, Purple & Dusty Pink Branding */
 :root {
-    --moth-primary: #2c1810;
-    --moth-gold: #d4af37;
-    --moth-copper: #b87333;
-    --moth-cream: #f5f5dc;
-    --nail-pink: #ffb6c1;
-    --nail-purple: #dda0dd;
-    --nail-chrome: #c0c0c0;
-    --text-dark: #1a1a1a;
-    --text-light: #666;
-    --success: #4caf50;
-    --warning: #ff9800;
-    --danger: #f44336;
+    /* Primary Brand Colors */
+    --brand-black: #1a1a1a;
+    --brand-purple: #6b46c1;
+    --brand-dusty-pink: #d4a5a5;
+    --brand-light-purple: #8b5cf6;
+    --brand-dark-purple: #4c1d95;
+    --brand-pink-accent: #f3e8ff;
     
-    /* Mystical additions */
-    --mystical-glow: #d4af37;
-    --mystical-shadow: rgba(212, 175, 55, 0.3);
-    --mystical-dust: rgba(255, 255, 255, 0.8);
-    --mystical-shimmer: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.5) 50%, transparent 70%);
-    --mystical-gradient: linear-gradient(135deg, #2c1810 0%, #3d2a1a 25%, #4a3c2a 50%, #3d2a1a 75%, #2c1810 100%);
-    --mystical-radial: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+    /* Legacy Support */
+    --moth-primary: #1a1a1a;
+    --moth-gold: #6b46c1;
+    --moth-copper: #d4a5a5;
+    --moth-cream: #f3e8ff;
+    --nail-pink: #d4a5a5;
+    --nail-purple: #6b46c1;
+    --nail-chrome: #8b5cf6;
+    --text-dark: #1a1a1a;
+    --text-light: #6b7280;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    
+    /* Brand-specific additions */
+    --brand-glow: #6b46c1;
+    --brand-shadow: rgba(107, 70, 193, 0.3);
+    --brand-dust: rgba(212, 165, 165, 0.8);
+    --brand-shimmer: linear-gradient(45deg, transparent 30%, rgba(139, 92, 246, 0.5) 50%, transparent 70%);
+    --brand-gradient: linear-gradient(135deg, #1a1a1a 0%, #2d1b69 25%, #6b46c1 50%, #2d1b69 75%, #1a1a1a 100%);
+    --brand-radial: radial-gradient(circle, rgba(107, 70, 193, 0.1) 0%, transparent 70%);
+    
+    /* Mystical additions (updated) */
+    --mystical-glow: #6b46c1;
+    --mystical-shadow: rgba(107, 70, 193, 0.3);
+    --mystical-dust: rgba(212, 165, 165, 0.8);
+    --mystical-shimmer: linear-gradient(45deg, transparent 30%, rgba(139, 92, 246, 0.5) 50%, transparent 70%);
+    --mystical-gradient: linear-gradient(135deg, #1a1a1a 0%, #2d1b69 25%, #6b46c1 50%, #2d1b69 75%, #1a1a1a 100%);
+    --mystical-radial: radial-gradient(circle, rgba(107, 70, 193, 0.1) 0%, transparent 70%);
 }
 
 * {
@@ -158,7 +175,7 @@ body {
     font-weight: bold;
     margin-bottom: 0.5rem;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    background: linear-gradient(45deg, var(--moth-gold), var(--moth-cream), var(--moth-gold));
+    background: linear-gradient(45deg, var(--brand-purple), var(--brand-dusty-pink), var(--brand-light-purple));
     background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -173,9 +190,9 @@ body {
 
 .mystical-tagline {
     font-size: 1.2rem;
-    color: var(--moth-gold);
+    color: var(--brand-dusty-pink);
     margin-bottom: 1rem;
-    text-shadow: 0 0 10px var(--mystical-shadow);
+    text-shadow: 0 0 10px var(--brand-shadow);
     animation: mysticalPulse 2s ease-in-out infinite;
 }
 
@@ -190,6 +207,35 @@ body {
     gap: 1rem;
     margin-top: 2rem;
     flex-wrap: wrap;
+}
+
+.nav-tab {
+    background: rgba(107, 70, 193, 0.2);
+    border: 2px solid var(--brand-purple);
+    color: var(--brand-pink-accent);
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 120px;
+    justify-content: center;
+}
+
+.nav-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.nav-text {
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 .mystical-tab {
@@ -219,6 +265,21 @@ body {
 
 .mystical-tab:hover::before {
     left: 100%;
+}
+
+.nav-tab:hover, .nav-tab.active {
+    background: var(--brand-purple);
+    color: var(--brand-pink-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--brand-shadow), 0 0 20px var(--brand-glow);
+}
+
+.nav-tab:hover .nav-icon {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.nav-tab:hover .nav-text {
+    font-weight: 700;
 }
 
 .mystical-tab:hover, .mystical-tab.active {
