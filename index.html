@@ -3,120 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nailed IT Business Planning - Black, Purple & Dusty Pink</title>
+    <title>🦋 Moth Emporium Presents, Nailed IT Business Planning Suite</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="mystical-styles.css">
-    <link rel="stylesheet" href="simple-animations.css">
-    <style>
-        /* Fallback styles to ensure navigation is visible */
-        .nav-tab {
-            background: rgba(107, 70, 193, 0.2) !important;
-            border: 2px solid #6b46c1 !important;
-            color: #f3e8ff !important;
-            padding: 0.8rem 1.5rem !important;
-            border-radius: 25px !important;
-            cursor: pointer !important;
-            transition: all 0.3s ease !important;
-            font-weight: 600 !important;
-            text-decoration: none !important;
-            display: flex !important;
-            align-items: center !important;
-            gap: 0.5rem !important;
-            min-width: 120px !important;
-            justify-content: center !important;
-        }
-        
-        .nav-tab:hover {
-            background: #6b46c1 !important;
-            color: #f3e8ff !important;
-            transform: translateY(-2px) !important;
-            box-shadow: 0 4px 8px rgba(107, 70, 193, 0.3) !important;
-        }
-        
-        .nav-icon {
-            font-size: 1.2rem !important;
-            transition: transform 0.3s ease !important;
-        }
-        
-        .nav-text {
-            font-size: 0.9rem !important;
-            font-weight: 600 !important;
-        }
-        
-        .mystical-nav {
-            display: flex !important;
-            justify-content: center !important;
-            gap: 1rem !important;
-            margin-top: 2rem !important;
-            flex-wrap: wrap !important;
-        }
-    </style>
 </head>
 <body>
-    <!-- Shared Navigation Header -->
-    <header class="mystical-header">
-        <div class="container">
-            <div class="logo mystical-logo">🦋 Nailed IT</div>
-            <div class="tagline mystical-tagline">Artistic Nails - Where Beauty Meets Bold Black, Purple & Dusty Pink</div>
-            <nav class="nav-tabs mystical-nav">
-                <a href="overview.html" class="nav-tab" data-page="overview">
-                    <span class="nav-icon">🎨</span>
-                    <span class="nav-text">Overview</span>
-                </a>
-                <a href="planning.html" class="nav-tab" data-page="planning">
-                    <span class="nav-icon">📸</span>
-                    <span class="nav-text">Planning</span>
-                </a>
-                <a href="tracking.html" class="nav-tab" data-page="tracking">
-                    <span class="nav-icon">📊</span>
-                    <span class="nav-text">Tracking</span>
-                </a>
-                <a href="supply.html" class="nav-tab" data-page="supply">
-                    <span class="nav-icon">📦</span>
-                    <span class="nav-text">Supply Chain</span>
-                </a>
-                <a href="launch.html" class="nav-tab" data-page="launch">
-                    <span class="nav-icon">🚀</span>
-                    <span class="nav-text">Launch</span>
-                </a>
-                <a href="analytics.html" class="nav-tab" data-page="analytics">
-                    <span class="nav-icon">📈</span>
-                    <span class="nav-text">Analytics</span>
-                </a>
-                <a href="advanced-analytics.html" class="nav-tab" data-page="advanced">
-                    <span class="nav-icon">🚀</span>
-                    <span class="nav-text">Advanced</span>
-                </a>
-                <a href="ai-assistant.html" class="nav-tab" data-page="ai">
-                    <span class="nav-icon">🤖</span>
-                    <span class="nav-text">AI Assistant</span>
-                </a>
-                <a href="automation-tools.html" class="nav-tab" data-page="automation">
-                    <span class="nav-icon">⚡</span>
-                    <span class="nav-text">Automation</span>
-                </a>
-                <a href="collaboration.html" class="nav-tab" data-page="team">
-                    <span class="nav-icon">👥</span>
-                    <span class="nav-text">Team</span>
-                </a>
-                <a href="mobile-pwa.html" class="nav-tab" data-page="mobile">
-                    <span class="nav-icon">📱</span>
-                    <span class="nav-text">Mobile</span>
-                </a>
-                <a href="content-calendar.html" class="nav-tab" data-page="content">
-                    <span class="nav-icon">📅</span>
-                    <span class="nav-text">Content</span>
-                </a>
-                <a href="pricing-calculator.html" class="nav-tab" data-page="pricing">
-                    <span class="nav-icon">💰</span>
-                    <span class="nav-text">Pricing</span>
-                </a>
-                <a href="supplier-vetting.html" class="nav-tab" data-page="suppliers">
-                    <span class="nav-icon">🔍</span>
-                    <span class="nav-text">Suppliers</span>
-                </a>
-            </nav>
-        </div>
-    </header>
+    <!-- Streamlined Navigation Header -->
+    <div id="header-placeholder"></div>
 
     <main class="container mystical-container">
         <section class="section nail-art-accent mystical-section">
@@ -235,59 +128,9 @@
         </section>
     </main>
 
-    <script src="calculators.js"></script>
-    <script src="shared-navigation.js"></script>
-    <script>
-        // Fallback navigation functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Nailed IT page loaded with fallback navigation');
-            
-            // Add active state to current page
-            const currentPage = 'index';
-            const navTabs = document.querySelectorAll('.nav-tab');
-            
-            navTabs.forEach(tab => {
-                const page = tab.getAttribute('data-page');
-                if (page === currentPage) {
-                    tab.style.background = '#6b46c1';
-                    tab.style.color = '#f3e8ff';
-                }
-                
-                // Add click effects
-                tab.addEventListener('click', function(e) {
-                    this.style.opacity = '0.7';
-                    this.style.transform = 'scale(0.95)';
-                    
-                    setTimeout(() => {
-                        this.style.opacity = '1';
-                        this.style.transform = 'scale(1)';
-                    }, 200);
-                });
-            });
-            
-            // Keyboard shortcuts
-            document.addEventListener('keydown', function(e) {
-                if (e.altKey) {
-                    const keyMap = {
-                        '1': 'overview.html',
-                        '2': 'planning.html',
-                        '3': 'tracking.html',
-                        '4': 'supply.html',
-                        '5': 'launch.html',
-                        '6': 'analytics.html'
-                    };
-                    
-                    if (keyMap[e.key]) {
-                        e.preventDefault();
-                        window.location.href = keyMap[e.key];
-                    }
-                }
-            });
-        });
-    </script>
+    <script src="js/features/calculators.js"></script>
     
-    <!-- Advanced Navigation Scripts -->
-    <script src="advanced-navigation.js"></script>
-    <script src="mobile-navigation.js"></script>
+    <!-- Streamlined Navigation Scripts -->
+    <script src="js/navigation/streamlined-navigation.js"></script>
 </body>
 </html>

@@ -1,11 +1,21 @@
-// Shared Navigation Functionality for Nailed IT
-// Enhanced navigation with keyboard shortcuts, active states, and smooth transitions
+/**
+ * Shared Navigation Functionality for Nailed IT
+ * Enhanced navigation with keyboard shortcuts, active states, and smooth transitions
+ * 
+ * @fileoverview Core navigation system for all pages
+ * @author Nailed IT Development Team
+ * @version 1.0.0
+ */
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize navigation functionality
-    initNavigation();
-});
-
+/**
+ * Initializes navigation functionality when DOM is loaded
+ * Sets up event listeners, active states, and keyboard shortcuts
+ * 
+ * @function initNavigation
+ * @description Main navigation initialization function
+ * @example initNavigation() // Called automatically on DOMContentLoaded
+ * @returns {void}
+ */
 function initNavigation() {
     // Add active state to current page
     const currentPage = getCurrentPage();

@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🦋 Moth Emporium Presents, Nailed IT Business Planning Suite</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="mystical-styles.css">
+    <style>
+        .doc-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .doc-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--brand-gradient);
+            border-radius: 20px;
+            color: var(--brand-pink-accent);
+        }
+        
+        .doc-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .doc-card {
+            background: rgba(107, 70, 193, 0.1);
+            border: 2px solid var(--brand-purple);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .doc-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px var(--brand-shadow);
+            background: rgba(107, 70, 193, 0.2);
+        }
+        
+        .doc-card h3 {
+            color: var(--brand-purple);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .doc-section {
+            display: none;
+            background: rgba(26, 26, 26, 0.8);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            color: var(--brand-pink-accent);
+        }
+        
+        .doc-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .file-explorer {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .file-item {
+            padding: 0.25rem 0;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        
+        .file-item:hover {
+            color: var(--brand-purple);
+        }
+        
+        .file-item.folder {
+            font-weight: bold;
+            color: var(--brand-dusty-pink);
+        }
+        
+        .file-item.file {
+            padding-left: 1rem;
+            color: var(--brand-pink-accent);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .feature-card {
+            background: rgba(107, 70, 193, 0.1);
+            border: 1px solid var(--brand-purple);
+            border-radius: 10px;
+            padding: 1rem;
+        }
+        
+        .feature-card h4 {
+            color: var(--brand-purple);
+            margin-bottom: 0.5rem;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--brand-purple);
+            border-radius: 10px;
+            background: rgba(26, 26, 26, 0.8);
+            color: var(--brand-pink-accent);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            box-shadow: 0 0 10px var(--brand-shadow);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--brand-purple);
+            color: var(--brand-pink-accent);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: none;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px var(--brand-shadow);
+        }
+        
+        .back-to-top.visible {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .demo-section {
+            background: rgba(107, 70, 193, 0.05);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .demo-button {
+            background: var(--brand-purple);
+            color: var(--brand-pink-accent);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0.25rem;
+            transition: all 0.2s ease;
+        }
+        
+        .demo-button:hover {
+            background: var(--brand-light-purple);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+        <!-- Streamlined Navigation Header -->
+    <div id="header-placeholder"></div>
+
+    <div class="doc-container">
+        <div class="doc-header">
+            <h1>🦋 Nailed IT Business Planning Suite</h1>
+            <p>Interactive Documentation & Project Explorer</p>
+            <p>Artistic Nails - Where Beauty Meets Bold Black, Purple & Dusty Pink</p>
+        </div>
+
+        <input type="text" class="search-box" placeholder="🔍 Search documentation..." id="searchBox">
+
+        <div class="doc-nav">
+            <div class="doc-card" onclick="showSection('overview')">
+                <h3>📋 Project Overview</h3>
+                <p>Learn about the Nailed IT platform, its purpose, and key features for nail art entrepreneurs.</p>
+            </div>
+            
+            <div class="doc-card" onclick="showSection('architecture')">
+                <h3>🏗️ Architecture</h3>
+                <p>Explore the file structure, modular design, and technical architecture of the platform.</p>
+            </div>
+            
+            <div class="doc-card" onclick="showSection('features')">
+                <h3>🎨 Features</h3>
+                <p>Discover all business planning tools, analytics, and collaboration features available.</p>
+            </div>
+            
+            <div class="doc-card" onclick="showSection('navigation')">
+                <h3>🧭 Navigation</h3>
+                <p>Understand the smart navigation system, keyboard shortcuts, and accessibility features.</p>
+            </div>
+            
+            <div class="doc-card" onclick="showSection('testing')">
+                <h3>🧪 Testing</h3>
+                <p>Review testing strategies, quality assurance, and performance metrics.</p>
+            </div>
+            
+            <div class="doc-card" onclick="showSection('branding')">
+                <h3>🎨 Branding</h3>
+                <p>Explore the design system, color palette, and mystical aesthetic principles.</p>
+            </div>
+            
+            <div class="doc-card" onclick="showSection('roadmap')">
+                <h3>🗺️ Roadmap</h3>
+                <p>View future development plans, upcoming features, and enhancement timeline.</p>
+            </div>
+            
+            <div class="doc-card" onclick="showSection('api')">
+                <h3>📚 API Reference</h3>
+                <p>Access technical documentation, code examples, and integration guides.</p>
+            </div>
+        </div>
+
+        <!-- Project Overview Section -->
+        <div class="doc-section" id="overview">
+            <h2>📋 Project Overview</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>🎯 Purpose</h4>
+                    <p>Comprehensive business planning suite designed specifically for nail art entrepreneurs to launch, manage, and grow their business.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🚀 Key Features</h4>
+                    <ul>
+                        <li>Business Planning Tools</li>
+                        <li>Content Management</li>
+                        <li>Analytics Dashboard</li>
+                        <li>Team Collaboration</li>
+                        <li>Mobile-First Design</li>
+                        <li>AI-Powered Insights</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>💻 Technology Stack</h4>
+                    <ul>
+                        <li>Frontend: HTML5, CSS3, JavaScript (ES6+)</li>
+                        <li>Styling: CSS Variables, Flexbox, Grid</li>
+                        <li>Architecture: Modular JavaScript</li>
+                        <li>Performance: Service Workers, LocalStorage</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🎨 Design Philosophy</h4>
+                    <p>Combines mystical, creative aesthetics with professional business functionality. Black, Purple & Dusty Pink color scheme reflects the artistic nature of nail art.</p>
+                </div>
+            </div>
+
+            <div class="demo-section">
+                <h4>🎮 Quick Demo</h4>
+                <p>Try these interactive features:</p>
+                <button class="demo-button" onclick="demoSKUGenerator()">Generate SKU</button>
+                <button class="demo-button" onclick="demoPricing()">Calculate Pricing</button>
+                <button class="demo-button" onclick="demoNavigation()">Test Navigation</button>
+                <div id="demoResult" style="margin-top: 1rem; padding: 1rem; background: rgba(107, 70, 193, 0.1); border-radius: 5px; display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Architecture Section -->
+        <div class="doc-section" id="architecture">
+            <h2>🏗️ Architecture & File Structure</h2>
+            
+            <h3>📁 Directory Structure</h3>
+            <div class="file-explorer">
+                <div class="file-item folder">📁 nailed-it/</div>
+                <div class="file-item file">📄 index.html (Main landing page)</div>
+                <div class="file-item file">🎨 mystical-styles.css (Consolidated stylesheet)</div>
+                <div class="file-item file">⚙️ sw.js (Service worker for PWA)</div>
+                <div class="file-item file">📋 manifest.json (PWA manifest)</div>
+                <div class="file-item folder">📁 js/ (Organized JavaScript modules)</div>
+                <div class="file-item file" style="padding-left: 2rem;">📁 core/ (Core functionality)</div>
+                <div class="file-item file" style="padding-left: 3rem;">📄 data-manager.js</div>
+                <div class="file-item file" style="padding-left: 3rem;">📄 error-handler.js</div>
+                <div class="file-item file" style="padding-left: 3rem;">📄 loading-states.js</div>
+                <div class="file-item file" style="padding-left: 2rem;">📁 navigation/ (Navigation system)</div>
+                <div class="file-item file" style="padding-left: 3rem;">📄 shared-navigation.js</div>
+                <div class="file-item file" style="padding-left: 3rem;">📄 advanced-navigation.js</div>
+                <div class="file-item file" style="padding-left: 3rem;">📄 mobile-navigation.js</div>
+                <div class="file-item file" style="padding-left: 2rem;">📁 features/ (Business features)</div>
+                <div class="file-item file" style="padding-left: 3rem;">📄 calculators.js</div>
+                <div class="file-item file" style="padding-left: 3rem;">📄 enhanced-calculators.js</div>
+                <div class="file-item file" style="padding-left: 3rem;">📄 analytics-tracker.js</div>
+                <div class="file-item file" style="padding-left: 2rem;">📁 ui/ (User interface)</div>
+                <div class="file-item file" style="padding-left: 3rem;">📄 mystical-animations.js</div>
+                <div class="file-item file" style="padding-left: 3rem;">📄 particle-system.js</div>
+                <div class="file-item file" style="padding-left: 3rem;">📄 simple-interactions.js</div>
+                <div class="file-item file" style="padding-left: 3rem;">📄 interactive-features.js</div>
+                <div class="file-item file" style="padding-left: 2rem;">📁 integrations/ (External integrations)</div>
+                <div class="file-item file" style="padding-left: 3rem;">📄 document-integration.js</div>
+                <div class="file-item file" style="padding-left: 3rem;">📄 offline-support.js</div>
+                <div class="file-item file" style="padding-left: 3rem;">📄 browser-compatibility.js</div>
+                <div class="file-item file" style="padding-left: 3rem;">📄 mobile-enhancements.js</div>
+                <div class="file-item file" style="padding-left: 2rem;">📁 admin/ (Admin functionality)</div>
+                <div class="file-item file" style="padding-left: 3rem;">📄 admin-panel.js</div>
+                <div class="file-item file" style="padding-left: 2rem;">📁 shop/ (E-commerce features)</div>
+                <div class="file-item file" style="padding-left: 3rem;">📄 shop.js</div>
+                <div class="file-item file" style="padding-left: 3rem;">📄 shop-utm.js</div>
+                <div class="file-item folder">📁 tools/ (Business tool templates)</div>
+                <div class="file-item file" style="padding-left: 2rem;">📄 content_calendar_2weeks.csv</div>
+                <div class="file-item file" style="padding-left: 2rem;">📄 customer_service_templates.md</div>
+                <div class="file-item file" style="padding-left: 2rem;">📄 launch_playbook_30_days.md</div>
+                <div class="file-item file" style="padding-left: 2rem;">📄 pricing_calculator.xlsx</div>
+                <div class="file-item file" style="padding-left: 2rem;">📄 product_catalog_seed.csv</div>
+                <div class="file-item file" style="padding-left: 2rem;">📄 shipping_returns_policy.md</div>
+                <div class="file-item file" style="padding-left: 2rem;">📄 size_guide_snippet.html</div>
+                <div class="file-item file" style="padding-left: 2rem;">📄 supplier_vetting_checklist.md</div>
+            </div>
+
+            <h3>🏛️ Core Architecture Principles</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>🔧 Modular Design</h4>
+                    <p>JavaScript modules organized by functionality for maintainability and scalability.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>📱 Progressive Web App</h4>
+                    <p>Service worker enables offline functionality and app-like experience.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>📐 Responsive Design</h4>
+                    <p>Mobile-first approach with desktop enhancements.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>💾 Data Management</h4>
+                    <p>Centralized data manager handles persistence and synchronization.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="doc-section" id="features">
+            <h2>🎨 Features & Functionality</h2>
+            
+            <h3>💼 Business Planning Tools</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>🏷️ SKU Generator</h4>
+                    <p><strong>Purpose:</strong> Generate unique product identifiers</p>
+                    <p><strong>Format:</strong> NAIL-SHAPE-LENGTH-FINISH-DESIGN-SIZEKIT</p>
+                    <p><strong>Features:</strong> Shape, length, finish, design, size kit integration</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>💰 Pricing Calculator</h4>
+                    <p><strong>Purpose:</strong> Calculate optimal pricing strategies</p>
+                    <p><strong>Features:</strong> Cost analysis, margin calculation, competitive pricing</p>
+                    <p><strong>Integration:</strong> Links with SKU generator and inventory</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>📅 Content Calendar</h4>
+                    <p><strong>Purpose:</strong> Plan and schedule social media content</p>
+                    <p><strong>Features:</strong> Visual calendar, performance tracking, automation</p>
+                    <p><strong>Export:</strong> CSV, PDF, social media integration</p>
+                </div>
+            </div>
+
+            <h3>📊 Analytics & Tracking</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>📈 Real-time Dashboard</h4>
+                    <p><strong>KPIs:</strong> Revenue, customers, conversion rates</p>
+                    <p><strong>Trends:</strong> Growth analysis, seasonal patterns</p>
+                    <p><strong>Goals:</strong> SMART goal tracking and progress</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>📋 Performance Metrics</h4>
+                    <p><strong>Sales Analytics:</strong> Revenue trends, product performance</p>
+                    <p><strong>Customer Insights:</strong> Demographics, behavior patterns</p>
+                    <p><strong>Operational Metrics:</strong> Efficiency, productivity measures</p>
+                </div>
+            </div>
+
+            <h3>👥 Team Collaboration</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>📋 Project Management</h4>
+                    <p><strong>Task Boards:</strong> Kanban-style project organization</p>
+                    <p><strong>Team Communication:</strong> Real-time chat and updates</p>
+                    <p><strong>File Sharing:</strong> Document collaboration and versioning</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>👤 User Roles</h4>
+                    <p><strong>Owner:</strong> Full access to all features</p>
+                    <p><strong>Manager:</strong> Limited admin access</p>
+                    <p><strong>Team Member:</strong> Task-focused access</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Section -->
+        <div class="doc-section" id="navigation">
+            <h2>🧭 Navigation System</h2>
+            
+            <h3>🎯 Smart Navigation Features</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>📱 14 Main Sections</h4>
+                    <p>Home, Overview, Planning, Tracking, Supply, Launch, Analytics, Advanced, AI, Automation, Team, Mobile, Content, Pricing, Suppliers</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>⌨️ Keyboard Shortcuts</h4>
+                    <p>Alt + 1-6 for quick access to main sections</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>📱 Mobile Optimization</h4>
+                    <p>Collapsible navigation for small screens</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🎨 Active States</h4>
+                    <p>Visual indication of current page</p>
+                </div>
+            </div>
+
+            <h3>🚀 Advanced Navigation</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>📊 User Behavior Tracking</h4>
+                    <p>Learn from user patterns to improve experience</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🎯 Personalized Recommendations</h4>
+                    <p>Suggest relevant features based on usage</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🔍 Search Functionality</h4>
+                    <p>Quick feature discovery and navigation</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>⭐ Favorites System</h4>
+                    <p>Bookmark frequently used tools</p>
+                </div>
+            </div>
+
+            <h3>♿ Accessibility Features</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>⌨️ Keyboard Navigation</h4>
+                    <p>Full keyboard accessibility support</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🔊 Screen Reader Support</h4>
+                    <p>ARIA attributes and semantic HTML</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🎨 High Contrast</h4>
+                    <p>Support for high contrast mode</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🎭 Reduced Motion</h4>
+                    <p>Respects user motion preferences</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testing Section -->
+        <div class="doc-section" id="testing">
+            <h2>🧪 Testing & Quality Assurance</h2>
+            
+            <h3>🔬 Testing Strategy</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>🤖 Automated Testing</h4>
+                    <ul>
+                        <li>Playwright Integration: Cross-browser testing</li>
+                        <li>Performance Testing: Load time and responsiveness</li>
+                        <li>Accessibility Testing: WCAG compliance verification</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>👤 Manual Testing</h4>
+                    <ul>
+                        <li>User Experience: Intuitive navigation and workflows</li>
+                        <li>Cross-Platform: Desktop, tablet, mobile compatibility</li>
+                        <li>Browser Compatibility: Chrome, Firefox, Safari, Edge</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>📊 Quality Metrics</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>⚡ Performance</h4>
+                    <p><strong>Target:</strong> &lt; 3s initial load time</p>
+                    <p><strong>Current:</strong> Optimized for speed and efficiency</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>♿ Accessibility</h4>
+                    <p><strong>Target:</strong> WCAG 2.1 AA compliance</p>
+                    <p><strong>Current:</strong> Comprehensive accessibility features</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🌐 Browser Support</h4>
+                    <p><strong>Target:</strong> 95%+ compatibility</p>
+                    <p><strong>Current:</strong> Cross-browser tested</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>📱 Mobile Experience</h4>
+                    <p><strong>Target:</strong> Touch-optimized interface</p>
+                    <p><strong>Current:</strong> Mobile-first design</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Branding Section -->
+        <div class="doc-section" id="branding">
+            <h2>🎨 Branding & Design</h2>
+            
+            <h3>🎨 Color Palette</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>🖤 Primary Colors</h4>
+                    <ul>
+                        <li><strong>Black:</strong> #1a1a1a - Professional foundation</li>
+                        <li><strong>Purple:</strong> #6b46c1 - Mystical accent</li>
+                        <li><strong>Dusty Pink:</strong> #d4a5a5 - Warm, inviting tone</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🌈 Supporting Colors</h4>
+                    <ul>
+                        <li><strong>Light Purple:</strong> #8b5cf6 - Interactive elements</li>
+                        <li><strong>Pink Accent:</strong> #f3e8ff - Highlights and text</li>
+                        <li><strong>Dark Purple:</strong> #4c1d95 - Depth and contrast</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>✨ Design Principles</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>🔮 Mystical Aesthetic</h4>
+                    <ul>
+                        <li>Gradient Backgrounds: Subtle color transitions</li>
+                        <li>Particle Effects: Floating dust and shimmer</li>
+                        <li>Smooth Animations: Elegant transitions and hover effects</li>
+                        <li>Typography: Clean, readable fonts with mystical touches</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>💼 Professional Functionality</h4>
+                    <ul>
+                        <li>Clear Hierarchy: Logical information architecture</li>
+                        <li>Consistent Patterns: Reusable UI components</li>
+                        <li>Intuitive Workflows: Streamlined user journeys</li>
+                        <li>Visual Feedback: Clear status indicators and progress</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>📱 Responsive Design</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>📱 Mobile-First</h4>
+                    <p>Optimized for mobile devices with progressive enhancement</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🖥️ Desktop Enhancement</h4>
+                    <p>Desktop features added progressively</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>📐 Flexible Layouts</h4>
+                    <p>Adapts to various screen sizes</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>👆 Touch Optimization</h4>
+                    <p>Finger-friendly interface elements</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Roadmap Section -->
+        <div class="doc-section" id="roadmap">
+            <h2>🗺️ Future Roadmap</h2>
+            
+            <h3>📅 Q1 2025: Export & Authentication</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>📄 PDF Export</h4>
+                    <p>Business reports and invoices</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>📊 Excel Integration</h4>
+                    <p>Data analysis and reporting</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>👤 User Authentication</h4>
+                    <p>Multi-user support with roles</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>☁️ Cloud Sync</h4>
+                    <p>Cross-device data synchronization</p>
+                </div>
+            </div>
+
+            <h3>📅 Q2 2025: Business Intelligence</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>📈 Advanced Analytics</h4>
+                    <p>Predictive modeling and forecasting</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🏆 Competitive Analysis</h4>
+                    <p>Market research integration</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>📊 Custom Dashboards</h4>
+                    <p>Personalized analytics views</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🤖 Automated Insights</h4>
+                    <p>AI-generated business recommendations</p>
+                </div>
+            </div>
+
+            <h3>📅 Q3 2025: Mobile Experience</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>📱 Native Mobile App</h4>
+                    <p>iOS and Android applications</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>📲 Enhanced PWA</h4>
+                    <p>Advanced offline capabilities</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🔔 Push Notifications</h4>
+                    <p>Real-time business alerts</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>📸 Camera Integration</h4>
+                    <p>Product photography tools</p>
+                </div>
+            </div>
+
+            <h3>📅 Q4 2025: Integrations & Scale</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>🛒 E-commerce Integration</h4>
+                    <p>Shopify, WooCommerce</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>📱 Social Media APIs</h4>
+                    <p>Instagram, TikTok automation</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>💳 Payment Processing</h4>
+                    <p>Stripe, PayPal integration</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🏢 Enterprise Features</h4>
+                    <p>Multi-location support</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- API Reference Section -->
+        <div class="doc-section" id="api">
+            <h2>📚 API Reference</h2>
+            
+            <h3>🔧 Core Modules</h3>
+            
+            <div class="feature-card">
+                <h4>📊 Data Manager (js/core/data-manager.js)</h4>
+                <div class="file-explorer">
+                    <pre><code>/**
+ * Centralized data management for the application
+ * Handles persistence, validation, and synchronization
+ */
+class AeroVistaDataManager {
+    // Load data from localStorage
+    loadData()
+    
+    // Save data to localStorage
+    saveData()
+    
+    // Add new task
+    addTask(task)
+    
+    // Update existing task
+    updateTask(id, updates)
+    
+    // Delete task
+    deleteTask(id)
+    
+    // Get filtered tasks
+    getTasks(filter, sort)
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <h4>🧭 Navigation System (js/navigation/shared-navigation.js)</h4>
+                <div class="file-explorer">
+                    <pre><code>/**
+ * Shared navigation functionality across all pages
+ * Provides consistent navigation experience
+ */
+function initNavigation()
+function handleKeyboardNavigation(event)
+function trackNavigation(page)
+function addTooltips(navTabs)</code></pre>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <h4>🧮 Business Calculators (js/features/calculators.js)</h4>
+                <div class="file-explorer">
+                    <pre><code>/**
+ * Business calculation utilities
+ * SKU generation, pricing, and financial calculations
+ */
+function genSku(shape, length, finish, design, sizekit)
+function updatePricing(cost, margin, markup)
+function calculateProfit(revenue, costs)
+function analyzeTrends(data)</code></pre>
+                </div>
+            </div>
+
+            <h3>🔗 Integration APIs</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>📄 Document Integration</h4>
+                    <p>PDF generation and export, Excel file processing, CSV data handling, Print optimization</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>📱 Offline Support</h4>
+                    <p>Service worker management, Cache strategies, Offline data sync, Background updates</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+    <!-- Scripts -->
+    <script src="js/navigation/shared-navigation.js"></script>
+    <script src="js/navigation/advanced-navigation.js"></script>
+    <script src="js/features/calculators.js"></script>
+    <script src="js/integrations/mobile-enhancements.js"></script>
+    <script src="js/core/data-manager.js"></script>
+
+    <script>
+        // Documentation functionality
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.doc-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Scroll to top of section
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Search functionality
+        document.getElementById('searchBox').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const sections = document.querySelectorAll('.doc-section');
+            
+            sections.forEach(section => {
+                const content = section.textContent.toLowerCase();
+                if (content.includes(searchTerm)) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
+
+        // Back to top functionality
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Demo functions
+        function demoSKUGenerator() {
+            const result = document.getElementById('demoResult');
+            result.style.display = 'block';
+            result.innerHTML = '<strong>SKU Generated:</strong> NAIL-ALMOND-MEDIUM-GLOSSY-FLORAL-24<br><small>Shape: Almond, Length: Medium, Finish: Glossy, Design: Floral, Size Kit: 24</small>';
+        }
+
+        function demoPricing() {
+            const result = document.getElementById('demoResult');
+            result.style.display = 'block';
+            result.innerHTML = '<strong>Pricing Calculated:</strong><br>Cost: $5.00<br>Margin: 60%<br>Markup: 150%<br><strong>Recommended Price: $12.50</strong>';
+        }
+
+        function demoNavigation() {
+            const result = document.getElementById('demoResult');
+            result.style.display = 'block';
+            result.innerHTML = '<strong>Navigation Demo:</strong><br>Try Alt + 1-6 for quick navigation<br>Or click any navigation tab above!';
+        }
+
+        // Initialize navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set active page
+            const currentPage = 'docs';
+            const navTabs = document.querySelectorAll('.nav-tab');
+            navTabs.forEach(tab => {
+                const page = tab.getAttribute('data-page');
+                if (page === currentPage) {
+                    tab.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

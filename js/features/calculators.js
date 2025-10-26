@@ -1,7 +1,21 @@
-// Business Planning Calculators - Clean and Lightweight
-// Preserves all calculator functionality from the original system
+/**
+ * Business Planning Calculators - Clean and Lightweight
+ * Preserves all calculator functionality from the original system
+ * 
+ * @fileoverview Core business calculator functions for nail art business planning
+ * @author Nailed IT Development Team
+ * @version 1.0.0
+ */
 
-// SKU Generator Function
+/**
+ * Generates a unique SKU code for nail art products
+ * Combines product attributes into a standardized format
+ * 
+ * @function genSku
+ * @description Creates SKU codes in format: NAIL-{SHAPE}-{LENGTH}-{FINISH}-{DESIGN}-{SIZEKIT}
+ * @example genSku() // Generates SKU based on form inputs
+ * @returns {void} Updates the skuOut element with generated SKU
+ */
 function genSku() {
     const s = (document.getElementById('shape')?.value || "").toUpperCase().replace(/\s+/g,'');
     const l = (document.getElementById('length')?.value || "").toUpperCase();
@@ -17,7 +31,15 @@ function genSku() {
     }
 }
 
-// Real-time Pricing Calculator
+/**
+ * Updates pricing calculations in real-time
+ * Calculates margins, ROAS, and displays visual progress bars
+ * 
+ * @function updatePricing
+ * @description Real-time pricing calculator with visual feedback
+ * @example updatePricing() // Updates pricing based on COGS and MSRP inputs
+ * @returns {void} Updates pricing display elements and progress bars
+ */
 function updatePricing() {
     const cogs = document.getElementById('cogsRange')?.value || 8;
     const msrp = document.getElementById('msrpRange')?.value || 39;

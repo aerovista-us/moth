@@ -1,4 +1,19 @@
-// Data Manager - Moth Wing Power Business Planning
+/**
+ * Data Manager - Moth Wing Power Business Planning
+ * 
+ * @fileoverview Centralized data management for business planning system
+ * @author Nailed IT Development Team
+ * @version 1.0.0
+ */
+
+/**
+ * Main data management class for business planning system
+ * Handles data persistence, validation, and business logic
+ * 
+ * @class DataManager
+ * @description Centralized data management with localStorage persistence
+ * @example const dataManager = new DataManager();
+ */
 class DataManager {
     constructor() {
         this.storageKey = 'mothEmporiumBusinessData';
@@ -11,6 +26,13 @@ class DataManager {
         this.autoSave();
     }
     
+    /**
+     * Loads data from localStorage or returns default data structure
+     * 
+     * @method loadData
+     * @description Retrieves stored business data or creates default structure
+     * @returns {Object} Business data object with all required properties
+     */
     loadData() {
         try {
             const stored = localStorage.getItem(this.storageKey);
