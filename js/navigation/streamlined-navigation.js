@@ -474,7 +474,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Initialize navigation
-    initializeStreamlinedNavigation();
+    initStreamlinedNavigation();
     console.log('✅ Streamlined Navigation initialized');
 });
 
@@ -482,6 +482,6 @@ document.addEventListener('DOMContentLoaded', function() {
 window.StreamlinedNavigation = {
     generateStreamlinedHeader,
     generateStreamlinedStyles,
-    initializeStreamlinedNavigation,
+    initStreamlinedNavigation,
     getCurrentPage
 };
