@@ -2043,3 +2043,131 @@ body {
 .nav-toggle.loading .nav-toggle-icon {
     animation: spin 1s linear infinite;
 }
+
+
+/* ===== READABILITY FIXES ===== */
+/* Fix black text on purple backgrounds for better readability */
+
+/* Main content headings */
+main h1, main h2, main h3 {
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, rgba(107, 70, 193, 0.8), rgba(45, 27, 105, 0.8));
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    margin: 1rem 0;
+    border: 2px solid rgba(107, 70, 193, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Main content paragraphs */
+main p {
+    color: #f3e8ff !important;
+    background: rgba(26, 26, 26, 0.7);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin: 0.5rem 0;
+    border-left: 4px solid #6b46c1;
+    backdrop-filter: blur(10px);
+}
+
+/* Section headings with better contrast */
+.section-title, .section-icon {
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Card backgrounds for better readability */
+.mystical-section, .nail-art-accent {
+    background: rgba(26, 26, 26, 0.8) !important;
+    border: 2px solid rgba(107, 70, 193, 0.3);
+    border-radius: 16px;
+    padding: 2rem;
+    margin: 1rem 0;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* List items with better contrast */
+main li {
+    color: #f3e8ff !important;
+    background: rgba(45, 27, 105, 0.4);
+    padding: 0.5rem 1rem;
+    margin: 0.25rem 0;
+    border-radius: 6px;
+    border-left: 3px solid #6b46c1;
+}
+
+/* Strong text with better visibility */
+main strong {
+    color: #ffffff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Code blocks with better contrast */
+main code {
+    background: rgba(0, 0, 0, 0.6) !important;
+    color: #f3e8ff !important;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #6b46c1;
+}
+
+/* Ensure all text is readable */
+main * {
+    color: inherit;
+}
+
+/* Override any problematic text colors */
+main h1, main h2, main h3, main h4, main h5, main h6 {
+    color: #ffffff !important;
+}
+
+main p, main div, main span {
+    color: #f3e8ff !important;
+}
+
+/* Special styling for collaboration page */
+.collaboration-section {
+    background: rgba(26, 26, 26, 0.9) !important;
+    border: 2px solid rgba(107, 70, 193, 0.4);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+}
+
+/* Team member cards */
+.team-member {
+    background: rgba(45, 27, 105, 0.6) !important;
+    border: 1px solid rgba(107, 70, 193, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 0.5rem 0;
+}
+
+/* Project board cards */
+.project-card {
+    background: rgba(26, 26, 26, 0.8) !important;
+    border: 1px solid rgba(107, 70, 193, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 0.5rem 0;
+}
+
+/* Chat messages */
+.chat-message {
+    background: rgba(45, 27, 105, 0.5) !important;
+    border-left: 3px solid #6b46c1;
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+    border-radius: 6px;
+}
+
+/* File sharing items */
+.file-item {
+    background: rgba(26, 26, 26, 0.7) !important;
+    border: 1px solid rgba(107, 70, 193, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 0.5rem 0;
+}
