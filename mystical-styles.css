@@ -2067,17 +2067,19 @@ main h1, main h2, main h3 {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Main content paragraphs - IMPROVED CONTRAST */
+/* Main content paragraphs with DUSTY PINK ACCENTS */
 main p {
     color: #ffffff !important;
-    background: rgba(26, 26, 26, 0.9);
+    background: linear-gradient(90deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 27, 105, 0.85) 100%);
     padding: 1rem 1.5rem;
     border-radius: 8px;
     margin: 0.5rem 0;
-    border-left: 4px solid #6b46c1;
+    border-left: 4px solid #d4a5a5;
+    border-right: 1px solid rgba(212, 165, 165, 0.2);
     backdrop-filter: blur(10px);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     font-weight: 500;
+    box-shadow: 0 2px 8px rgba(212, 165, 165, 0.1);
 }
 
 /* Section headings with better contrast */
@@ -2086,15 +2088,15 @@ main p {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Section cards and navigation items with IMPROVED CONTRAST */
+/* Section cards with DUSTY PINK ACCENTS and better separation */
 .mystical-section .mystical-card, .nail-art-accent {
-    background: rgba(26, 26, 26, 0.9) !important;
-    border: 2px solid rgba(107, 70, 193, 0.4) !important;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 27, 105, 0.9) 100%) !important;
+    border: 2px solid rgba(212, 165, 165, 0.5) !important;
     border-radius: 12px !important;
     padding: 1.5rem !important;
     margin: 1rem 0 !important;
     backdrop-filter: blur(15px) !important;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+    box-shadow: 0 8px 32px rgba(212, 165, 165, 0.2), 0 0 20px rgba(107, 70, 193, 0.3) !important;
 }
 
 /* Navigation links and buttons with IMPROVED CONTRAST */
@@ -2118,16 +2120,18 @@ main p {
     box-shadow: 0 4px 12px rgba(107, 70, 193, 0.6) !important;
 }
 
-/* List items with IMPROVED CONTRAST */
+/* List items with DUSTY PINK ACCENTS */
 main li {
     color: #ffffff !important;
-    background: rgba(45, 27, 105, 0.7);
+    background: linear-gradient(90deg, rgba(45, 27, 105, 0.8) 0%, rgba(26, 26, 26, 0.9) 100%);
     padding: 0.5rem 1rem;
     margin: 0.25rem 0;
     border-radius: 6px;
-    border-left: 3px solid #6b46c1;
+    border-left: 4px solid #d4a5a5;
+    border-right: 1px solid rgba(212, 165, 165, 0.3);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     font-weight: 500;
+    box-shadow: 0 2px 8px rgba(212, 165, 165, 0.15);
 }
 
 /* Strong text with better visibility */
@@ -2147,27 +2151,28 @@ main code {
     font-weight: 600;
 }
 
-/* Input fields with IMPROVED CONTRAST */
+/* Input fields with DUSTY PINK ACCENTS */
 input[type="text"], input[type="email"], input[type="password"], 
 input[type="number"], input[type="tel"], input[type="url"], 
 textarea, select {
-    background: rgba(26, 26, 26, 0.9) !important;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 27, 105, 0.85) 100%) !important;
     color: #ffffff !important;
-    border: 2px solid #6b46c1 !important;
+    border: 2px solid #d4a5a5 !important;
     padding: 0.75rem 1rem !important;
-    border-radius: 6px !important;
+    border-radius: 8px !important;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
     font-weight: 600 !important;
     font-size: 1rem !important;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 10px rgba(212, 165, 165, 0.2) !important;
 }
 
-/* Input field focus states */
+/* Input field focus states with DUSTY PINK GLOW */
 input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, 
 input[type="number"]:focus, input[type="tel"]:focus, input[type="url"]:focus, 
 textarea:focus, select:focus {
-    background: rgba(26, 26, 26, 1) !important;
-    border-color: #8b5cf6 !important;
-    box-shadow: 0 0 10px rgba(107, 70, 193, 0.5) !important;
+    background: linear-gradient(135deg, rgba(26, 26, 26, 1) 0%, rgba(45, 27, 105, 0.95) 100%) !important;
+    border-color: #d4a5a5 !important;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 15px rgba(212, 165, 165, 0.5), 0 0 25px rgba(107, 70, 193, 0.3) !important;
     outline: none !important;
 }
 
@@ -2176,6 +2181,37 @@ input::placeholder, textarea::placeholder {
     color: #d4a5a5 !important;
     opacity: 0.8 !important;
     font-weight: 500 !important;
+}
+
+/* Tool boxes and calculator sections with ENHANCED BACKGROUNDS */
+.mystical-card, .calculator-section, .tool-box, .sku-generator, 
+.pricing-calculator, .roas-calculator, .progress-tracker {
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(45, 27, 105, 0.9) 50%, rgba(26, 26, 26, 0.95) 100%) !important;
+    border: 2px solid rgba(212, 165, 165, 0.4) !important;
+    border-radius: 16px !important;
+    padding: 2rem !important;
+    margin: 1.5rem 0 !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 165, 165, 0.2), inset 0 1px 0 rgba(212, 165, 165, 0.1) !important;
+    backdrop-filter: blur(20px) !important;
+}
+
+/* Section dividers with dusty pink */
+.mystical-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #d4a5a5, #6b46c1, #d4a5a5, transparent);
+    border-radius: 16px 16px 0 0;
+}
+
+/* Strong emphasis with dusty pink */
+main strong {
+    color: #d4a5a5 !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 0 10px rgba(212, 165, 165, 0.3);
+    font-weight: 700 !important;
 }
 
 /* Override any problematic text colors */
