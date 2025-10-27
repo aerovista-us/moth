@@ -2086,15 +2086,36 @@ main p {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Card backgrounds for better readability */
-.mystical-section, .nail-art-accent {
-    background: rgba(26, 26, 26, 0.8) !important;
-    border: 2px solid rgba(107, 70, 193, 0.3);
-    border-radius: 16px;
-    padding: 2rem;
-    margin: 1rem 0;
-    backdrop-filter: blur(15px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+/* Section cards and navigation items with IMPROVED CONTRAST */
+.mystical-section .mystical-card, .nail-art-accent {
+    background: rgba(26, 26, 26, 0.9) !important;
+    border: 2px solid rgba(107, 70, 193, 0.4) !important;
+    border-radius: 12px !important;
+    padding: 1.5rem !important;
+    margin: 1rem 0 !important;
+    backdrop-filter: blur(15px) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Navigation links and buttons with IMPROVED CONTRAST */
+.mystical-section a, .nail-art-accent a {
+    color: #ffffff !important;
+    background: rgba(107, 70, 193, 0.8) !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    margin: 0.5rem 0 !important;
+    border: 2px solid #6b46c1 !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+}
+
+.mystical-section a:hover, .nail-art-accent a:hover {
+    background: rgba(139, 92, 246, 0.9) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(107, 70, 193, 0.6) !important;
 }
 
 /* List items with IMPROVED CONTRAST */
@@ -2126,9 +2147,35 @@ main code {
     font-weight: 600;
 }
 
-/* Ensure all text is readable */
-main * {
-    color: inherit;
+/* Input fields with IMPROVED CONTRAST */
+input[type="text"], input[type="email"], input[type="password"], 
+input[type="number"], input[type="tel"], input[type="url"], 
+textarea, select {
+    background: rgba(26, 26, 26, 0.9) !important;
+    color: #ffffff !important;
+    border: 2px solid #6b46c1 !important;
+    padding: 0.75rem 1rem !important;
+    border-radius: 6px !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+}
+
+/* Input field focus states */
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, 
+input[type="number"]:focus, input[type="tel"]:focus, input[type="url"]:focus, 
+textarea:focus, select:focus {
+    background: rgba(26, 26, 26, 1) !important;
+    border-color: #8b5cf6 !important;
+    box-shadow: 0 0 10px rgba(107, 70, 193, 0.5) !important;
+    outline: none !important;
+}
+
+/* Input field placeholders */
+input::placeholder, textarea::placeholder {
+    color: #d4a5a5 !important;
+    opacity: 0.8 !important;
+    font-weight: 500 !important;
 }
 
 /* Override any problematic text colors */
