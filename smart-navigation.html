@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Performance Optimizations -->
+    <link rel="preload" href="mystical-styles.min.css" as="style">
+    <link rel="preload" href="js/bundle.min.js" as="script">
+    <link rel="preload" href="favicon.svg" as="image">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#6b46c1">
+    <meta name="color-scheme" content="dark light">
+    <meta name="format-detection" content="telephone=no">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🦋 Moth Emporium Presents, Nailed IT Business Planning Suite</title>
@@ -488,7 +497,7 @@
         </section>
     </main>
 
-    <script src="js/navigation/shared-navigation.js"></script>
+    <script src="js/navigation/shared-navigation.js" defer></script>
     <script>
         // Smart Navigation JavaScript
         const searchData = [
@@ -556,5 +565,7 @@
             initializeSearch();
         });
     </script>
+    <!-- Streamlined Navigation Scripts -->
+    <script src="js/navigation/streamlined-navigation.js" defer></script>
 </body>
 </html>
