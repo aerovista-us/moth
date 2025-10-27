@@ -474,6 +474,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Initialize navigation
+    console.log('About to call initStreamlinedNavigation...');
+    console.log('Function exists:', typeof initStreamlinedNavigation);
     initStreamlinedNavigation();
     console.log('✅ Streamlined Navigation initialized');
 });
