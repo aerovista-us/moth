@@ -469,15 +469,15 @@ document.addEventListener('DOMContentLoaded', function() {
     if (headerPlaceholder) {
         headerPlaceholder.innerHTML = generateStreamlinedHeader();
         console.log('✅ Header injected successfully');
+        
+        // Initialize navigation after header is injected
+        setTimeout(() => {
+            initStreamlinedNavigation();
+            console.log('✅ Streamlined Navigation initialized');
+        }, 100);
     } else {
         console.error('❌ Header placeholder not found');
     }
-    
-    // Initialize navigation
-    console.log('About to call initStreamlinedNavigation...');
-    console.log('Function exists:', typeof initStreamlinedNavigation);
-    initStreamlinedNavigation();
-    console.log('✅ Streamlined Navigation initialized');
 });
 
 // Export for use in other scripts
